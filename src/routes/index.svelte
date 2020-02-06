@@ -31,13 +31,15 @@
 		}
 	}
 </style>
-
+<script>
+import Button from '@smui/button';
+</script>
 <svelte:head>
 	<title>Sapper project template</title>
 </svelte:head>
 
 <h1>Great success!</h1>
-
+<Button on:click={() => alert('Button was clicked')}>Click Me!</Button>
 <figure>
 	<img alt='Borat' src='great-success.png'>
 	<figcaption>HIGH FIVE!</figcaption>
