@@ -1,0 +1,60 @@
+<script>
+	const awards_data = [
+		{ link: 'homelane.jpg', alt: 'Homelane Young Gun', caption: 'homelane'},
+		{ link: 'ai_for_everyone.png', alt: 'AI for everyone', caption: 'AI For everyone'},
+		{ link: 'data_science_R.jpeg', alt: 'Data Science in R', caption: 'Data Science'},
+		{ link: 'udacity_ml.png', alt: 'Udacity ML Project', caption: 'R Project'}
+	]
+</script>
+<style>
+	.card-wrapper{
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.card{
+		width: 31%;
+		height: 400px;
+		text-align: center;
+		box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+		background: #fff;
+		margin: 10px;
+		box-sizing: border-box;
+		padding: 10px;
+		position: relative;
+	}
+	img{
+		max-width: 100%;
+		max-height: 100%;
+	}
+	.caption{
+		position: absolute;
+		bottom: 0px;
+		left: 0px;
+		width: 100%;
+		padding: 10px;
+		box-sizing: border-box;
+		background: white;
+	}
+	header{
+		background-color: #008073;
+		color: white;
+		font-size: 32px;
+		padding: 16px;
+	}
+</style>
+
+<svelte:head>
+	<title>Awards</title>
+</svelte:head>
+
+<section>
+	<header>Awards and Certifications</header>
+	<div class="card-wrapper">
+		{#each awards_data as award}
+			<div class="card">
+				<img src={award.link} alt={award.alt} />
+				<div class="caption">{award.caption}</div>
+			</div>
+		{/each}
+	</div>
+</section>

@@ -8,10 +8,11 @@
 	main {
 		position: relative;
 		/* max-width: 56em; */
-		background-color: white;
+		background: transparent;
 		/* padding: 2em; */
-		margin: 0 auto;
+		/* margin: 0 auto; */
 		box-sizing: border-box;
+		flex: 1;
 	}
 </style>
 

@@ -1,31 +1,6 @@
 <style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
-	}
-
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
-
-	figure {
-		margin: 0 0 1em 0;
-	}
-
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
-	}
-
-	p {
-		margin: 1em auto;
-	}
 	section{
-		height: calc(100vh - 60px);
+		height: 100vh;
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;
@@ -42,18 +17,13 @@
 	#name{
 		background: bisque;
 		padding: 10px;
-		display: block;
+		display: inline-block;
 		margin: 5px 0px;
 		width: fit-content;
 	}
 	@media (max-width: 480px) {
 		#intro {
 			font-size: 16px;
-		}
-	}
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
 		}
 	}
 </style>
@@ -68,9 +38,9 @@
 	<div id="intro">
 		Hello I am
 		<span id="name">Anshul Bansal</span>,
-		I am a <span id="name">Full Stack Web Developer</span>,
-		an aspiring<span id="name">Toastmaster</span>
-		and <span id="name">Marathon Runner</span>
+		<div>I am a <span id="name">Full Stack Web Developer</span>,</div>
+		<div>an aspiring<span id="name">Toastmaster</span></div>
+		<div>and <span id="name">Marathon Runner</span></div>
 	</div>
 	<!-- <img src="profile_photo.jpg" alt="profile_photo" -->
 </section>
