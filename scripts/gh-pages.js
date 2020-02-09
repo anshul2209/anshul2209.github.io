@@ -1,9 +1,9 @@
 const ghpages = require('gh-pages');
 
 ghpages.publish(
-    '__sapper__/export/portfolio',
+    '__sapper__/export',
     {
-        branch: 'gh-pages',
+        branch: 'master',
         repo: 'https://github.com/anshul2209/portfolio.git',
         user: {
             name: 'Anshul Bansal',
