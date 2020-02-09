@@ -1,7 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
 	import axios from 'axios';
-	// import Feed from 'rss-to-json';
 
 	let data = [];
 	let videoData = [];
@@ -12,14 +11,12 @@
 		const [firstResponse, secondResponse] = await Promise.all([
 			axios.get('https://api.github.com/users/anshul2209/repos'),
 			axios.get('https://www.googleapis.com/youtube/v3/search?key=AIzaSyD7tj6EM3Y3r8sl1tV2ReMdTqyOg368bfw&channelId=UCDv2X3kXDJ05qCg9EaKCpQw&part=snippet,id&order=date&maxResults=20'),
-			// Feed.load('https://medium.com/feed/@hiiamanshul')
 		]);
 
 		data = firstResponse.data;
 		videoData = secondResponse.data.items;
-		// console.log('thirdResponse', thirdResponse);	
 	}
-	onMount(fetchData());
+	onMount(fetchData);
 
 </script>
 <style>

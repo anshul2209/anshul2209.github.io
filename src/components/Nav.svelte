@@ -57,9 +57,9 @@
 		<li><a class:selected='{segment === undefined}' href='.'>Home</a></li>
 		<li><a class:selected='{segment === "about"}' href='about'>About</a></li>
 		<li><a class:selected='{segment === "awards"}' href='awards'>Awards</a></li>
-		<li><a class:selected='{segment === "skills"}' href='awards'>Skills</a></li>
-		<li><a class:selected='{segment === "resume"}' href='awards'>Resume</a></li>
-		<li><a class:selected='{segment === "contact"}' href='awards'>Contact</a></li>
+		<li><a class:selected='{segment === "skills"}' href='skills'>Skills</a></li>
+		<li><a class:selected='{segment === "resume"}' href='resume'>Resume</a></li>
+		<li><a class:selected='{segment === "contact"}' href='contact'>Contact</a></li>
 
 
 		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches

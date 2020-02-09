@@ -4,7 +4,7 @@
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;
-		background-image: url('profile_photo.jpg')
+		background-image: url('/profile_photo.jpg')
 	}
 	#intro {
 		font-size: 32px;
@@ -30,9 +30,6 @@
 <svelte:head>
 	<title>Sapper project template</title>
 </svelte:head>
-<script>
-	const image_url = 'profile_photo.jpg';
-</script>
 
 <section>
 	<div id="intro">

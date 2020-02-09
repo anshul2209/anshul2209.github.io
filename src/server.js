@@ -8,11 +8,11 @@ const dev = NODE_ENV === 'development';
 
 polka() // You can also use Express
 	.use(
+		'portfolio',
 		compression({ threshold: 0 }),
 		sirv('static', { dev }),
 		sapper.middleware()
 	)
 	.listen(PORT, err => {
-		console.log('****Port is', PORT);
 		if (err) console.log('error', err);
 	});
