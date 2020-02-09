@@ -5,11 +5,12 @@
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build",
-    "export": "sapper export",
+    "export": "sapper export --basepath portfolio --legacy",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "test": "run-p --race dev cy:run"
+    "test": "run-p --race dev cy:run",
+    "deploy": "npm run export && node ./scripts/gh-pages.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
