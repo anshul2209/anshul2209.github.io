@@ -8,13 +8,13 @@
 	async function fetchData() {
 
 		// Make first two requests
-		const [firstResponse, secondResponse] = await Promise.all([
+		const [firstResponse] = await Promise.all([
 			axios.get('https://api.github.com/users/anshul2209/repos'),
-			axios.get('https://www.googleapis.com/youtube/v3/search?key=AIzaSyD7tj6EM3Y3r8sl1tV2ReMdTqyOg368bfw&channelId=UCDv2X3kXDJ05qCg9EaKCpQw&part=snippet,id&order=date&maxResults=20'),
+			// axios.get('https://www.googleapis.com/youtube/v3/search?key=AIzaSyD7tj6EM3Y3r8sl1tV2ReMdTqyOg368bfw&channelId=UCDv2X3kXDJ05qCg9EaKCpQw&part=snippet,id&order=date&maxResults=20'),
 		]);
 
 		data = firstResponse.data;
-		videoData = secondResponse.data.items;
+		// videoData = secondResponse.data.items;
 	}
 	onMount(fetchData);
 
@@ -65,7 +65,7 @@
 </svelte:head>
 
 <h1>About this site</h1>
-<section>
+<!-- <section>
 	<h2>Youtube Videos</h2>
 	<div class="card-wrapper">
 		{#each videoData as video}
@@ -74,7 +74,7 @@
 			</div>
 		{/each}
 	</div>
-</section>
+</section> -->
 <section>
 	<h2>Github Projects</h2>
 	<div class="card-wrapper">
