@@ -4,7 +4,7 @@
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;
-		background-image: url('profile_photo.jpg')
+		background-image: url('/profile_photo.jpg')
 	}
 	#intro {
 		font-size: 32px;
