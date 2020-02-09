@@ -65,7 +65,16 @@
 </svelte:head>
 
 <h1>About this site</h1>
-
+<section>
+	<h2>Youtube Videos</h2>
+	<div class="card-wrapper">
+		{#each videoData as video}
+			<div class="youtube-card">
+				<iframe title="youtube" height="480" width="500" src={`https://www.youtube.com/embed/${video.id.videoId}`}></iframe> 
+			</div>
+		{/each}
+	</div>
+</section>
 <section>
 	<h2>Github Projects</h2>
 	<div class="card-wrapper">
@@ -73,16 +82,6 @@
 			<div class="card">
 				<div class="title">{item.name}</div>
 				<div class="description">{item.description}</div>
-			</div>
-		{/each}
-	</div>
-</section>
-<section>
-	<h2>Youtube Videos</h2>
-	<div class="card-wrapper">
-		{#each videoData as video}
-			<div class="youtube-card">
-				<iframe title="youtube" height="480" width="500" src={`https://www.youtube.com/embed/${video.id.videoId}`}></iframe> 
 			</div>
 		{/each}
 	</div>
