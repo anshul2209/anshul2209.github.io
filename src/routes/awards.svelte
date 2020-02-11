@@ -13,7 +13,6 @@
 	}
 	.card{
 		width: 31%;
-		height: 400px;
 		text-align: center;
 		box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
 		background: #fff;
@@ -40,6 +39,14 @@
 		color: white;
 		font-size: 32px;
 		padding: 16px;
+	}
+	@media (max-width: 425px){
+		.card{
+			width: 100%;
+		}
+		header{
+			display: none;
+		}
 	}
 </style>
 

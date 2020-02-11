@@ -1,6 +1,6 @@
 <style>
 	section{
-		height: 100vh;
+		height: calc(100vh - 60px);
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;
@@ -28,7 +28,7 @@
 	}
 </style>
 <svelte:head>
-	<title>Sapper project template</title>
+	<title>Anshul Bansal Portfolio</title>
 </svelte:head>
 <script>
 	const image_url = 'profile_photo.jpg';
