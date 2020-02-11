@@ -34,11 +34,13 @@ code {
 	padding: 0.2em 0.4em;
 	border-radius: 2px;
 }
+@media (min-width: 425px) {
+	#sapper{
+		padding-left: 138px;
+	}
+}
 @media (min-width: 400px) {
 	body {
 		font-size: 16px;
-	}
-	#sapper{
-		padding-left: 138px;
 	}
 }
