@@ -1,6 +1,6 @@
 <style>
 	section{
-		height: calc(100vh - 60px);
+		height: 100vh;
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;
@@ -24,6 +24,9 @@
 	@media (max-width: 480px) {
 		#intro {
 			font-size: 16px;
+		}
+		section{
+			height: calc(100vh - 60px);
 		}
 	}
 </style>
