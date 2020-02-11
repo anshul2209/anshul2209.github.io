@@ -1,0 +1,2 @@
+section.svelte-l6bjx{height:100vh;background-repeat:no-repeat;background-position:center center;background-size:cover;background-image:url('/profile_photo.jpg')
+	}#intro.svelte-l6bjx{font-size:32px;font-family:sans-serif;position:relative;top:10%;left:10%;width:max-content}#name.svelte-l6bjx{background:bisque;padding:10px;display:inline-block;margin:5px 0px;width:fit-content}@media(max-width: 480px){#intro.svelte-l6bjx{font-size:16px}section.svelte-l6bjx{height:calc(100vh - 60px)}}
