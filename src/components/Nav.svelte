@@ -3,12 +3,12 @@
 
 	export let segment;
 	const menuItems = [
-		{ segment: undefined, 'label': 'Home', href: '.' },
-		{ segment: 'about', 'label': 'About', href: 'about' },
-		{ segment: 'awards', 'label': 'Awards', href: 'awards' },
-		{ segment: 'skills', 'label': 'Skills', href: 'skills' },
-		{ segment: 'resume', 'label': 'Resume', href: 'resume' },
-		{ segment: 'contact', 'label': 'Contact', href: 'contact' },
+		{ segment: undefined, 'label': 'Home', href: '.', icon: 'fa fa-home'},
+		{ segment: 'projects', 'label': 'Projects', href: 'projects', icon: 'fa fa-laptop' },
+		{ segment: 'awards', 'label': 'Awards', href: 'awards', icon: 'fa fa-star-o' },
+		{ segment: 'skills', 'label': 'Skills', href: 'skills', icon: 'fa fa-bar-chart' },
+		// { segment: 'experience', 'label': 'Experience', href: 'experience' },
+		{ segment: 'contact', 'label': 'Contact', href: 'contact', icon: 'fa fa-phone' }
 	]
 </script>
 
@@ -25,6 +25,7 @@
 		bottom: 0px;
 		left: 0px;
 		z-index: 1;
+		padding-top: 80px;
 	}
 	ul {
 		margin: 0;
@@ -43,8 +44,14 @@
 	li {
 		display: block;
 		float: left;
+		display: flex;
+		align-items: center;
 	}
-
+	li i{
+		color: #008073;
+		margin-right: 10px;
+		font-size: 24px;
+	}
 	.selected {
 		position: relative;
 		display: inline-block;
@@ -69,7 +76,10 @@
 <nav>
 	<ul>
 		{#each menuItems as item}
-			<li><a class:selected='{segment === item.segment}' id={item.label} href={item.href}>{item.label}</a></li>
+			<li>
+				<i class={item.icon} aria-hidden="true"></i>
+				<a class:selected='{segment === item.segment}' id={item.label} href={item.href}>{item.label}</a>
+			</li>
 		{/each}
 		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
 		     the blog data when we hover over the link or tap it on a touchscreen -->

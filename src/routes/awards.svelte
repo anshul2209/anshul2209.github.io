@@ -1,4 +1,6 @@
 <script>
+	import SectionHeader from '../components/SectionHeader.svelte';
+	const title = 'Awards and Certifications';
 	const awards_data = [
 		{ link: 'homelane.jpg', alt: 'Homelane Young Gun', caption: 'homelane'},
 		{ link: 'ai_for_everyone.png', alt: 'AI for everyone', caption: 'AI For everyone'},
@@ -34,28 +36,19 @@
 		box-sizing: border-box;
 		background: white;
 	}
-	header{
-		background-color: #008073;
-		color: white;
-		font-size: 32px;
-		padding: 16px;
-	}
 	@media (max-width: 425px){
 		.card{
 			width: 100%;
-		}
-		header{
-			display: none;
 		}
 	}
 </style>
 
 <svelte:head>
-	<title>Awards</title>
+	<title>{title}</title>
 </svelte:head>
 
+<SectionHeader title={title}/>
 <section>
-	<header>Awards and Certifications</header>
 	<div class="card-wrapper">
 		{#each awards_data as award}
 			<div class="card">

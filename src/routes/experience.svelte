@@ -1,7 +1,7 @@
 <svelte:head>
-	<title>Resume</title>
+	<title>Experience</title>
 </svelte:head>
 
 <section>
-    <p>Resume Details</p>
+    <p>Experience</p>
 </section>

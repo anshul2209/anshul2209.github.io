@@ -1,7 +1,8 @@
 <script>
+	import SectionHeader from '../components/SectionHeader.svelte';
 	import { onMount } from 'svelte';
 	import axios from 'axios';
-
+	const title = 'Projects';
 	let data = [];
 	let videoData = [];
 
@@ -75,7 +76,7 @@
 	}
 </style>
 <svelte:head>
-	<title>About</title>
+	<title>{title}</title>
 </svelte:head>
 
 <!-- <section>
@@ -88,8 +89,8 @@
 		{/each}
 	</div>
 </section> -->
+<SectionHeader title={title}/>
 <section>
-	<header>Github Projects</header>
 	<div class="card-wrapper">
 		{#each data as item}
 			<div class="card">
