@@ -26,6 +26,7 @@
         flex-direction: column;
         align-items: center;
         box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+        margin: 10px 0px;
     }
     .video-container h3{
         padding: 18px;

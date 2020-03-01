@@ -2,16 +2,16 @@
 	section{
 		height: 100vh;
 		background-repeat: no-repeat;
-		background-position: center center;
+		background-position: -100px 0px;
 		background-size: cover;
 		background-image: url('/profile_photo.jpg')
 	}
 	#intro {
 		font-size: 32px;
 		font-family: sans-serif;
-		position: relative;
+		position: absolute;
 		top: 10%;
-		left: 10%;
+		right: 10%;
 		width: max-content;
 	}
 	#name{
@@ -21,12 +21,23 @@
 		margin: 5px 0px;
 		width: fit-content;
 	}
+	.overlay {
+		background-color: rgba(0, 0, 0, 0.1);
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
 	@media (max-width: 480px) {
 		#intro {
 			font-size: 16px;
 		}
 		section{
 			height: calc(100vh - 60px);
+		}
+		#name{
+			padding: 5px;
 		}
 	}
 </style>
@@ -38,14 +49,12 @@
 </script>
 
 <section>
+	<!-- <div class="overlay"></div> -->
 	<div id="intro">
 		Hello I am
 		<span id="name">Anshul Bansal</span>,
 		<div>I am a <span id="name">Full Stack Web Developer</span>,</div>
-		<div>an aspiring<span id="name">Toastmaster</span></div>
-		<div>and <span id="name">Marathon Runner</span></div>
+		<div>a <span id="name">Machine Learning Enthusiast</span> and</div>
+		<div>an aspiring <span id="name">Public Speaker</span></div>
 	</div>
-	<!-- <img src="profile_photo.jpg" alt="profile_photo" -->
 </section>
-
-<!-- <p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p> -->
