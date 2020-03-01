@@ -45,7 +45,7 @@
 	<title>Anshul Bansal | Full Stack Developer</title>
 </svelte:head>
 <script>
-	const image_url = 'profile_photo.jpg';
+	 const image_url = 'profile_photo.jpg';
 </script>
 
 <section>
