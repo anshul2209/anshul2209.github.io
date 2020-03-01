@@ -38,7 +38,7 @@
 	async function fetchData() {
 		const headers = {
 			"Accept": "application/vnd.github.mercy-preview+json",
-			"Authorization": "token ca02bdfb798e544f87c8b3c27c4816671473b547"
+			"Authorization": "token eff1169ecdf22952ca6d74a1038b6c427c8cc0a8"
 		}
 		const firstResponse = await axios.get('https://api.github.com/users/anshul2209/repos', { headers });
 		data = firstResponse.data.filter(repo => pinnedRepos.includes(repo.id));
