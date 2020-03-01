@@ -42,7 +42,7 @@
 	}
 </style>
 <svelte:head>
-	<title>Anshul Bansal Portfolio</title>
+	<title>Anshul Bansal | Full Stack Developer</title>
 </svelte:head>
 <script>
 	const image_url = 'profile_photo.jpg';
