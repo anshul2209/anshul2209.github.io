@@ -2,10 +2,10 @@
 	import SectionHeader from '../components/SectionHeader.svelte';
 	const title = 'Awards and Certifications';
 	const awards_data = [
-		{ link: 'homelane.jpg', alt: 'Homelane Young Gun', caption: 'homelane'},
 		{ link: 'ai_for_everyone.png', alt: 'AI for everyone', caption: 'AI For everyone'},
 		{ link: 'data_science_R.jpeg', alt: 'Data Science in R', caption: 'Data Science'},
-		{ link: 'udacity_ml.png', alt: 'Udacity ML Project', caption: 'R Project'}
+		{ link: 'udacity_ml.png', alt: 'Udacity ML Project', caption: 'R Project'},
+		{ link: 'homelane.jpg', alt: 'Homelane Young Gun', caption: 'homelane'}
 	]
 </script>
 <style>

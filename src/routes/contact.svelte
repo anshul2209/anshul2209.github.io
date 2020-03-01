@@ -78,23 +78,23 @@
     <div class="socialMediaWrap">
         <h2>Find me on Social Media.</h2>
         <div class="social-media">
-            <a href="https://www.linkedin.com/in/anshulbansal2209" class="mediaWrapper">
+            <a target="_blank" href="https://www.linkedin.com/in/anshulbansal2209" class="mediaWrapper">
                 <i class="fa fa-linkedin-square" style="color:#0e76a8"></i>
-                <span>Connect me on LinkedIn</span>
+                <span>Connect with me on LinkedIn</span>
             </a>
-            <a href="https://twitter.com/anshulbansal09" class="mediaWrapper">
+            <a target="_blank" href="https://twitter.com/anshulbansal09" class="mediaWrapper">
                 <i class="fa fa-twitter-square" style="color:#00acee"></i>
                 <span>Follow me on Twitter</span>
             </a>
-            <a href="https://github.com/anshul2209" class="mediaWrapper">
+            <a target="_blank" href="https://github.com/anshul2209" class="mediaWrapper">
                 <i class="fa fa-github" style="color:#211F1F"></i>
                 <span>See my projects on Github</span>
             </a>
-            <a href="mailto:anshulbansal2209@gmail.com?Subject=Hello!" class="mediaWrapper">
+            <a target="_blank" href="mailto:anshulbansal2209@gmail.com?Subject=Hello!" class="mediaWrapper">
                 <i class="fa fa-envelope" style="color:#D44638"></i>
                 <span>Send Me an mail</span>
             </a>
-            <a href="https://www.youtube.com/channel/UCDv2X3kXDJ05qCg9EaKCpQw" class="mediaWrapper">
+            <a target="_blank" href="https://www.youtube.com/channel/UCDv2X3kXDJ05qCg9EaKCpQw" class="mediaWrapper">
                 <i class="fa fa-youtube" style="color:#c4302b"></i>
                 <span>Checkout my YouTube channel</span>
             </a>

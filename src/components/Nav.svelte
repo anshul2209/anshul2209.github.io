@@ -5,10 +5,12 @@
 	const menuItems = [
 		{ segment: undefined, 'label': 'Home', href: '.', icon: 'fa fa-home'},
 		{ segment: 'projects', 'label': 'Projects', href: 'projects', icon: 'fa fa-laptop' },
+		{ segment: 'videos', 'label': 'Videos', href: 'videos', icon: 'fa fa-video-camera' },
 		{ segment: 'awards', 'label': 'Awards', href: 'awards', icon: 'fa fa-star-o' },
 		{ segment: 'skills', 'label': 'Skills', href: 'skills', icon: 'fa fa-bar-chart' },
 		// { segment: 'experience', 'label': 'Experience', href: 'experience' },
-		{ segment: 'contact', 'label': 'Contact', href: 'contact', icon: 'fa fa-phone' }
+		{ segment: 'contact', 'label': 'Contact', href: 'contact', icon: 'fa fa-phone' },
+		{ segment: 'blog', 'label': 'Blog', href: 'blog', icon: 'fa fa-rss-square' }
 	]
 </script>
 
@@ -16,7 +18,6 @@
 	nav {
 		border-bottom: 1px solid rgba(255,62,0,0.1);
 		font-weight: 300;
-		padding: 0 2em;
 		box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
 		background: #fff;
 		display: block;
@@ -25,13 +26,17 @@
 		bottom: 0px;
 		left: 0px;
 		z-index: 1;
-		padding-top: 80px;
+		text-align: center;
 	}
 	ul {
 		margin: 0;
 		padding: 0;
 		display: flex;
 		flex-direction: column;
+		padding: 0 2em;
+
+		/* padding-top: 80px; */
+
 	}
 
 	/* clearfix */
@@ -72,8 +77,27 @@
 		padding: 1em 0.5em;
 		display: block;
 	}
+	.logo{
+		padding: 10px;
+		background: #fafafa;
+	}
+	.name {
+		font-size: 24px;
+		color: #008073;
+		font-weight: 300;
+
+	}
+	.title{
+		font-size: 16px;
+		font-weight: 100;
+
+	}
 </style>
 <nav>
+	<div class="logo">
+		<h2 class="name">Anshul <br>Bansal</h2>
+		<h4 class="title">Full Stack Developer</h4>
+	</div>
 	<ul>
 		{#each menuItems as item}
 			<li>
@@ -81,8 +105,5 @@
 				<a class:selected='{segment === item.segment}' id={item.label} href={item.href}>{item.label}</a>
 			</li>
 		{/each}
-		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
-		<li><a rel=prefetch class:selected='{segment === "blog"}' href='blog'>Blog</a></li>
 	</ul>
 </nav>

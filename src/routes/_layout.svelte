@@ -18,6 +18,7 @@
 		/* margin: 0 auto; */
 		box-sizing: border-box;
 		overflow: auto;
+		margin-bottom: 44px;
 	}
 	.is-desktop{
 		display: block;

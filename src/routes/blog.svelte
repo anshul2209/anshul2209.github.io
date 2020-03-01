@@ -1,0 +1,74 @@
+<script>
+	import SectionHeader from '../components/SectionHeader.svelte';
+	const title = 'Recent Posts';
+	const posts = [
+		{ 
+			title: 'Human Activity Tracker System', 
+			subtitle: 'Have you ever wondered how the smartphones and fitness watches know when you are running, walking, cycling or just have been lethargic for a while . This post is aimed at demystify this and a walkthrough to build a system which can accurately detect the activity using some of the sensor data from the accelerometer and gyro meter in particular.', 
+			url: 'https://medium.com/analytics-vidhya/human-activity-tracker-system-2435b532b05e', 
+			cover: 'activity.jpg'
+		}
+	]
+</script>
+
+<style>
+	ul {
+		margin: 0;
+		padding: 0px;
+	}
+	.post{
+		display: flex;
+		margin: 20px 0px;
+		box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+	}
+	.post img{
+		max-width: 100%;
+    	width: 500px;
+	}
+	.details{
+		padding: 10px 20px;
+	}
+	.details p {
+		font-size: 18px;
+	}
+	section{
+		padding: 30px;
+	}
+	a {
+		text-decoration: none;
+	}
+	.read-more{
+		color: #008073;
+		font-weight: bold;
+	}
+	@media (max-width: 425px){
+		.post{
+			flex-direction: column;
+		}
+		.details p {
+			font-size: 14px;
+		}
+	}
+</style>
+
+<svelte:head>
+	<title>{title}</title>
+</svelte:head>
+
+<SectionHeader title={title}/>
+<section>
+	<ul>
+		{#each posts as post}
+			<a href={post.url} target="_blank">
+				<li class="post">
+					<img src={post.cover} alt="blog-image"/>
+					<div class="details">
+						<h2>{post.title}</h2>
+						<p>{post.subtitle}</p>
+						<div class="read-more">Read More...</div>
+					</div>
+				</li>
+			</a>
+		{/each}
+	</ul>
+</section>
