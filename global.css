@@ -26,6 +26,16 @@ a {
 #sapper{
 	height: 100%;
 }
+footer {
+	position: fixed;
+    bottom: 0px;
+    width: 100%;
+    z-index: 2;
+    text-align: center;
+    background: black;
+    color: white;
+    padding: 10px;
+}
 code {
 	font-family: menlo, inconsolata, monospace;
 	font-size: calc(1em - 2px);
