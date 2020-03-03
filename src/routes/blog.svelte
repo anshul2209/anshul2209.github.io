@@ -12,7 +12,7 @@
 			title: 'Deploying Sapper PWA using Github Pages: Step by Step Tutorial ( Part 1)', 
 			subtitle: 'Let\'s say you are done with the development of your application made using Svelte and Sapper and want to host it somewhere free of cost. Here is how to deploy your static Sapper PWA application using Github Pages.', 
 			url: 'https://medium.com/@hiiamanshul/deploying-sapper-pwa-using-github-pages-step-by-step-tutorial-part-1-1e9828dfe4de', 
-			cover: 'sveltesapper.jpg'
+			cover: 'sveltesapper.jpeg'
 		}
 	]
 </script>
