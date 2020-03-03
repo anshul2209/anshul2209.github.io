@@ -2,10 +2,10 @@
 	import SectionHeader from '../components/SectionHeader.svelte';
 	const title = 'Awards and Certifications';
 	const awards_data = [
-		{ link: 'ai_for_everyone.png', alt: 'AI for everyone', caption: 'It covered the basics of artificial intelligence and machine learning'},
+		{ link: 'ai_for_everyone.png', alt: 'AI for everyone', caption: 'Gained insights in the basics of artificial intelligence and machine learning'},
 		{ link: 'data_science_R.jpeg', alt: 'Data Science in R', caption: 'A deep dive into the data engineering aspect of machine learning using R'},
 		{ link: 'udacity_ml.png', alt: 'Udacity ML Project', caption: 'Graduation certificate for the 3 months nanodegree program with udacity'},
-		{ link: 'homelane.jpg', alt: 'Homelane Young Gun', caption: 'Given to the top performer amongst the new joinees in the company'}
+		{ link: 'homelane.jpg', alt: 'Homelane Young Gun', caption: 'Awarded for being the top performer amongst the new joinees in the company'}
 	]
 </script>
 <style>

@@ -92,11 +92,11 @@
             </a>
             <a target="_blank" href="mailto:anshulbansal2209@gmail.com?Subject=Hello!" class="mediaWrapper">
                 <i class="fa fa-envelope" style="color:#D44638"></i>
-                <span>Send Me an mail</span>
+                <span>Send me an email</span>
             </a>
             <a target="_blank" href="https://www.youtube.com/channel/UCDv2X3kXDJ05qCg9EaKCpQw" class="mediaWrapper">
                 <i class="fa fa-youtube" style="color:#c4302b"></i>
-                <span>Checkout my YouTube channel</span>
+                <span>Check out my YouTube channel</span>
             </a>
         </div>
     </div>
@@ -104,7 +104,7 @@
         <div class="content">
             <h1>I'd love to hear from you.</h1>
             <h3>Got a project you want me to work on?</h3>
-            <h3>or just ping me for a friendly chat maybe?</h3>
+            <h3>or maybe discuss the next startup idea?</h3>
         </div>
         <img src="giggle.gif" alt="hello"/>
     </div>

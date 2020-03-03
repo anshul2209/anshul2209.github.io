@@ -3,14 +3,14 @@
 
 	export let segment;
 	const menuItems = [
-		{ segment: undefined, 'label': 'Home', href: '.', icon: 'fa fa-home'},
+		{ segment: undefined, 'label': 'About', href: '.', icon: 'fa fa-user'},
 		{ segment: 'projects', 'label': 'Projects', href: 'projects', icon: 'fa fa-laptop' },
 		{ segment: 'videos', 'label': 'Videos', href: 'videos', icon: 'fa fa-video-camera' },
 		{ segment: 'awards', 'label': 'Awards', href: 'awards', icon: 'fa fa-star-o' },
 		{ segment: 'skills', 'label': 'Skills', href: 'skills', icon: 'fa fa-bar-chart' },
 		// { segment: 'experience', 'label': 'Experience', href: 'experience' },
 		{ segment: 'contact', 'label': 'Contact', href: 'contact', icon: 'fa fa-phone' },
-		{ segment: 'blog', 'label': 'Blog', href: 'blog', icon: 'fa fa-rss-square' }
+		{ segment: 'blog', 'label': 'Blog Posts', href: 'blog', icon: 'fa fa-rss-square' }
 	]
 </script>
 

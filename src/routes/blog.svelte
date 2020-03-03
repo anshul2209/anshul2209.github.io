@@ -1,6 +1,6 @@
 <script>
 	import SectionHeader from '../components/SectionHeader.svelte';
-	const title = 'Recent Posts';
+	const title = 'Blog Posts';
 	const posts = [
 		{ 
 			title: 'Human Activity Tracker System', 
@@ -49,6 +49,9 @@
 			font-size: 14px;
 		}
 	}
+	.logo{
+		max-height: 20px;
+	}
 </style>
 
 <svelte:head>
@@ -57,6 +60,7 @@
 
 <SectionHeader title={title}/>
 <section>
+	<img class="logo" src="medium_logo.png" alt="Medium" />
 	<ul>
 		{#each posts as post}
 			<a href={post.url} target="_blank">
