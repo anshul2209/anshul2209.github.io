@@ -1,4 +1,4 @@
-<style>
+<style type="text/sass">
     .loader{
         position: fixed;
         width: 100%;
@@ -9,10 +9,10 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-    }
-    .loading{
-        margin-top: 10px;
-        font-size: 24px;
+        .loading{
+            margin-top: 10px;
+            font-size: 24px;
+        }
     }
 </style>
 <script>

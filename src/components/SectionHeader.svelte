@@ -1,7 +1,7 @@
 <script>
 	export let title;
 </script>
-<style>
+<style type="text/sass">
     header{
 		background-color: #008073;
 		color: white;

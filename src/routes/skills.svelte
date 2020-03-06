@@ -59,17 +59,17 @@
         }
     }
 </script>
-<style>
+<style type="text/sass">
+.tile{
+    margin: 50px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    background: white;
+}
+@media (max-width: 425px) {
     .tile{
-        margin: 50px;
-		box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
-        background: white;
-    }
-    @media (max-width: 425px) {
-        .tile{
-            margin: 20px;
-        } 
-    }
+        margin: 20px;
+    } 
+}
 </style>
 <svelte:head>
 	<title>{title}</title>

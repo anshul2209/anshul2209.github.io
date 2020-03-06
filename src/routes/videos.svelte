@@ -14,50 +14,61 @@
         ]
     }
 </script>
-<style>
-    .video-wrapper{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        margin: 10px 0px;
-    }
+<style type="text/sass">
+.video-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 10px 0px;
     .video-container{
         display: flex;
         flex-direction: column;
         align-items: center;
         box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
         margin: 10px 0px;
+        h3{
+            padding: 18px;
+            font-size: 18px;
+            color: #008073;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+            background: #f9f9f9;
+            margin: 0;
+        }
     }
-    .video-container h3{
-        padding: 18px;
-        font-size: 18px;
-        color: #008073;
-        width: 100%;
-        text-align: center;
-        box-sizing: border-box;
-        background: #f9f9f9;
-        margin: 0;
-    }
-    h2{
-        border-bottom: 1px solid #ddd;
-        font-size: 28px;
-        color: #795548;
-        padding: 10px;
-    }
-    section{
-        padding: 20px;
-    }
-    .youtube-channel{
-        margin-top: 20px;
-        text-align: center;
-    }
-    .youtube-channel span{
-        font-size: 18px;
-        font-weight: bold;
-    }
-    iframe{
-        max-width: 100%;
-    }
+}
+
+.video-container h3{
+    padding: 18px;
+    font-size: 18px;
+    color: #008073;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    background: #f9f9f9;
+    margin: 0;
+}
+h2{
+    border-bottom: 1px solid #ddd;
+    font-size: 28px;
+    color: #795548;
+    padding: 10px;
+}
+section{
+    padding: 20px;
+}
+.youtube-channel{
+    margin-top: 20px;
+    text-align: center;
+}
+.youtube-channel span{
+    font-size: 18px;
+    font-weight: bold;
+}
+iframe{
+    max-width: 100%;
+}
 </style>
 <svelte:head>
 	<title>{title}</title>

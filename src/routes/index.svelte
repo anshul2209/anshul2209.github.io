@@ -1,34 +1,27 @@
-<style>
+<style type="text/sass">
 	section{
 		height: 100vh;
 		background-repeat: no-repeat;
 		background-position: -100px 0px;
 		background-size: cover;
-		background-image: url('/profile_photo.jpg')
+		background-image: url('/profile_photo.jpg');
+		#intro {
+			font-size: 32px;
+			font-family: sans-serif;
+			position: absolute;
+			top: 10%;
+			right: 10%;
+			width: max-content;
+			#name{
+				background: bisque;
+				padding: 10px;
+				display: inline-block;
+				margin: 5px 0px;
+				width: fit-content;
+			}
+		}
 	}
-	#intro {
-		font-size: 32px;
-		font-family: sans-serif;
-		position: absolute;
-		top: 10%;
-		right: 10%;
-		width: max-content;
-	}
-	#name{
-		background: bisque;
-		padding: 10px;
-		display: inline-block;
-		margin: 5px 0px;
-		width: fit-content;
-	}
-	.overlay {
-		background-color: rgba(0, 0, 0, 0.1);
-		height: 100%;
-		left: 0;
-		position: absolute;
-		top: 0;
-		width: 100%;
-	}
+	
 	@media (max-width: 480px) {
 		#intro {
 			font-size: 16px;
@@ -49,7 +42,6 @@
 </script>
 
 <section>
-	<!-- <div class="overlay"></div> -->
 	<div id="intro">
 		Hello I am
 		<span id="name">Anshul Bansal</span>,

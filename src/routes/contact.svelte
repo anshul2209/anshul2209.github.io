@@ -5,16 +5,12 @@
 <svelte:head>
 	<title>{title}</title>
 </svelte:head>
-<style>
-    section{
-        display: flex;
-        /* align-items: center; */
-        justify-content: space-evenly;
-        margin-top: 5%;
-    }
-    section h2{
-        /* background: url('/brushstroke.png'); */
-        /* background-size: cover; */
+<style type="text/sass">
+section{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 5%;
+    h2{
         margin-bottom: 30px;
         font-weight: bold;
     }
@@ -22,56 +18,58 @@
         display: flex;
         flex-direction: column;
         width: fit-content;
-    }
-    .mediaWrapper{
-        text-decoration: none;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center
-    }
-    .mediaWrapper i{
-        font-size: 42px;
-        cursor: pointer;
-        margin-right: 20px;
+        .mediaWrapper{
+            text-decoration: none;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            i{
+                font-size: 42px;
+                cursor: pointer;
+                margin-right: 20px;
+            }
+        }
     }
     .content_wrap{
         max-width: 100%;
-    }
-    .content_wrap img {
-        top: -80px;
-        position: relative;
-        /* width: 500px; */
-    }
-    .content {
-        background: url('/brushstroke.png');
-        background-size: cover;
-        width: 600px;
-        padding: 30px 20px;
-        box-sizing: border-box;
-        position: relative;
-        color: #000;
-        max-width: 100%;
-    }
-    .content h1{
-        text-align: center;
-        position: relative;
-        left: 25px;
-    }
-    .content h3{
-        position: relative;
-        left: 50px;
-    }
-    @media (max-width: 425px) {
-        .content h3{
-            left: 20px;
+        img {
+            top: -80px;
+            position: relative;
         }
+        .content {
+            background: url('/brushstroke.png');
+            background-size: cover;
+            width: 600px;
+            padding: 30px 20px;
+            box-sizing: border-box;
+            position: relative;
+            color: #000;
+            max-width: 100%;
+            h1{
+                text-align: center;
+                position: relative;
+                left: 25px;
+            }
+            h3{
+                position: relative;
+                left: 50px;
+            }
+        }
+
+       
+    }
+}
+ @media (max-width: 425px) {
+    section{
+        flex-wrap: wrap;
         .content_wrap{
             text-align: center;
-        }
-        section{
-            flex-wrap: wrap;
+            .content h3{
+                left: 20px;
+            }
         }
     }
+}
 </style>
 <SectionHeader title={title}/>
 <section>

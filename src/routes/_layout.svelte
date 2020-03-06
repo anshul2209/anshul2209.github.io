@@ -9,7 +9,7 @@
 	}
 </script>
 
-<style>
+<style type="text/sass">
 	main {
 		position: relative;
 		/* max-width: 56em; */

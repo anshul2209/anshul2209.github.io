@@ -17,47 +17,50 @@
 	]
 </script>
 
-<style>
-	ul {
-		margin: 0;
-		padding: 0px;
-	}
-	.post{
-		display: flex;
-		margin: 20px 0px;
-		box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
-	}
-	.post img{
-		max-width: 100%;
-    	width: 500px;
-	}
-	.details{
-		padding: 10px 20px;
-	}
-	.details p {
-		font-size: 18px;
-	}
-	section{
-		padding: 30px;
-	}
-	a {
-		text-decoration: none;
-	}
-	.read-more{
-		color: #008073;
-		font-weight: bold;
-	}
-	@media (max-width: 425px){
-		.post{
-			flex-direction: column;
-		}
-		.details p {
-			font-size: 14px;
-		}
-	}
+<style type="text/sass">
+section{
+	padding: 30px;
 	.logo{
 		max-height: 20px;
 	}
+	ul {
+		margin: 0;
+		padding: 0px;
+		.post{
+			display: flex;
+			margin: 20px 0px;
+			box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+			img{
+				max-width: 100%;
+				width: 500px;
+			}
+			.details{
+				padding: 10px 20px;
+				p {
+					font-size: 18px;
+				}
+				.read-more{
+					color: #008073;
+					font-weight: bold;
+				}
+			}
+		}
+		a {
+			text-decoration: none;
+		}
+		@media (max-width: 425px){
+			.post{
+				flex-direction: column;
+			}
+			.details {
+				p {
+					font-size: 14px;
+				}
+			}
+		}
+	}
+}
+
 </style>
 
 <svelte:head>

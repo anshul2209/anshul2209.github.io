@@ -8,11 +8,10 @@
 		{ link: 'homelane.jpg', alt: 'Homelane Young Gun', caption: 'Awarded for being the top performer amongst the new joinees in the company'}
 	]
 </script>
-<style>
-	.card-wrapper{
-		display: flex;
-		flex-wrap: wrap;
-	}
+<style type="text/sass">
+.card-wrapper{
+	display: flex;
+	flex-wrap: wrap;
 	.card{
 		width: 31%;
 		text-align: center;
@@ -22,27 +21,28 @@
 		box-sizing: border-box;
 		padding: 10px;
 		position: relative;
-	}
-	img{
-		max-width: 100%;
-		max-height: 100%;
-	}
-	.caption{
-		position: absolute;
-		bottom: 0px;
-		left: 0px;
-		width: 100%;
-		padding: 10px;
-		box-sizing: border-box;
-		background: white;
-		color: #008073;
-		font-weight: bold;
+		img{
+			max-width: 100%;
+			max-height: 100%;
+		}
+		.caption{
+			position: absolute;
+			bottom: 0px;
+			left: 0px;
+			width: 100%;
+			padding: 10px;
+			box-sizing: border-box;
+			background: white;
+			color: #008073;
+			font-weight: bold;
+		}
 	}
 	@media (max-width: 425px){
 		.card{
 			width: 100%;
 		}
 	}
+}
 </style>
 
 <svelte:head>

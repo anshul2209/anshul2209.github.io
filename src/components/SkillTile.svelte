@@ -3,29 +3,29 @@
     export let skills;
 </script>
 
-<style>
+<style type="text/sass">
+.tileWrapper{
+    box-sizing: border-box;
     .title{
         /* border-bottom: 1px solid #ddd; */
         padding: 20px;
         background: #f9f9f9;
         color: #000;
     }
-    .imgWrapper{
-        /* border: 1px solid; */
-        padding: 10px;
-        box-sizing: border-box;
-    }
-    .tileWrapper{
-        box-sizing: border-box;
-    }
     .imageSection{
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
+        .imgWrapper{
+            /* border: 1px solid; */
+            padding: 10px;
+            box-sizing: border-box;
+            img {
+                height: 80px;
+            }
+        }
     }
-    .imgWrapper img {
-        height: 80px;
-    }
+}
 </style>
 <div class="tileWrapper">
     <h3 class="title">{title}</h3>
