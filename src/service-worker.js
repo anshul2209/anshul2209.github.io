@@ -15,6 +15,7 @@ self.addEventListener('install', event => {
 			.then(() => {
 				self.skipWaiting();
 			})
+			.catch(e => console.log('error is', e))
 	);
 });
 
@@ -32,15 +33,19 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
+
 	if (event.request.method !== 'GET' || event.request.headers.has('range')) return;
 
 	const url = new URL(event.request.url);
+	console.log('url pathname', url.pathname);
+
 
 	// don't try to handle e.g. data: URIs
 	if (!url.protocol.startsWith('http')) return;
 
 	// ignore dev server requests
 	if (url.hostname === self.location.hostname && url.port !== self.location.port) return;
+
 
 	// always serve static files and bundler-generated assets from cache
 	if (url.host === self.location.host && cached.has(url.pathname)) {
