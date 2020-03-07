@@ -1,6 +1,8 @@
 <script>
 	import SectionHeader from '../components/SectionHeader.svelte';
 	const title = 'Blog Posts';
+    import track from '../../helpers/tracking.js';
+
 	const posts = [
 		{ 
 			title: 'Human Activity Tracker System', 
@@ -15,6 +17,12 @@
 			cover: 'sveltesapper.jpeg'
 		}
 	]
+
+	function handleLinkClick(event) {
+		if(event.currentTarget.href) {
+			track('click', 'blog_links', event.currentTarget.href)
+		} 
+	}
 </script>
 
 <style type="text/sass">
@@ -72,7 +80,7 @@ section{
 	<img class="logo" src="medium_logo.png" alt="Medium" />
 	<ul>
 		{#each posts as post}
-			<a href={post.url} target="_blank">
+			<a href={post.url} target="_blank" on:click={handleLinkClick}>
 				<li class="post">
 					<img src={post.cover} alt="blog-image"/>
 					<div class="details">

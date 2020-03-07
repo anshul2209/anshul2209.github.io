@@ -1,6 +1,7 @@
 <script>
 	import SectionHeader from '../components/SectionHeader.svelte';
 	import Loader from '../components/Loader.svelte';
+	import track from '../../helpers/tracking.js';
 	let isClosed = false;
 	import { onMount } from 'svelte';
 	import axios from 'axios';
@@ -48,9 +49,14 @@
 	function handleCardFlip(event){
 		isClosed = true;
 	}
+	function handleLinkClick(event) {
+		if(event.target.href) {
+			track('click', 'external_links', event.target.href)
+		}
+	}
 </script>
 <style type="text/sass">
-	.card-wrapper{
+	.card-wrapper{	
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
@@ -197,7 +203,7 @@
 						</div>
 						<div class="card_flip">
 							<span on:click={handleCardFlip}><i class="fa fa-times-circle" aria-hidden="true" style="font-size:24px"></i></span>
-							<div class="links">
+							<div class="links" on:click={handleLinkClick}>
 								<a target="_blank" href={item.homepage}><i class="fa fa-external-link" style="font-size:48px"></i>Demo</a>
 								<a target="_blank" href={item.svn_url}><i class="fa fa-github" style="font-size:48px"></i>GitHub</a>
 							</div>
@@ -213,7 +219,7 @@
 			{/each}
 		</div>
 		<div class="allProjects">
-			<a href="https://github.com/anshul2209" class="mediaWrapper">
+			<a href="https://github.com/anshul2209" on:click={handleLinkClick} class="mediaWrapper">
 				<i class="fa fa-github" style="color:#211F1F"></i>
 				<span>Checkout more projects on Github</span>
 			</a>

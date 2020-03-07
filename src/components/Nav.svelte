@@ -1,5 +1,6 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
+	import track from '../../helpers/tracking.js';
 
 	export let segment;
 	const menuItems = [
@@ -12,6 +13,13 @@
 		{ segment: 'contact', 'label': 'Contact', href: 'contact', icon: 'fa fa-phone' },
 		{ segment: 'blog', 'label': 'Blog Posts', href: 'blog', icon: 'fa fa-rss-square' }
 	]
+
+	function handleNavigation(event) {
+		const label = event.target.id;
+		if(label) {
+			track('click', 'navigation', label);
+		}
+	}
 </script>
 
 <style type="text/sass">
@@ -90,7 +98,7 @@
 		<h2 class="name">Anshul <br>Bansal</h2>
 		<h4 class="title">Full Stack Developer</h4>
 	</div>
-	<ul>
+	<ul on:click={handleNavigation}>
 		{#each menuItems as item}
 			<li>
 				<i class={item.icon} aria-hidden="true"></i>

@@ -1,5 +1,6 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
+	import track from '../../helpers/tracking.js';
 
 	export let segment;
 	export let isVisible
@@ -25,6 +26,12 @@
 			selectedTab = event.target.id
 		}
 		dispatch('toggle');
+	}
+	function handleNavigation(event) {
+		const label = event.target.id;
+		if(label) {
+			track('click', 'navigation', label);
+		}
 	}
 </script>
 
@@ -132,7 +139,7 @@
 		<h2 class="name">Anshul Bansal</h2>
 		<h4 class="title">Full Stack Developer</h4>
 	</div>
-	<ul>
+	<ul on:click={handleNavigation}>
 		{#each menuItems as item}
 			<li>
 				<i class={item.icon} aria-hidden="true"></i>
