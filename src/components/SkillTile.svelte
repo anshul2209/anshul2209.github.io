@@ -32,7 +32,7 @@
     <div class="imageSection">
         {#each skills as skill}
             <div id={skill.id} class="imgWrapper">
-                <img src={skill.imgSrc} alt={skill.alt} />
+                <img src={skill.imgSrc} alt={skill.alt}>
             </div>
         {/each}
     </div>

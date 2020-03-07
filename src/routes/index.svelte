@@ -21,16 +21,15 @@
 			}
 		}
 	}
-	
 	@media (max-width: 480px) {
-		#intro {
-			font-size: 16px;
-		}
 		section{
 			height: calc(100vh - 60px);
-		}
-		#name{
-			padding: 5px;
+			#intro {
+				font-size: 16px;
+				#name{
+					padding: 5px;
+				}
+			}
 		}
 	}
 </style>

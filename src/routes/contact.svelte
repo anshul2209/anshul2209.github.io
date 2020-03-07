@@ -1,5 +1,5 @@
 <script>
-	import SectionHeader from '../components/SectionHeader.svelte';
+    import SectionHeader from '../components/SectionHeader.svelte';
 	const title = 'Contact Me';
 </script>
 <svelte:head>
