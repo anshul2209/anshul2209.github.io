@@ -15,6 +15,18 @@
 			subtitle: 'Let\'s say you are done with the development of your application made using Svelte and Sapper and want to host it somewhere free of cost. Here is how to deploy your static Sapper PWA application using Github Pages.', 
 			url: 'https://medium.com/@hiiamanshul/deploying-sapper-pwa-using-github-pages-step-by-step-tutorial-part-1-1e9828dfe4de', 
 			cover: 'sveltesapper.jpeg'
+		},
+		{
+			title: 'Deploying Sapper PWA using Github Pages: Step by Step Tutorial ( Part 2)', 
+			subtitle: 'Add custom domain to the website', 
+			url: 'https://medium.com/@hiiamanshul/deploying-sapper-pwa-using-github-pages-step-by-step-tutorial-part-2-d2efd92b2244', 
+			cover: 'sveltesapper.jpeg'
+		},
+		{
+			title: 'Implementing the Micro-frontend using Web Components at OLX', 
+			subtitle: 'From Monolith to Microapps', 
+			url: 'https://medium.com/@hiiamanshul/implementing-the-micro-frontend-using-web-components-at-olx-14b16127b14d', 
+			cover: 'olxapp.png'
 		}
 	]
 
