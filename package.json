@@ -1,6 +1,6 @@
 {
-  "name": "TODO",
-  "description": "TODO",
+  "name": "anshulbansal",
+  "description": "Anshul Bansal Portfolio",
   "version": "0.0.1",
   "scripts": {
     "dev": "sapper dev",
@@ -11,7 +11,7 @@
     "test": "run-p --race dev cy:run",
     "clean": "rm -rf ./__sapper__",
     "export": "sapper export --legacy",
-    "deploy": "npm run clean && npm run export && node ./scripts/gh-pages.js"
+    "deploy": "npm run clean && npm run export && node ./scripts/deploy.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
