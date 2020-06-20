@@ -6,7 +6,7 @@
 	import { onMount } from 'svelte';
 	import axios from 'axios';
 	const title = 'Projects';
-	const pinnedRepos = [ 158177168, 92606922, 73320743, 82116410, 234808378, 112024297];
+	const pinnedRepos = [ 258580131, 158177168, 92606922, 73320743, 82116410, 234808378, 112024297];
 	const imageMap = {
 		'gourmet-food': {
 			id: 258580131, 
