@@ -8,6 +8,10 @@
 	const title = 'Projects';
 	const pinnedRepos = [ 158177168, 92606922, 73320743, 82116410, 234808378, 112024297];
 	const imageMap = {
+		'gourmet-food': {
+			id: 258580131, 
+			cover: 'gourmet-food.png' 
+		},
 		PUBGrankpredictor: { 
 			id: 158177168, 
 			cover: 'pubg.jpg' 
