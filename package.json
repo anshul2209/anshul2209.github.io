@@ -14,7 +14,7 @@
     "deploy": "npm run clean && npm run export && node ./scripts/deploy.js"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "compression": "^1.7.1",
     "gh-pages": "^2.2.0",
     "node-sass": "^4.13.1",
