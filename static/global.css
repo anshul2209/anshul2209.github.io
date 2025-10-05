@@ -7,7 +7,7 @@ body {
 	font-size: 14px;
 	line-height: 1.5;
 	color: #333;
-	background-image: url('bg.png');
+	background-image: url('/bg.png');
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -23,7 +23,7 @@ h1 {
 a {
 	color: inherit;
 }
-#sapper{
+#svelte{
 	height: 100%;
 }
 footer {
@@ -44,9 +44,10 @@ code {
 	padding: 0.2em 0.4em;
 	border-radius: 2px;
 }
-@media (min-width: 425px) {
-	#sapper{
-		padding-left: 175px;
+@media (min-width: 426px) {
+	#svelte{
+		padding-left: 200px !important;
+		background-color: rgba(255, 0, 0, 0.1) !important;
 	}
 }
 @media (min-width: 400px) {

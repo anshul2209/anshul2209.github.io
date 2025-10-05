@@ -1,0 +1,42 @@
+import { c as create_ssr_component, v as validate_component, e as each, d as escape, b as add_attribute } from "../../../chunks/ssr.js";
+import { S as SectionHeader } from "../../../chunks/SectionHeader.js";
+const css = {
+  code: "section.svelte-1vbagbp.svelte-1vbagbp{padding:30px}section.svelte-1vbagbp .logo.svelte-1vbagbp{max-height:20px}section.svelte-1vbagbp ul.svelte-1vbagbp{margin:0;padding:0px}section.svelte-1vbagbp ul .post.svelte-1vbagbp{display:flex;margin:20px 0px;box-shadow:0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)}section.svelte-1vbagbp ul .post img.svelte-1vbagbp{max-width:100%;width:500px}section.svelte-1vbagbp ul .post .details.svelte-1vbagbp{padding:10px 20px}section.svelte-1vbagbp ul .post .details p.svelte-1vbagbp{font-size:18px}section.svelte-1vbagbp ul .post .details .read-more.svelte-1vbagbp{color:#008073;font-weight:bold}section.svelte-1vbagbp ul a.svelte-1vbagbp{text-decoration:none}@media(max-width: 425px){section.svelte-1vbagbp ul .post.svelte-1vbagbp{flex-direction:column}section.svelte-1vbagbp ul .details p.svelte-1vbagbp{font-size:14px}}",
+  map: `{"version":3,"file":"+page.svelte","sources":["+page.svelte"],"sourcesContent":["<script>\\n\\timport SectionHeader from '../../lib/components/SectionHeader.svelte';\\n\\tconst title = 'Blog Posts';\\n    import track from '../../lib/helpers/tracking.js';\\n\\n\\tconst posts = [\\n\\t\\t{ \\n\\t\\t\\ttitle: 'Human Activity Tracker System', \\n\\t\\t\\tsubtitle: 'Have you ever wondered how the smartphones and fitness watches know when you are running, walking, cycling or just have been lethargic for a while . This post is aimed at demystify this and a walkthrough to build a system which can accurately detect the activity using some of the sensor data from the accelerometer and gyro meter in particular.', \\n\\t\\t\\turl: 'https://medium.com/analytics-vidhya/human-activity-tracker-system-2435b532b05e', \\n\\t\\t\\tcover: 'activity.jpg'\\n\\t\\t},\\n\\t\\t{\\n\\t\\t\\ttitle: 'Deploying Sapper PWA using Github Pages: Step by Step Tutorial ( Part 1)', \\n\\t\\t\\tsubtitle: 'Let\\\\'s say you are done with the development of your application made using Svelte and Sapper and want to host it somewhere free of cost. Here is how to deploy your static Sapper PWA application using Github Pages.', \\n\\t\\t\\turl: 'https://medium.com/@hiiamanshul/deploying-sapper-pwa-using-github-pages-step-by-step-tutorial-part-1-1e9828dfe4de', \\n\\t\\t\\tcover: 'sveltesapper.jpeg'\\n\\t\\t},\\n\\t\\t{\\n\\t\\t\\ttitle: 'Deploying Sapper PWA using Github Pages: Step by Step Tutorial ( Part 2)', \\n\\t\\t\\tsubtitle: 'Add custom domain to the website', \\n\\t\\t\\turl: 'https://medium.com/@hiiamanshul/deploying-sapper-pwa-using-github-pages-step-by-step-tutorial-part-2-d2efd92b2244', \\n\\t\\t\\tcover: 'sveltesapper.jpeg'\\n\\t\\t},\\n\\t\\t{\\n\\t\\t\\ttitle: 'Implementing the Micro-frontend using Web Components at OLX', \\n\\t\\t\\tsubtitle: 'From Monolith to Microapps', \\n\\t\\t\\turl: 'https://medium.com/@hiiamanshul/implementing-the-micro-frontend-using-web-components-at-olx-14b16127b14d', \\n\\t\\t\\tcover: 'olxapp.png'\\n\\t\\t}\\n\\t]\\n\\n\\tfunction handleLinkClick(event) {\\n\\t\\tif(event.currentTarget.href) {\\n\\t\\t\\ttrack('click', 'blog_links', event.currentTarget.href)\\n\\t\\t} \\n\\t}\\n<\/script>\\n\\n<style lang=\\"scss\\">section {\\n  padding: 30px;\\n}\\nsection .logo {\\n  max-height: 20px;\\n}\\nsection ul {\\n  margin: 0;\\n  padding: 0px;\\n}\\nsection ul .post {\\n  display: flex;\\n  margin: 20px 0px;\\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\\n}\\nsection ul .post img {\\n  max-width: 100%;\\n  width: 500px;\\n}\\nsection ul .post .details {\\n  padding: 10px 20px;\\n}\\nsection ul .post .details p {\\n  font-size: 18px;\\n}\\nsection ul .post .details .read-more {\\n  color: #008073;\\n  font-weight: bold;\\n}\\nsection ul a {\\n  text-decoration: none;\\n}\\n@media (max-width: 425px) {\\n  section ul .post {\\n    flex-direction: column;\\n  }\\n  section ul .details p {\\n    font-size: 14px;\\n  }\\n}</style>\\n\\n<svelte:head>\\n\\t<title>{title}</title>\\n</svelte:head>\\n\\n<SectionHeader title={title}/>\\n<section>\\n\\t<img class=\\"logo\\" src=\\"/medium_logo.png\\" alt=\\"Medium\\" />\\n\\t<ul>\\n\\t\\t{#each posts as post}\\n\\t\\t\\t<a href={post.url} target=\\"_blank\\" on:click={handleLinkClick}>\\n\\t\\t\\t\\t<li class=\\"post\\">\\n\\t\\t\\t\\t\\t<img src={post.cover} alt=\\"blog-image\\"/>\\n\\t\\t\\t\\t\\t<div class=\\"details\\">\\n\\t\\t\\t\\t\\t\\t<h2>{post.title}</h2>\\n\\t\\t\\t\\t\\t\\t<p>{post.subtitle}</p>\\n\\t\\t\\t\\t\\t\\t<div class=\\"read-more\\">Read More...</div>\\n\\t\\t\\t\\t\\t</div>\\n\\t\\t\\t\\t</li>\\n\\t\\t\\t</a>\\n\\t\\t{/each}\\n\\t</ul>\\n</section>"],"names":[],"mappings":"AAuCmB,qCAAQ,CACzB,OAAO,CAAE,IACX,CACA,sBAAO,CAAC,oBAAM,CACZ,UAAU,CAAE,IACd,CACA,sBAAO,CAAC,iBAAG,CACT,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,GACX,CACA,sBAAO,CAAC,EAAE,CAAC,oBAAM,CACf,OAAO,CAAE,IAAI,CACb,MAAM,CAAE,IAAI,CAAC,GAAG,CAChB,UAAU,CAAE,CAAC,CAAC,GAAG,CAAC,GAAG,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAC9E,CACA,sBAAO,CAAC,EAAE,CAAC,KAAK,CAAC,kBAAI,CACnB,SAAS,CAAE,IAAI,CACf,KAAK,CAAE,KACT,CACA,sBAAO,CAAC,EAAE,CAAC,KAAK,CAAC,uBAAS,CACxB,OAAO,CAAE,IAAI,CAAC,IAChB,CACA,sBAAO,CAAC,EAAE,CAAC,KAAK,CAAC,QAAQ,CAAC,gBAAE,CAC1B,SAAS,CAAE,IACb,CACA,sBAAO,CAAC,EAAE,CAAC,KAAK,CAAC,QAAQ,CAAC,yBAAW,CACnC,KAAK,CAAE,OAAO,CACd,WAAW,CAAE,IACf,CACA,sBAAO,CAAC,EAAE,CAAC,gBAAE,CACX,eAAe,CAAE,IACnB,CACA,MAAO,YAAY,KAAK,CAAE,CACxB,sBAAO,CAAC,EAAE,CAAC,oBAAM,CACf,cAAc,CAAE,MAClB,CACA,sBAAO,CAAC,EAAE,CAAC,QAAQ,CAAC,gBAAE,CACpB,SAAS,CAAE,IACb,CACF"}`
+};
+const title = "Blog Posts";
+const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  const posts = [
+    {
+      title: "Human Activity Tracker System",
+      subtitle: "Have you ever wondered how the smartphones and fitness watches know when you are running, walking, cycling or just have been lethargic for a while . This post is aimed at demystify this and a walkthrough to build a system which can accurately detect the activity using some of the sensor data from the accelerometer and gyro meter in particular.",
+      url: "https://medium.com/analytics-vidhya/human-activity-tracker-system-2435b532b05e",
+      cover: "activity.jpg"
+    },
+    {
+      title: "Deploying Sapper PWA using Github Pages: Step by Step Tutorial ( Part 1)",
+      subtitle: "Let's say you are done with the development of your application made using Svelte and Sapper and want to host it somewhere free of cost. Here is how to deploy your static Sapper PWA application using Github Pages.",
+      url: "https://medium.com/@hiiamanshul/deploying-sapper-pwa-using-github-pages-step-by-step-tutorial-part-1-1e9828dfe4de",
+      cover: "sveltesapper.jpeg"
+    },
+    {
+      title: "Deploying Sapper PWA using Github Pages: Step by Step Tutorial ( Part 2)",
+      subtitle: "Add custom domain to the website",
+      url: "https://medium.com/@hiiamanshul/deploying-sapper-pwa-using-github-pages-step-by-step-tutorial-part-2-d2efd92b2244",
+      cover: "sveltesapper.jpeg"
+    },
+    {
+      title: "Implementing the Micro-frontend using Web Components at OLX",
+      subtitle: "From Monolith to Microapps",
+      url: "https://medium.com/@hiiamanshul/implementing-the-micro-frontend-using-web-components-at-olx-14b16127b14d",
+      cover: "olxapp.png"
+    }
+  ];
+  $$result.css.add(css);
+  return `${$$result.head += `<!-- HEAD_svelte-1az6e94_START -->${$$result.title = `<title>${escape(title)}</title>`, ""}<!-- HEAD_svelte-1az6e94_END -->`, ""} ${validate_component(SectionHeader, "SectionHeader").$$render($$result, { title }, {}, {})} <section class="svelte-1vbagbp"><img class="logo svelte-1vbagbp" src="/medium_logo.png" alt="Medium"> <ul class="svelte-1vbagbp">${each(posts, (post) => {
+    return `<a${add_attribute("href", post.url, 0)} target="_blank" class="svelte-1vbagbp"><li class="post svelte-1vbagbp"><img${add_attribute("src", post.cover, 0)} alt="blog-image" class="svelte-1vbagbp"> <div class="details svelte-1vbagbp"><h2>${escape(post.title)}</h2> <p class="svelte-1vbagbp">${escape(post.subtitle)}</p> <div class="read-more svelte-1vbagbp" data-svelte-h="svelte-1rgqpws">Read More...</div> </div></li> </a>`;
+  })}</ul></section>`;
+});
+export {
+  Page as default
+};
