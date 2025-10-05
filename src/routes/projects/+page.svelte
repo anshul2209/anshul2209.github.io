@@ -2,57 +2,20 @@
 	import SectionHeader from '../../lib/components/SectionHeader.svelte';
 	import Loader from '../../lib/components/Loader.svelte';
 	import track from '../../lib/helpers/tracking.js';
-	let isClosed = false;
+	import { projectImageMap, defaultProjectImage } from '../../lib/data/projects.js';
+	import { PINNED_REPOS, API_HEADERS, APP_CONFIG } from '../../lib/constants/index.js';
 	import { onMount } from 'svelte';
 	import axios from 'axios';
+	
 	const title = 'Projects';
-	const pinnedRepos = [ 258580131, 158177168, 92606922, 73320743, 82116410, 234808378, 112024297];
-	const imageMap = {
-		'gourmet-food': {
-			id: 258580131, 
-			cover: 'gourmet-food.png' 
-		},
-		PUBGrankpredictor: { 
-			id: 158177168, 
-			cover: 'pubg.jpg' 
-		},
-		Chatter: { 
-			id: 92606922, 
-			cover: 'chatter.png' 
-		},
-		'React-Card-Layout-App': {
-			id: 73320743, 
-			cover: 'cards.png' 
-		},
-		'React-TaskR-App': { 
-			id: 82116410, 
-			cover: 'taskr.png' 
-		},
-		'Human-Activity-Tracker': { 
-			id: 234808378, 
-			cover: 'activity.jpg' 
-		},
-		'lazy-load': { 
-			id: 112024297, 
-			cover: 'lazyloader.gif' 
-		}
-	}
 	let data = null;
-	let videoData = [];
 
 	async function fetchData() {
-		const headers = {
-			"Accept": "application/vnd.github.mercy-preview+json",
-			// "Authorization": "token eff1169ecdf22952ca6d74a1038b6c427c8cc0a8"
-		}
-		const firstResponse = await axios.get('https://api.github.com/users/anshul2209/repos', { headers });
-		data = firstResponse.data.filter(repo => pinnedRepos.includes(repo.id));
+		const firstResponse = await axios.get('https://api.github.com/users/anshul2209/repos', { headers: API_HEADERS });
+		data = firstResponse.data.filter(repo => PINNED_REPOS.includes(repo.id));
 	}
 	onMount(fetchData);
 
-	function handleCardFlip(event){
-		isClosed = true;
-	}
 	function handleLinkClick(event) {
 		if(event.target.href) {
 			track('click', 'external_links', event.target.href)
@@ -60,128 +23,237 @@
 	}
 </script>
 <style lang="scss">
-	.card-wrapper{	
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: center;
-	}
-	.allProjects{
-		margin: 20px 0px;
-		text-align: center;
-		font-size: 24px;
-	}
-	.outside {
-		width: 25%;
-		height: 400px;
-		margin: 10px;
-		box-sizing: border-box;
-		display: flex;
-		flex-direction: column;
-		cursor: pointer;
-    	border-radius: 2px;
-		background-color: transparent;
-  		perspective: 1000px;
-		&:hover{
-			.inside {
-				transform: rotateY(180deg);
-			}
+	.projects-container {
+		max-width: var(--max-width-xl);
+		margin: 0 auto;
+		padding: var(--space-8);
+		background: var(--color-primary);
+		min-height: 100vh;
+		
+		@media (max-width: 768px) {
+			padding: var(--space-4);
 		}
-	}
-	.inside{
-		position: relative;
-		width: 100%;
-		height: 100%;
-		text-align: center;
-		transition: transform 0.6s;
-		transform-style: preserve-3d;
-		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-		.card {
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			-webkit-backface-visibility: hidden;
-			backface-visibility: hidden;
-			background-color: #fff;
-			.imageSection{
-				height: 300px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				img {
-					max-height: 100%;
-					max-width: 100%;
-				}
-			}
-			.details{
-				padding: 10px;
-				.title {
-					color: #008073;
-					font-size: 16px;
-				}
-				.description {
-					display: flex;
-					align-items: center;
-					flex: 1;
-					font-size: 14px;
-				}
-			}
-		}
-		.card_flip {
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			-webkit-backface-visibility: hidden;
-			backface-visibility: hidden;
-			background-color: #fff;
-			transform: rotateY(180deg);
-			display: flex;
-			flex-direction: column;
-			position: relative;
-			background-color: #008073;
-			color: white;
-			>span{
-				width: fit-content;
-				position: absolute;
-				right: 10px;
-				top: 10px;
-				font-size: 16px;
-			}
-			.links{
-				height: 300px;
-				display: flex;
-				align-items: center;
-				justify-content: space-evenly;
-				flex-direction: column;
-				a {
-					i{
-						margin-right: 10px;
-					}
-				}
-			}
-			.tagsSection{
-				margin-bottom: 10px;
-				display: flex;
-				align-items: center;
-				justify-content: space-evenly;
-				flex-wrap: wrap;
-				flex: 1;
-				border-top: 1px solid rgba(200,200,200,0.2);
-				.tags{
-					border: 1px solid;
-					padding: 5px;
-					margin: 5px;
-				}
-			}
-		}
-	}
-	.inside-reset{
-		transform: rotateY(0deg);
 	}
 	
-	@media (max-width: 425px){
-		.outside{
+	.projects-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+		gap: var(--space-8);
+		margin-bottom: var(--space-12);
+		
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+			gap: var(--space-6);
+		}
+		
+		@media (max-width: 480px) {
+			grid-template-columns: 1fr;
+			gap: var(--space-4);
+		}
+	}
+	
+	.project-card {
+		background: var(--color-platinum);
+		border: 1px solid var(--color-gray-700);
+		border-radius: var(--border-radius-xl);
+		box-shadow: var(--shadow-lg);
+		overflow: hidden;
+		transition: all var(--transition-slow);
+		position: relative;
+		
+		&:hover {
+			transform: translateY(-8px);
+			box-shadow: 0 20px 40px rgba(244, 42, 139, 0.2);
+			border-color: var(--color-gold);
+		}
+	}
+	
+	.project-image {
+		height: 200px;
+		background: linear-gradient(135deg, var(--color-gray-100) 0%, var(--color-gray-200) 100%);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		overflow: hidden;
+		
+		img {
 			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform var(--transition-slow);
+		}
+		
+		&:hover img {
+			transform: scale(1.05);
+		}
+		
+		.project-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(45, 45, 45, 0.6) 100%);
+			opacity: 0;
+			transition: opacity var(--transition-normal);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: var(--space-4);
+		}
+		
+		&:hover .project-overlay {
+			opacity: 1;
+		}
+		
+		.overlay-link {
+			display: flex;
+			align-items: center;
+			gap: var(--space-2);
+			padding: var(--space-3) var(--space-4);
+			background: var(--color-gold);
+			color: var(--color-gray-900);
+			text-decoration: none;
+			border-radius: var(--border-radius-md);
+			font-weight: var(--font-weight-medium);
+			transition: all var(--transition-normal);
+			
+			&:hover {
+				background: var(--color-gold-light);
+				transform: translateY(-2px);
+			}
+		}
+	}
+	
+	.project-content {
+		padding: var(--space-6);
+	}
+	
+	.project-title {
+		font-size: var(--font-size-xl);
+		font-weight: var(--font-weight-bold);
+		background: var(--gradient-text);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: var(--space-3);
+		line-height: 1.3;
+	}
+	
+	.project-description {
+		color: var(--color-gray-300);
+		line-height: 1.6;
+		margin-bottom: var(--space-4);
+		font-size: var(--font-size-base);
+	}
+	
+	.project-tech {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+		margin-bottom: var(--space-4);
+	}
+	
+	.tech-tag {
+		background: var(--color-gray-100);
+		color: var(--color-gray-700);
+		padding: var(--space-1) var(--space-3);
+		border-radius: var(--border-radius-md);
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-medium);
+		transition: all var(--transition-normal);
+		
+		&:hover {
+			background: var(--color-gold);
+			color: var(--color-gray-900);
+		}
+	}
+	
+	.project-links {
+		display: flex;
+		gap: var(--space-3);
+	}
+	
+	.project-link {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		padding: var(--space-2) var(--space-4);
+		background: var(--color-gray-100);
+		color: var(--color-gray-700);
+		text-decoration: none;
+		border-radius: var(--border-radius-md);
+		font-weight: var(--font-weight-medium);
+		font-size: var(--font-size-sm);
+		transition: all var(--transition-normal);
+		flex: 1;
+		justify-content: center;
+		
+		&:hover {
+			background: var(--color-primary);
+			color: var(--color-white);
+			transform: translateY(-2px);
+		}
+		
+		&.primary {
+			background: var(--color-gold);
+			color: var(--color-gray-900);
+			
+			&:hover {
+				background: var(--color-gold-light);
+			}
+		}
+	}
+	
+	.github-link {
+		margin-top: var(--space-8);
+		text-align: center;
+		
+		a {
+			display: inline-flex;
+			align-items: center;
+			gap: var(--space-2);
+			padding: var(--space-4) var(--space-6);
+			background: var(--color-gray-900);
+			color: var(--color-white);
+			text-decoration: none;
+			border-radius: var(--border-radius-lg);
+			font-weight: var(--font-weight-medium);
+			transition: all var(--transition-normal);
+			
+			&:hover {
+				background: var(--color-primary);
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-lg);
+			}
+		}
+	}
+	
+	@media (max-width: 768px) {
+		.projects-container {
+			padding: var(--space-4);
+		}
+		
+		.projects-grid {
+			grid-template-columns: 1fr;
+			gap: var(--space-6);
+		}
+		
+		.project-image {
+			height: 180px;
+		}
+		
+		.project-content {
+			padding: var(--space-4);
+		}
+		
+		.project-title {
+			font-size: var(--font-size-lg);
+		}
+		
+		.project-links {
+			flex-direction: column;
 		}
 	}
 </style>
@@ -190,46 +262,61 @@
 </svelte:head>
 
 <SectionHeader title={title}/>
-<section>
-	{#if data}
-		<div class="card-wrapper">
+{#if data}
+	<div class="projects-container">
+		<div class="projects-grid">
 			{#each data as item}
-				<div class="outside">
-					<div class={ isClosed ? "inside inside-reset" : "inside"}>
-						<div class="card">
-							<div class="imageSection">
-								<img src={imageMap[item.name].cover} alt="project" />
-							</div>
-							<div class="details">
-								<span class="title">{item.name}</span>
-								<p class="description">{item.description}</p>
-							</div>
+				<div class="project-card">
+					<div class="project-image">
+						<img src={projectImageMap[item.id]?.cover || defaultProjectImage} alt={projectImageMap[item.id]?.name || item.name} />
+						<div class="project-overlay">
+							{#if item.homepage}
+								<a href={item.homepage} target="_blank" rel="noopener noreferrer" class="overlay-link" on:click={handleLinkClick}>
+									<i class="fas fa-external-link-alt"></i>
+									Live Demo
+								</a>
+							{/if}
+							<a href={item.html_url} target="_blank" rel="noopener noreferrer" class="overlay-link" on:click={handleLinkClick}>
+								<i class="fab fa-github"></i>
+								View Code
+							</a>
 						</div>
-						<div class="card_flip">
-							<span on:click={handleCardFlip}><i class="fa fa-times-circle" aria-hidden="true" style="font-size:24px"></i></span>
-							<div class="links" on:click={handleLinkClick}>
-								<a target="_blank" href={item.homepage}><i class="fa fa-external-link" style="font-size:48px"></i>Demo</a>
-								<a target="_blank" href={item.svn_url}><i class="fa fa-github" style="font-size:48px"></i>GitHub</a>
-							</div>
-							<div class="tagsSection">
-								{#each item.topics as topic}
-									<span class="tags">{topic}</span>
-								{/each}
-							</div>
+					</div>
+					<div class="project-content">
+						<h3 class="project-title">{projectImageMap[item.id]?.name || item.name}</h3>
+						<p class="project-description">
+							{projectImageMap[item.id]?.description || item.description || 'A showcase of technical skills and innovative solutions.'}
+						</p>
+						<div class="project-tech">
+							{#each (projectImageMap[item.id]?.technologies || item.topics || []) as topic}
+								<span class="tech-tag">{topic}</span>
+							{/each}
+						</div>
+						<div class="project-links">
+							{#if item.homepage}
+								<a href={item.homepage} target="_blank" rel="noopener noreferrer" class="project-link primary" on:click={handleLinkClick}>
+									<i class="fas fa-external-link-alt"></i>
+									Live Demo
+								</a>
+							{/if}
+							<a href={item.html_url} target="_blank" rel="noopener noreferrer" class="project-link" on:click={handleLinkClick}>
+								<i class="fab fa-github"></i>
+								View Code
+							</a>
 						</div>
 					</div>
 				</div>
-				
 			{/each}
 		</div>
-		<div class="allProjects">
-			<a href="https://github.com/anshul2209" on:click={handleLinkClick} class="mediaWrapper">
-				<i class="fa fa-github" style="color:#211F1F"></i>
-				<span>Checkout more projects on Github</span>
+		
+		<div class="github-link">
+			<a href={APP_CONFIG.GITHUB_URL} target="_blank" rel="noopener noreferrer" on:click={handleLinkClick}>
+				<i class="fab fa-github"></i>
+				View All Projects on GitHub
 			</a>
+		</div>
 	</div>
-	{:else}
-		<Loader loaderText="Projects Loading..."/>
-	{/if}
-</section>
+{:else}
+	<Loader loaderText="Projects Loading..."/>
+{/if}
 

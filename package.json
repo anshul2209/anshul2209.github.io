@@ -15,10 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "compression": "^1.7.1",
-    "gh-pages": "^2.2.0",
-    "polka": "next",
-    "sirv": "^0.4.0"
+    "gh-pages": "^2.2.0"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.10",

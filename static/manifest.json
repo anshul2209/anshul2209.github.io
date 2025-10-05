@@ -1,8 +1,8 @@
 {
-	"background_color": "#ffffff",
-	"theme_color": "#333333",
-	"name": "Anshul Bansal| Fullstack Developer",
-	"short_name": "TODO",
+	"background_color": "#111723",
+	"theme_color": "#f42a8b",
+	"name": "Anshul Bansal - Technical Web Architect",
+	"short_name": "Anshul Bansal",
 	"display": "minimal-ui",
 	"start_url": "/",
 	"icons": [
