@@ -11,7 +11,8 @@
     "cy:open": "cypress open",
     "test": "pnpm run dev & pnpm run cy:run",
     "clean": "rm -rf ./build",
-    "deploy": "pnpm run clean && pnpm run build && node ./scripts/deploy.js"
+    "deploy": "pnpm run clean && pnpm run build && node ./scripts/deploy.js",
+    "deploy:manual": "pnpm run clean && pnpm run build && node ./scripts/deploy.js"
   },
   "dependencies": {
     "axios": "^0.21.1",
