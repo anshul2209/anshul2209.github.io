@@ -10,7 +10,8 @@ const config = {
 		vitePreprocess(),
 		preprocess({
 			scss: {
-				includePaths: ['src']
+				includePaths: ['src'],
+				api: 'modern-compiler'
 			}
 		})
 	],

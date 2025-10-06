@@ -9,10 +9,6 @@
       "_environment.js"
     ]
   },
-  "_SectionHeader.BbJVIrRo.css": {
-    "file": "_app/immutable/assets/SectionHeader.BbJVIrRo.css",
-    "src": "_SectionHeader.BbJVIrRo.css"
-  },
   "_SectionHeader.js": {
     "file": "chunks/SectionHeader.js",
     "name": "SectionHeader",
@@ -20,7 +16,7 @@
       "_ssr.js"
     ],
     "css": [
-      "_app/immutable/assets/SectionHeader.BbJVIrRo.css"
+      "_app/immutable/assets/SectionHeader.C6brH4KN.css"
     ]
   },
   "_environment.js": {
@@ -34,6 +30,10 @@
   "_exports.js": {
     "file": "chunks/exports.js",
     "name": "exports"
+  },
+  "_index.js": {
+    "file": "chunks/index.js",
+    "name": "index"
   },
   "_internal.js": {
     "file": "chunks/internal.js",
@@ -69,10 +69,10 @@
       "_ssr2.js"
     ]
   },
-  "node_modules/.pnpm/@sveltejs+kit@2.43.8_@sveltejs+vite-plugin-svelte@3.1.2_svelte@4.2.20_vite@7.1.9_sass@1_afeb49b0fed182aac052e3d5c7e36584/node_modules/@sveltejs/kit/src/runtime/app/server/remote/index.js": {
+  "node_modules/.pnpm/@sveltejs+kit@2.44.0_@sveltejs+vite-plugin-svelte@3.1.2_svelte@4.2.20_vite@5.4.20_sass@_93bbc66072a3d3863d04e7081c5023bb/node_modules/@sveltejs/kit/src/runtime/app/server/remote/index.js": {
     "file": "remote-entry.js",
     "name": "remote-entry",
-    "src": "node_modules/.pnpm/@sveltejs+kit@2.43.8_@sveltejs+vite-plugin-svelte@3.1.2_svelte@4.2.20_vite@7.1.9_sass@1_afeb49b0fed182aac052e3d5c7e36584/node_modules/@sveltejs/kit/src/runtime/app/server/remote/index.js",
+    "src": "node_modules/.pnpm/@sveltejs+kit@2.44.0_@sveltejs+vite-plugin-svelte@3.1.2_svelte@4.2.20_vite@5.4.20_sass@_93bbc66072a3d3863d04e7081c5023bb/node_modules/@sveltejs/kit/src/runtime/app/server/remote/index.js",
     "isEntry": true,
     "imports": [
       "_event.js",
@@ -80,10 +80,10 @@
       "_environment.js"
     ]
   },
-  "node_modules/.pnpm/@sveltejs+kit@2.43.8_@sveltejs+vite-plugin-svelte@3.1.2_svelte@4.2.20_vite@7.1.9_sass@1_afeb49b0fed182aac052e3d5c7e36584/node_modules/@sveltejs/kit/src/runtime/server/index.js": {
+  "node_modules/.pnpm/@sveltejs+kit@2.44.0_@sveltejs+vite-plugin-svelte@3.1.2_svelte@4.2.20_vite@5.4.20_sass@_93bbc66072a3d3863d04e7081c5023bb/node_modules/@sveltejs/kit/src/runtime/server/index.js": {
     "file": "index.js",
     "name": "index",
-    "src": "node_modules/.pnpm/@sveltejs+kit@2.43.8_@sveltejs+vite-plugin-svelte@3.1.2_svelte@4.2.20_vite@7.1.9_sass@1_afeb49b0fed182aac052e3d5c7e36584/node_modules/@sveltejs/kit/src/runtime/server/index.js",
+    "src": "node_modules/.pnpm/@sveltejs+kit@2.44.0_@sveltejs+vite-plugin-svelte@3.1.2_svelte@4.2.20_vite@5.4.20_sass@_93bbc66072a3d3863d04e7081c5023bb/node_modules/@sveltejs/kit/src/runtime/server/index.js",
     "isEntry": true,
     "imports": [
       "_event.js",
@@ -114,12 +114,10 @@
     "isEntry": true,
     "imports": [
       "_ssr.js",
-      "_exports.js",
-      "_event.js",
       "_stores.js"
     ],
     "css": [
-      "_app/immutable/assets/_layout.HjjMZynN.css"
+      "_app/immutable/assets/_layout.CaGHitVD.css"
     ]
   },
   "src/routes/+page.svelte": {
@@ -131,7 +129,7 @@
       "_ssr.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.qBSfBeJC.css"
+      "_app/immutable/assets/_page.Lwr3GKVI.css"
     ]
   },
   "src/routes/awards/+page.svelte": {
@@ -144,7 +142,7 @@
       "_SectionHeader.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.CdotuVSf.css"
+      "_app/immutable/assets/_page.Cvi9CBnz.css"
     ]
   },
   "src/routes/blog/+page.svelte": {
@@ -157,7 +155,7 @@
       "_SectionHeader.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.ByPlGCvx.css"
+      "_app/immutable/assets/_page.CZd3_w__.css"
     ]
   },
   "src/routes/contact/+page.svelte": {
@@ -167,10 +165,24 @@
     "isEntry": true,
     "imports": [
       "_ssr.js",
+      "_SectionHeader.js",
+      "_index.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.a8isvlOj.css"
+    ]
+  },
+  "src/routes/education/+page.svelte": {
+    "file": "entries/pages/education/_page.svelte.js",
+    "name": "entries/pages/education/_page.svelte",
+    "src": "src/routes/education/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
       "_SectionHeader.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.BFeM-0vj.css"
+      "_app/immutable/assets/_page.C9SAWNfS.css"
     ]
   },
   "src/routes/experience/+page.svelte": {
@@ -179,7 +191,11 @@
     "src": "src/routes/experience/+page.svelte",
     "isEntry": true,
     "imports": [
-      "_ssr.js"
+      "_ssr.js",
+      "_SectionHeader.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.CQYiaMeU.css"
     ]
   },
   "src/routes/projects/+page.svelte": {
@@ -192,7 +208,7 @@
       "_SectionHeader.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.CvE5zjMu.css"
+      "_app/immutable/assets/_page.BFXXH2Xr.css"
     ]
   },
   "src/routes/skills/+page.svelte": {
@@ -205,7 +221,7 @@
       "_SectionHeader.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.CqabjGtF.css"
+      "_app/immutable/assets/_page.D9k_DGlO.css"
     ]
   },
   "src/routes/videos/+page.svelte": {
@@ -215,10 +231,11 @@
     "isEntry": true,
     "imports": [
       "_ssr.js",
-      "_SectionHeader.js"
+      "_SectionHeader.js",
+      "_index.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.u-aTTIzv.css"
+      "_app/immutable/assets/_page.BvYrbh5v.css"
     ]
   }
 }

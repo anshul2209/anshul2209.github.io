@@ -1,4 +1,4 @@
-import { c as create_ssr_component, g as subscribe, d as escape } from "../../chunks/ssr.js";
+import { c as create_ssr_component, b as subscribe, f as escape } from "../../chunks/ssr.js";
 import { p as page } from "../../chunks/stores.js";
 const css = {
   code: "h1.svelte-8od9u6,p.svelte-8od9u6{margin:0 auto}h1.svelte-8od9u6{font-size:2.8em;font-weight:700;margin:0 0 0.5em 0}p.svelte-8od9u6{margin:1em auto}@media(min-width: 480px){h1.svelte-8od9u6{font-size:4em}}",

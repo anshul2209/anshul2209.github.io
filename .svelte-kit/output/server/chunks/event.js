@@ -36,78 +36,6 @@ function base64_decode(encoded) {
   }
   return bytes;
 }
-function convert_formdata(data) {
-  const result = /* @__PURE__ */ Object.create(null);
-  for (let key of data.keys()) {
-    const is_array = key.endsWith("[]");
-    let values = data.getAll(key);
-    if (is_array) key = key.slice(0, -2);
-    if (values.length > 1 && !is_array) {
-      throw new Error(`Form cannot contain duplicated keys — "${key}" has ${values.length} values`);
-    }
-    values = values.filter(
-      (entry) => typeof entry === "string" || entry.name !== "" || entry.size > 0
-    );
-    deep_set(result, split_path(key), is_array ? values : values[0]);
-  }
-  return result;
-}
-const path_regex = /^[a-zA-Z_$]\w*(\.[a-zA-Z_$]\w*|\[\d+\])*$/;
-function split_path(path) {
-  if (!path_regex.test(path)) {
-    throw new Error(`Invalid path ${path}`);
-  }
-  return path.split(/\.|\[|\]/).filter(Boolean);
-}
-function deep_set(object, keys, value) {
-  for (let i = 0; i < keys.length - 1; i += 1) {
-    const key = keys[i];
-    const is_array = /^\d+$/.test(keys[i + 1]);
-    if (object[key]) {
-      if (is_array !== Array.isArray(object[key])) {
-        throw new Error(`Invalid array key ${keys[i + 1]}`);
-      }
-    } else {
-      object[key] ??= is_array ? [] : /* @__PURE__ */ Object.create(null);
-    }
-    object = object[key];
-  }
-  object[keys[keys.length - 1]] = value;
-}
-function flatten_issues(issues) {
-  const result = {};
-  for (const issue of issues) {
-    const normalized = { name: "", path: [], message: issue.message };
-    (result.$ ??= []).push(normalized);
-    let name = "";
-    if (issue.path !== void 0) {
-      for (const segment of issue.path) {
-        const key = (
-          /** @type {string | number} */
-          typeof segment === "object" ? segment.key : segment
-        );
-        normalized.path.push(key);
-        if (typeof key === "number") {
-          name += `[${key}]`;
-        } else if (typeof key === "string") {
-          name += name === "" ? key : "." + key;
-        }
-        (result[name] ??= []).push(normalized);
-      }
-      normalized.name = name;
-    }
-  }
-  return result;
-}
-const file_transport = {
-  encode: (file) => file instanceof File && {
-    size: file.size,
-    type: file.type,
-    name: file.name,
-    lastModified: file.lastModified
-  },
-  decode: (data) => data
-};
 let sync_store = null;
 let als;
 import("node:async_hooks").then((hooks) => als = new hooks.AsyncLocalStorage()).catch(() => {
@@ -144,11 +72,8 @@ export {
   text_encoder as a,
   base64_encode as b,
   get_request_store as c,
-  convert_formdata as d,
-  flatten_issues as e,
-  file_transport as f,
+  base64_decode as d,
   get_relative_path as g,
-  base64_decode as h,
   text_decoder as t,
   with_request_store as w
 };

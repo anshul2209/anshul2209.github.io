@@ -1,4 +1,4 @@
-import { c as get_request_store, w as with_request_store, d as convert_formdata, e as flatten_issues } from "./chunks/event.js";
+import { c as get_request_store, w as with_request_store } from "./chunks/event.js";
 import { h as error, l as stringify_remote_arg, m as parse, k as stringify, j as json, B as BROWSER, f as create_remote_cache_key } from "./chunks/shared.js";
 import { b as base, c as app_dir, p as prerendering } from "./chunks/environment.js";
 function create_validator(validate_or_fn, maybe_fn) {
@@ -71,9 +71,7 @@ async function run_remote_function(event, state, allow_cookies, arg, validate, f
         }
         return event.cookies.delete(name, opts);
       }
-    },
-    route: { id: null },
-    url: new URL(event.url.origin)
+    }
   };
   const validated = await with_request_store({ event: cleansed, state }, () => validate(arg));
   return with_request_store({ event: cleansed, state }, () => fn(validated));
@@ -120,6 +118,248 @@ function command(validate_or_fn, maybe_fn) {
   });
   return wrapper;
 }
+function set_nested_value(object, path_string, value) {
+  if (path_string.startsWith("n:")) {
+    path_string = path_string.slice(2);
+    value = value === "" ? void 0 : parseFloat(value);
+  } else if (path_string.startsWith("b:")) {
+    path_string = path_string.slice(2);
+    value = value === "on";
+  }
+  return deep_set(object, split_path(path_string), value);
+}
+function convert_formdata(data) {
+  let result = /* @__PURE__ */ Object.create(null);
+  for (let key of data.keys()) {
+    const is_array = key.endsWith("[]");
+    let values = data.getAll(key);
+    if (is_array) key = key.slice(0, -2);
+    if (values.length > 1 && !is_array) {
+      throw new Error(`Form cannot contain duplicated keys — "${key}" has ${values.length} values`);
+    }
+    values = values.filter(
+      (entry) => typeof entry === "string" || entry.name !== "" || entry.size > 0
+    );
+    if (key.startsWith("n:")) {
+      key = key.slice(2);
+      values = values.map((v) => v === "" ? void 0 : parseFloat(
+        /** @type {string} */
+        v
+      ));
+    } else if (key.startsWith("b:")) {
+      key = key.slice(2);
+      values = values.map((v) => v === "on");
+    }
+    result = set_nested_value(result, key, is_array ? values : values[0]);
+  }
+  return result;
+}
+const path_regex = /^[a-zA-Z_$]\w*(\.[a-zA-Z_$]\w*|\[\d+\])*$/;
+function split_path(path) {
+  if (!path_regex.test(path)) {
+    throw new Error(`Invalid path ${path}`);
+  }
+  return path.split(/\.|\[|\]/).filter(Boolean);
+}
+function deep_set(object, keys, value) {
+  const result = Object.assign(/* @__PURE__ */ Object.create(null), object);
+  let current = result;
+  for (let i = 0; i < keys.length - 1; i += 1) {
+    const key = keys[i];
+    const is_array = /^\d+$/.test(keys[i + 1]);
+    const exists = key in current;
+    const inner = current[key];
+    if (exists && is_array !== Array.isArray(inner)) {
+      throw new Error(`Invalid array key ${keys[i + 1]}`);
+    }
+    current[key] = is_array ? exists ? [...inner] : [] : (
+      // guard against prototype pollution
+      Object.assign(/* @__PURE__ */ Object.create(null), inner)
+    );
+    current = current[key];
+  }
+  current[keys[keys.length - 1]] = value;
+  return result;
+}
+function flatten_issues(issues, server = false) {
+  const result = {};
+  for (const issue of issues) {
+    const normalized = { name: "", path: [], message: issue.message, server };
+    (result.$ ??= []).push(normalized);
+    let name = "";
+    if (issue.path !== void 0) {
+      for (const segment of issue.path) {
+        const key = (
+          /** @type {string | number} */
+          typeof segment === "object" ? segment.key : segment
+        );
+        normalized.path.push(key);
+        if (typeof key === "number") {
+          name += `[${key}]`;
+        } else if (typeof key === "string") {
+          name += name === "" ? key : "." + key;
+        }
+        (result[name] ??= []).push(normalized);
+      }
+      normalized.name = name;
+    }
+  }
+  return result;
+}
+function deep_get(object, path) {
+  let current = object;
+  for (const key of path) {
+    if (current == null || typeof current !== "object") {
+      return current;
+    }
+    current = current[key];
+  }
+  return current;
+}
+function create_field_proxy(target, get_input, set_input, get_issues, path = []) {
+  return new Proxy(target, {
+    get(target2, prop) {
+      if (typeof prop === "symbol") return target2[prop];
+      if (/^\d+$/.test(prop)) {
+        return create_field_proxy({}, get_input, set_input, get_issues, [
+          ...path,
+          parseInt(prop, 10)
+        ]);
+      }
+      const key = build_path_string(path);
+      if (prop === "set") {
+        const set_func = function(newValue) {
+          set_input(path, newValue);
+          return newValue;
+        };
+        return create_field_proxy(set_func, get_input, set_input, get_issues, [...path, prop]);
+      }
+      if (prop === "value") {
+        const value_func = function() {
+          return deep_get(get_input(), path);
+        };
+        return create_field_proxy(value_func, get_input, set_input, get_issues, [...path, prop]);
+      }
+      if (prop === "issues" || prop === "allIssues") {
+        const issues_func = () => {
+          const all_issues = get_issues()[key === "" ? "$" : key];
+          if (prop === "allIssues") {
+            return all_issues?.map((issue) => ({
+              message: issue.message
+            }));
+          }
+          return all_issues?.filter((issue) => issue.name === key)?.map((issue) => ({
+            message: issue.message
+          }));
+        };
+        return create_field_proxy(issues_func, get_input, set_input, get_issues, [...path, prop]);
+      }
+      if (prop === "as") {
+        const as_func = (type, input_value) => {
+          const is_array = type === "file multiple" || type === "select multiple" || type === "checkbox" && typeof input_value === "string";
+          const prefix = type === "number" || type === "range" ? "n:" : type === "checkbox" && !is_array ? "b:" : "";
+          const base_props = {
+            name: prefix + key + (is_array ? "[]" : ""),
+            get "aria-invalid"() {
+              const issues = get_issues();
+              return key in issues ? "true" : void 0;
+            }
+          };
+          if (type !== "text" && type !== "select" && type !== "select multiple") {
+            base_props.type = type === "file multiple" ? "file" : type;
+          }
+          if (type === "select" || type === "select multiple") {
+            return Object.defineProperties(base_props, {
+              multiple: { value: is_array, enumerable: true },
+              value: {
+                enumerable: true,
+                get() {
+                  const input = get_input();
+                  return deep_get(input, path);
+                }
+              }
+            });
+          }
+          if (type === "checkbox" || type === "radio") {
+            return Object.defineProperties(base_props, {
+              value: { value: input_value ?? "on", enumerable: true },
+              checked: {
+                enumerable: true,
+                get() {
+                  const input = get_input();
+                  const value = deep_get(input, path);
+                  if (type === "radio") {
+                    return value === input_value;
+                  }
+                  if (is_array) {
+                    return (value ?? []).includes(input_value);
+                  }
+                  return value;
+                }
+              }
+            });
+          }
+          if (type === "file" || type === "file multiple") {
+            return Object.defineProperties(base_props, {
+              multiple: { value: is_array, enumerable: true },
+              files: {
+                enumerable: true,
+                get() {
+                  const input = get_input();
+                  const value = deep_get(input, path);
+                  if (value instanceof File) {
+                    if (typeof DataTransfer !== "undefined") {
+                      const fileList = new DataTransfer();
+                      fileList.items.add(value);
+                      return fileList.files;
+                    }
+                    return { 0: value, length: 1 };
+                  }
+                  if (Array.isArray(value) && value.every((f) => f instanceof File)) {
+                    if (typeof DataTransfer !== "undefined") {
+                      const fileList = new DataTransfer();
+                      value.forEach((file) => fileList.items.add(file));
+                      return fileList.files;
+                    }
+                    const fileListLike = { length: value.length };
+                    value.forEach((file, index) => {
+                      fileListLike[index] = file;
+                    });
+                    return fileListLike;
+                  }
+                  return null;
+                }
+              }
+            });
+          }
+          return Object.defineProperties(base_props, {
+            value: {
+              enumerable: true,
+              get() {
+                const input = get_input();
+                const value = deep_get(input, path);
+                return value != null ? String(value) : "";
+              }
+            }
+          });
+        };
+        return create_field_proxy(as_func, get_input, set_input, get_issues, [...path, "as"]);
+      }
+      return create_field_proxy({}, get_input, set_input, get_issues, [...path, prop]);
+    }
+  });
+}
+function build_path_string(path) {
+  let result = "";
+  for (const segment of path) {
+    if (typeof segment === "number") {
+      result += `[${segment}]`;
+    } else {
+      result += result === "" ? segment : "." + segment;
+    }
+  }
+  return result;
+}
 // @__NO_SIDE_EFFECTS__
 function form(validate_or_fn, maybe_fn) {
   const fn = maybe_fn ?? validate_or_fn;
@@ -163,13 +403,20 @@ function form(validate_or_fn, maybe_fn) {
         }
         if (validated?.issues !== void 0) {
           output.issues = flatten_issues(validated.issues);
-          output.input = {};
-          for (let key2 of form_data.keys()) {
-            if (/^[.\]]?_/.test(key2)) continue;
-            const is_array = key2.endsWith("[]");
-            const values = form_data.getAll(key2).filter((value) => typeof value === "string");
-            if (is_array) key2 = key2.slice(0, -2);
-            output.input[key2] = is_array ? values : values[0];
+          if (!event.isRemoteRequest) {
+            output.input = {};
+            for (let key2 of form_data.keys()) {
+              if (/^[.\]]?_/.test(key2)) continue;
+              const is_array = key2.endsWith("[]");
+              const values = form_data.getAll(key2).filter((value) => typeof value === "string");
+              if (is_array) key2 = key2.slice(0, -2);
+              output.input = set_nested_value(
+                /** @type {Record<string, any>} */
+                output.input,
+                key2,
+                is_array ? values : values[0]
+              );
+            }
           }
         } else {
           if (validated !== void 0) {
@@ -193,17 +440,23 @@ function form(validate_or_fn, maybe_fn) {
       get: () => `?/remote=${__.id}`,
       enumerable: true
     });
-    for (const property of ["input", "issues"]) {
-      Object.defineProperty(instance, property, {
-        get() {
-          try {
-            return get_cache(__)?.[""]?.[property] ?? {};
-          } catch {
-            return void 0;
-          }
-        }
-      });
-    }
+    Object.defineProperty(instance, "fields", {
+      get() {
+        const data = get_cache(__)?.[""];
+        return create_field_proxy(
+          {},
+          () => data?.input ?? {},
+          (path, value) => {
+            if (data) {
+              return;
+            }
+            const input = path.length === 0 ? value : deep_set({}, path.map(String), value);
+            get_cache(__)[""] ??= { input };
+          },
+          () => data?.issues ?? {}
+        );
+      }
+    });
     Object.defineProperty(instance, "result", {
       get() {
         try {
@@ -218,9 +471,6 @@ function form(validate_or_fn, maybe_fn) {
     });
     Object.defineProperty(button_props, "pending", {
       get: () => 0
-    });
-    Object.defineProperty(instance, "field", {
-      value: (name) => name
     });
     Object.defineProperty(instance, "preflight", {
       // preflight is a noop on the server

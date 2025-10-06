@@ -1,4 +1,4 @@
-import { w as with_request_store, b as base64_encode, N as NULL_BODY_STATUS, t as text_decoder, a as text_encoder, g as get_relative_path, f as file_transport, I as IN_WEBCONTAINER } from "./chunks/event.js";
+import { w as with_request_store, b as base64_encode, N as NULL_BODY_STATUS, t as text_decoder, a as text_encoder, g as get_relative_path, I as IN_WEBCONTAINER } from "./chunks/event.js";
 import { H as HttpError, S as SvelteKitError, j as json, t as text, R as Redirect, i as is_primitive, g as get_type, D as DevalueError, a as is_plain_object, e as enumerable_symbols, s as stringify_key, b as stringify_string, c as escaped, B as BROWSER, A as ActionFailure, d as stringify, v as validate_depends, f as create_remote_cache_key, h as error, p as parse_remote_arg, k as stringify$1, T as TRAILING_SLASH_PARAM, I as INVALIDATED_PARAM } from "./chunks/shared.js";
 import { a as assets, b as base, c as app_dir, r as relative, o as override, d as reset } from "./chunks/environment.js";
 import { m as make_trackable, d as disable_search, a as decode_params, S as SCHEME, v as validate_layout_server_exports, b as validate_layout_exports, c as validate_page_server_exports, e as validate_page_exports, n as normalize_path, r as resolve, f as decode_pathname, g as validate_server_exports } from "./chunks/exports.js";
@@ -1573,7 +1573,7 @@ const s = JSON.stringify;
 function sha256(data) {
   if (!key[0]) precompute();
   const out = init.slice(0);
-  const array2 = encode(data);
+  const array2 = encode$1(data);
   for (let i = 0; i < array2.length; i += 16) {
     const w = array2.subarray(i, i + 16);
     let tmp;
@@ -1654,7 +1654,7 @@ function reverse_endianness(bytes) {
     bytes[i + 3] = a;
   }
 }
-function encode(str) {
+function encode$1(str) {
   const encoded = text_encoder.encode(str);
   const length = encoded.length * 8;
   const size = 512 * Math.ceil((length + 65) / 512);
@@ -2704,7 +2704,7 @@ async function handle_remote_call_internal(event, state, options2, manifest, id)
         /** @type {RemoteFunctionResponse} */
         {
           type: "result",
-          result: stringify$1(data2, { ...transport, File: file_transport }),
+          result: stringify$1(data2, transport),
           refreshes: data2.issues ? {} : await serialize_refreshes(form_client_refreshes)
         }
       );
@@ -3259,158 +3259,150 @@ function redirect_json_response(redirect) {
     }
   );
 }
-var cookie = {};
 /*!
  * cookie
  * Copyright(c) 2012-2014 Roman Shtylman
  * Copyright(c) 2015 Douglas Christopher Wilson
  * MIT Licensed
  */
-var hasRequiredCookie;
-function requireCookie() {
-  if (hasRequiredCookie) return cookie;
-  hasRequiredCookie = 1;
-  cookie.parse = parse;
-  cookie.serialize = serialize;
-  var __toString = Object.prototype.toString;
-  var fieldContentRegExp = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/;
-  function parse(str, options2) {
-    if (typeof str !== "string") {
-      throw new TypeError("argument str must be a string");
-    }
-    var obj = {};
-    var opt = options2 || {};
-    var dec = opt.decode || decode;
-    var index = 0;
-    while (index < str.length) {
-      var eqIdx = str.indexOf("=", index);
-      if (eqIdx === -1) {
-        break;
-      }
-      var endIdx = str.indexOf(";", index);
-      if (endIdx === -1) {
-        endIdx = str.length;
-      } else if (endIdx < eqIdx) {
-        index = str.lastIndexOf(";", eqIdx - 1) + 1;
-        continue;
-      }
-      var key2 = str.slice(index, eqIdx).trim();
-      if (void 0 === obj[key2]) {
-        var val = str.slice(eqIdx + 1, endIdx).trim();
-        if (val.charCodeAt(0) === 34) {
-          val = val.slice(1, -1);
-        }
-        obj[key2] = tryDecode(val, dec);
-      }
-      index = endIdx + 1;
-    }
-    return obj;
+var parse_1 = parse$1;
+var serialize_1 = serialize;
+var __toString = Object.prototype.toString;
+var fieldContentRegExp = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/;
+function parse$1(str, options2) {
+  if (typeof str !== "string") {
+    throw new TypeError("argument str must be a string");
   }
-  function serialize(name, val, options2) {
-    var opt = options2 || {};
-    var enc = opt.encode || encode2;
-    if (typeof enc !== "function") {
-      throw new TypeError("option encode is invalid");
+  var obj = {};
+  var opt = options2 || {};
+  var dec = opt.decode || decode;
+  var index = 0;
+  while (index < str.length) {
+    var eqIdx = str.indexOf("=", index);
+    if (eqIdx === -1) {
+      break;
     }
-    if (!fieldContentRegExp.test(name)) {
-      throw new TypeError("argument name is invalid");
+    var endIdx = str.indexOf(";", index);
+    if (endIdx === -1) {
+      endIdx = str.length;
+    } else if (endIdx < eqIdx) {
+      index = str.lastIndexOf(";", eqIdx - 1) + 1;
+      continue;
     }
-    var value = enc(val);
-    if (value && !fieldContentRegExp.test(value)) {
-      throw new TypeError("argument val is invalid");
-    }
-    var str = name + "=" + value;
-    if (null != opt.maxAge) {
-      var maxAge = opt.maxAge - 0;
-      if (isNaN(maxAge) || !isFinite(maxAge)) {
-        throw new TypeError("option maxAge is invalid");
+    var key2 = str.slice(index, eqIdx).trim();
+    if (void 0 === obj[key2]) {
+      var val = str.slice(eqIdx + 1, endIdx).trim();
+      if (val.charCodeAt(0) === 34) {
+        val = val.slice(1, -1);
       }
-      str += "; Max-Age=" + Math.floor(maxAge);
+      obj[key2] = tryDecode(val, dec);
     }
-    if (opt.domain) {
-      if (!fieldContentRegExp.test(opt.domain)) {
-        throw new TypeError("option domain is invalid");
-      }
-      str += "; Domain=" + opt.domain;
+    index = endIdx + 1;
+  }
+  return obj;
+}
+function serialize(name, val, options2) {
+  var opt = options2 || {};
+  var enc = opt.encode || encode;
+  if (typeof enc !== "function") {
+    throw new TypeError("option encode is invalid");
+  }
+  if (!fieldContentRegExp.test(name)) {
+    throw new TypeError("argument name is invalid");
+  }
+  var value = enc(val);
+  if (value && !fieldContentRegExp.test(value)) {
+    throw new TypeError("argument val is invalid");
+  }
+  var str = name + "=" + value;
+  if (null != opt.maxAge) {
+    var maxAge = opt.maxAge - 0;
+    if (isNaN(maxAge) || !isFinite(maxAge)) {
+      throw new TypeError("option maxAge is invalid");
     }
-    if (opt.path) {
-      if (!fieldContentRegExp.test(opt.path)) {
-        throw new TypeError("option path is invalid");
-      }
-      str += "; Path=" + opt.path;
+    str += "; Max-Age=" + Math.floor(maxAge);
+  }
+  if (opt.domain) {
+    if (!fieldContentRegExp.test(opt.domain)) {
+      throw new TypeError("option domain is invalid");
     }
-    if (opt.expires) {
-      var expires = opt.expires;
-      if (!isDate(expires) || isNaN(expires.valueOf())) {
-        throw new TypeError("option expires is invalid");
-      }
-      str += "; Expires=" + expires.toUTCString();
+    str += "; Domain=" + opt.domain;
+  }
+  if (opt.path) {
+    if (!fieldContentRegExp.test(opt.path)) {
+      throw new TypeError("option path is invalid");
     }
-    if (opt.httpOnly) {
-      str += "; HttpOnly";
+    str += "; Path=" + opt.path;
+  }
+  if (opt.expires) {
+    var expires = opt.expires;
+    if (!isDate(expires) || isNaN(expires.valueOf())) {
+      throw new TypeError("option expires is invalid");
     }
-    if (opt.secure) {
-      str += "; Secure";
+    str += "; Expires=" + expires.toUTCString();
+  }
+  if (opt.httpOnly) {
+    str += "; HttpOnly";
+  }
+  if (opt.secure) {
+    str += "; Secure";
+  }
+  if (opt.partitioned) {
+    str += "; Partitioned";
+  }
+  if (opt.priority) {
+    var priority = typeof opt.priority === "string" ? opt.priority.toLowerCase() : opt.priority;
+    switch (priority) {
+      case "low":
+        str += "; Priority=Low";
+        break;
+      case "medium":
+        str += "; Priority=Medium";
+        break;
+      case "high":
+        str += "; Priority=High";
+        break;
+      default:
+        throw new TypeError("option priority is invalid");
     }
-    if (opt.partitioned) {
-      str += "; Partitioned";
+  }
+  if (opt.sameSite) {
+    var sameSite = typeof opt.sameSite === "string" ? opt.sameSite.toLowerCase() : opt.sameSite;
+    switch (sameSite) {
+      case true:
+        str += "; SameSite=Strict";
+        break;
+      case "lax":
+        str += "; SameSite=Lax";
+        break;
+      case "strict":
+        str += "; SameSite=Strict";
+        break;
+      case "none":
+        str += "; SameSite=None";
+        break;
+      default:
+        throw new TypeError("option sameSite is invalid");
     }
-    if (opt.priority) {
-      var priority = typeof opt.priority === "string" ? opt.priority.toLowerCase() : opt.priority;
-      switch (priority) {
-        case "low":
-          str += "; Priority=Low";
-          break;
-        case "medium":
-          str += "; Priority=Medium";
-          break;
-        case "high":
-          str += "; Priority=High";
-          break;
-        default:
-          throw new TypeError("option priority is invalid");
-      }
-    }
-    if (opt.sameSite) {
-      var sameSite = typeof opt.sameSite === "string" ? opt.sameSite.toLowerCase() : opt.sameSite;
-      switch (sameSite) {
-        case true:
-          str += "; SameSite=Strict";
-          break;
-        case "lax":
-          str += "; SameSite=Lax";
-          break;
-        case "strict":
-          str += "; SameSite=Strict";
-          break;
-        case "none":
-          str += "; SameSite=None";
-          break;
-        default:
-          throw new TypeError("option sameSite is invalid");
-      }
-    }
+  }
+  return str;
+}
+function decode(str) {
+  return str.indexOf("%") !== -1 ? decodeURIComponent(str) : str;
+}
+function encode(val) {
+  return encodeURIComponent(val);
+}
+function isDate(val) {
+  return __toString.call(val) === "[object Date]" || val instanceof Date;
+}
+function tryDecode(str, decode2) {
+  try {
+    return decode2(str);
+  } catch (e) {
     return str;
   }
-  function decode(str) {
-    return str.indexOf("%") !== -1 ? decodeURIComponent(str) : str;
-  }
-  function encode2(val) {
-    return encodeURIComponent(val);
-  }
-  function isDate(val) {
-    return __toString.call(val) === "[object Date]" || val instanceof Date;
-  }
-  function tryDecode(str, decode2) {
-    try {
-      return decode2(str);
-    } catch (e) {
-      return str;
-    }
-  }
-  return cookie;
 }
-var cookieExports = requireCookie();
 const INVALID_COOKIE_CHARACTER_REGEX = /[\x00-\x1F\x7F()<>@,;:"/[\]?={} \t]/;
 function validate_options(options2) {
   if (options2?.path === void 0) {
@@ -3422,7 +3414,7 @@ function generate_cookie_key(domain, path, name) {
 }
 function get_cookies(request, url) {
   const header = request.headers.get("cookie") ?? "";
-  const initial_cookies = cookieExports.parse(header, { decode: (value) => value });
+  const initial_cookies = parse_1(header, { decode: (value) => value });
   let normalized_url;
   const new_cookies = /* @__PURE__ */ new Map();
   const defaults = {
@@ -3446,15 +3438,15 @@ function get_cookies(request, url) {
       if (best_match) {
         return best_match.options.maxAge === 0 ? void 0 : best_match.value;
       }
-      const req_cookies = cookieExports.parse(header, { decode: opts?.decode });
-      const cookie2 = req_cookies[name];
-      return cookie2;
+      const req_cookies = parse_1(header, { decode: opts?.decode });
+      const cookie = req_cookies[name];
+      return cookie;
     },
     /**
      * @param {import('cookie').CookieParseOptions} [opts]
      */
     getAll(opts) {
-      const cookies2 = cookieExports.parse(header, { decode: opts?.decode });
+      const cookies2 = parse_1(header, { decode: opts?.decode });
       const lookup = /* @__PURE__ */ new Map();
       for (const c of new_cookies.values()) {
         if (domain_matches(url.hostname, c.options.domain) && path_matches(url.pathname, c.options.path)) {
@@ -3508,7 +3500,7 @@ function get_cookies(request, url) {
         }
         path = resolve(normalized_url, path);
       }
-      return cookieExports.serialize(name, value, { ...defaults, ...options2, path });
+      return serialize_1(name, value, { ...defaults, ...options2, path });
     }
   };
   function get_cookie_header(destination, header2) {
@@ -3516,14 +3508,14 @@ function get_cookies(request, url) {
       // cookies sent by the user agent have lowest precedence
       ...initial_cookies
     };
-    for (const cookie2 of new_cookies.values()) {
-      if (!domain_matches(destination.hostname, cookie2.options.domain)) continue;
-      if (!path_matches(destination.pathname, cookie2.options.path)) continue;
-      const encoder = cookie2.options.encode || encodeURIComponent;
-      combined_cookies[cookie2.name] = encoder(cookie2.value);
+    for (const cookie of new_cookies.values()) {
+      if (!domain_matches(destination.hostname, cookie.options.domain)) continue;
+      if (!path_matches(destination.pathname, cookie.options.path)) continue;
+      const encoder = cookie.options.encode || encodeURIComponent;
+      combined_cookies[cookie.name] = encoder(cookie.value);
     }
     if (header2) {
-      const parsed = cookieExports.parse(header2, { decode: (value) => value });
+      const parsed = parse_1(header2, { decode: (value) => value });
       for (const name in parsed) {
         combined_cookies[name] = parsed[name];
       }
@@ -3541,8 +3533,8 @@ function get_cookies(request, url) {
       path = resolve(normalized_url, path);
     }
     const cookie_key = generate_cookie_key(options2.domain, path, name);
-    const cookie2 = { name, value, options: { ...options2, path } };
-    new_cookies.set(cookie_key, cookie2);
+    const cookie = { name, value, options: { ...options2, path } };
+    new_cookies.set(cookie_key, cookie);
   }
   function set_trailing_slash(trailing_slash) {
     normalized_url = normalize_path(url.pathname, trailing_slash);
@@ -3565,183 +3557,176 @@ function path_matches(path, constraint) {
 function add_cookies_to_headers(headers2, cookies) {
   for (const new_cookie of cookies) {
     const { name, value, options: options2 } = new_cookie;
-    headers2.append("set-cookie", cookieExports.serialize(name, value, options2));
+    headers2.append("set-cookie", serialize_1(name, value, options2));
     if (options2.path.endsWith(".html")) {
       const path = add_data_suffix(options2.path);
-      headers2.append("set-cookie", cookieExports.serialize(name, value, { ...options2, path }));
+      headers2.append("set-cookie", serialize_1(name, value, { ...options2, path }));
     }
   }
 }
 var setCookie = { exports: {} };
-var hasRequiredSetCookie;
-function requireSetCookie() {
-  if (hasRequiredSetCookie) return setCookie.exports;
-  hasRequiredSetCookie = 1;
-  var defaultParseOptions = {
-    decodeValues: true,
-    map: false,
-    silent: false
+var defaultParseOptions = {
+  decodeValues: true,
+  map: false,
+  silent: false
+};
+function isNonEmptyString(str) {
+  return typeof str === "string" && !!str.trim();
+}
+function parseString(setCookieValue, options2) {
+  var parts = setCookieValue.split(";").filter(isNonEmptyString);
+  var nameValuePairStr = parts.shift();
+  var parsed = parseNameValuePair(nameValuePairStr);
+  var name = parsed.name;
+  var value = parsed.value;
+  options2 = options2 ? Object.assign({}, defaultParseOptions, options2) : defaultParseOptions;
+  try {
+    value = options2.decodeValues ? decodeURIComponent(value) : value;
+  } catch (e) {
+    console.error(
+      "set-cookie-parser encountered an error while decoding a cookie with value '" + value + "'. Set options.decodeValues to false to disable this feature.",
+      e
+    );
+  }
+  var cookie = {
+    name,
+    value
   };
-  function isNonEmptyString(str) {
-    return typeof str === "string" && !!str.trim();
-  }
-  function parseString(setCookieValue, options2) {
-    var parts = setCookieValue.split(";").filter(isNonEmptyString);
-    var nameValuePairStr = parts.shift();
-    var parsed = parseNameValuePair(nameValuePairStr);
-    var name = parsed.name;
-    var value = parsed.value;
-    options2 = options2 ? Object.assign({}, defaultParseOptions, options2) : defaultParseOptions;
-    try {
-      value = options2.decodeValues ? decodeURIComponent(value) : value;
-    } catch (e) {
-      console.error(
-        "set-cookie-parser encountered an error while decoding a cookie with value '" + value + "'. Set options.decodeValues to false to disable this feature.",
-        e
-      );
-    }
-    var cookie2 = {
-      name,
-      value
-    };
-    parts.forEach(function(part) {
-      var sides = part.split("=");
-      var key2 = sides.shift().trimLeft().toLowerCase();
-      var value2 = sides.join("=");
-      if (key2 === "expires") {
-        cookie2.expires = new Date(value2);
-      } else if (key2 === "max-age") {
-        cookie2.maxAge = parseInt(value2, 10);
-      } else if (key2 === "secure") {
-        cookie2.secure = true;
-      } else if (key2 === "httponly") {
-        cookie2.httpOnly = true;
-      } else if (key2 === "samesite") {
-        cookie2.sameSite = value2;
-      } else if (key2 === "partitioned") {
-        cookie2.partitioned = true;
-      } else {
-        cookie2[key2] = value2;
-      }
-    });
-    return cookie2;
-  }
-  function parseNameValuePair(nameValuePairStr) {
-    var name = "";
-    var value = "";
-    var nameValueArr = nameValuePairStr.split("=");
-    if (nameValueArr.length > 1) {
-      name = nameValueArr.shift();
-      value = nameValueArr.join("=");
+  parts.forEach(function(part) {
+    var sides = part.split("=");
+    var key2 = sides.shift().trimLeft().toLowerCase();
+    var value2 = sides.join("=");
+    if (key2 === "expires") {
+      cookie.expires = new Date(value2);
+    } else if (key2 === "max-age") {
+      cookie.maxAge = parseInt(value2, 10);
+    } else if (key2 === "secure") {
+      cookie.secure = true;
+    } else if (key2 === "httponly") {
+      cookie.httpOnly = true;
+    } else if (key2 === "samesite") {
+      cookie.sameSite = value2;
+    } else if (key2 === "partitioned") {
+      cookie.partitioned = true;
     } else {
-      value = nameValuePairStr;
+      cookie[key2] = value2;
     }
-    return { name, value };
+  });
+  return cookie;
+}
+function parseNameValuePair(nameValuePairStr) {
+  var name = "";
+  var value = "";
+  var nameValueArr = nameValuePairStr.split("=");
+  if (nameValueArr.length > 1) {
+    name = nameValueArr.shift();
+    value = nameValueArr.join("=");
+  } else {
+    value = nameValuePairStr;
   }
-  function parse(input, options2) {
-    options2 = options2 ? Object.assign({}, defaultParseOptions, options2) : defaultParseOptions;
-    if (!input) {
-      if (!options2.map) {
-        return [];
-      } else {
-        return {};
-      }
-    }
-    if (input.headers) {
-      if (typeof input.headers.getSetCookie === "function") {
-        input = input.headers.getSetCookie();
-      } else if (input.headers["set-cookie"]) {
-        input = input.headers["set-cookie"];
-      } else {
-        var sch = input.headers[Object.keys(input.headers).find(function(key2) {
-          return key2.toLowerCase() === "set-cookie";
-        })];
-        if (!sch && input.headers.cookie && !options2.silent) {
-          console.warn(
-            "Warning: set-cookie-parser appears to have been called on a request object. It is designed to parse Set-Cookie headers from responses, not Cookie headers from requests. Set the option {silent: true} to suppress this warning."
-          );
-        }
-        input = sch;
-      }
-    }
-    if (!Array.isArray(input)) {
-      input = [input];
-    }
+  return { name, value };
+}
+function parse(input, options2) {
+  options2 = options2 ? Object.assign({}, defaultParseOptions, options2) : defaultParseOptions;
+  if (!input) {
     if (!options2.map) {
-      return input.filter(isNonEmptyString).map(function(str) {
-        return parseString(str, options2);
-      });
+      return [];
     } else {
-      var cookies = {};
-      return input.filter(isNonEmptyString).reduce(function(cookies2, str) {
-        var cookie2 = parseString(str, options2);
-        cookies2[cookie2.name] = cookie2;
-        return cookies2;
-      }, cookies);
+      return {};
     }
   }
-  function splitCookiesString(cookiesString) {
-    if (Array.isArray(cookiesString)) {
-      return cookiesString;
+  if (input.headers) {
+    if (typeof input.headers.getSetCookie === "function") {
+      input = input.headers.getSetCookie();
+    } else if (input.headers["set-cookie"]) {
+      input = input.headers["set-cookie"];
+    } else {
+      var sch = input.headers[Object.keys(input.headers).find(function(key2) {
+        return key2.toLowerCase() === "set-cookie";
+      })];
+      if (!sch && input.headers.cookie && !options2.silent) {
+        console.warn(
+          "Warning: set-cookie-parser appears to have been called on a request object. It is designed to parse Set-Cookie headers from responses, not Cookie headers from requests. Set the option {silent: true} to suppress this warning."
+        );
+      }
+      input = sch;
     }
-    if (typeof cookiesString !== "string") {
-      return [];
+  }
+  if (!Array.isArray(input)) {
+    input = [input];
+  }
+  if (!options2.map) {
+    return input.filter(isNonEmptyString).map(function(str) {
+      return parseString(str, options2);
+    });
+  } else {
+    var cookies = {};
+    return input.filter(isNonEmptyString).reduce(function(cookies2, str) {
+      var cookie = parseString(str, options2);
+      cookies2[cookie.name] = cookie;
+      return cookies2;
+    }, cookies);
+  }
+}
+function splitCookiesString(cookiesString) {
+  if (Array.isArray(cookiesString)) {
+    return cookiesString;
+  }
+  if (typeof cookiesString !== "string") {
+    return [];
+  }
+  var cookiesStrings = [];
+  var pos = 0;
+  var start;
+  var ch;
+  var lastComma;
+  var nextStart;
+  var cookiesSeparatorFound;
+  function skipWhitespace() {
+    while (pos < cookiesString.length && /\s/.test(cookiesString.charAt(pos))) {
+      pos += 1;
     }
-    var cookiesStrings = [];
-    var pos = 0;
-    var start;
-    var ch;
-    var lastComma;
-    var nextStart;
-    var cookiesSeparatorFound;
-    function skipWhitespace() {
-      while (pos < cookiesString.length && /\s/.test(cookiesString.charAt(pos))) {
+    return pos < cookiesString.length;
+  }
+  function notSpecialChar() {
+    ch = cookiesString.charAt(pos);
+    return ch !== "=" && ch !== ";" && ch !== ",";
+  }
+  while (pos < cookiesString.length) {
+    start = pos;
+    cookiesSeparatorFound = false;
+    while (skipWhitespace()) {
+      ch = cookiesString.charAt(pos);
+      if (ch === ",") {
+        lastComma = pos;
+        pos += 1;
+        skipWhitespace();
+        nextStart = pos;
+        while (pos < cookiesString.length && notSpecialChar()) {
+          pos += 1;
+        }
+        if (pos < cookiesString.length && cookiesString.charAt(pos) === "=") {
+          cookiesSeparatorFound = true;
+          pos = nextStart;
+          cookiesStrings.push(cookiesString.substring(start, lastComma));
+          start = pos;
+        } else {
+          pos = lastComma + 1;
+        }
+      } else {
         pos += 1;
       }
-      return pos < cookiesString.length;
     }
-    function notSpecialChar() {
-      ch = cookiesString.charAt(pos);
-      return ch !== "=" && ch !== ";" && ch !== ",";
+    if (!cookiesSeparatorFound || pos >= cookiesString.length) {
+      cookiesStrings.push(cookiesString.substring(start, cookiesString.length));
     }
-    while (pos < cookiesString.length) {
-      start = pos;
-      cookiesSeparatorFound = false;
-      while (skipWhitespace()) {
-        ch = cookiesString.charAt(pos);
-        if (ch === ",") {
-          lastComma = pos;
-          pos += 1;
-          skipWhitespace();
-          nextStart = pos;
-          while (pos < cookiesString.length && notSpecialChar()) {
-            pos += 1;
-          }
-          if (pos < cookiesString.length && cookiesString.charAt(pos) === "=") {
-            cookiesSeparatorFound = true;
-            pos = nextStart;
-            cookiesStrings.push(cookiesString.substring(start, lastComma));
-            start = pos;
-          } else {
-            pos = lastComma + 1;
-          }
-        } else {
-          pos += 1;
-        }
-      }
-      if (!cookiesSeparatorFound || pos >= cookiesString.length) {
-        cookiesStrings.push(cookiesString.substring(start, cookiesString.length));
-      }
-    }
-    return cookiesStrings;
   }
-  setCookie.exports = parse;
-  setCookie.exports.parse = parse;
-  setCookie.exports.parseString = parseString;
-  setCookie.exports.splitCookiesString = splitCookiesString;
-  return setCookie.exports;
+  return cookiesStrings;
 }
-var setCookieExports = /* @__PURE__ */ requireSetCookie();
+setCookie.exports = parse;
+setCookie.exports.parse = parse;
+var parseString_1 = setCookie.exports.parseString = parseString;
+var splitCookiesString_1 = setCookie.exports.splitCookiesString = splitCookiesString;
 function create_fetch({ event, options: options2, manifest, state, get_cookie_header, set_internal }) {
   const server_fetch = async (info, init2) => {
     const original_request = normalize_fetch_input(info, init2, event.url);
@@ -3765,8 +3750,8 @@ function create_fetch({ event, options: options2, manifest, state, get_cookie_he
         }
         if (url.origin !== event.url.origin) {
           if (`.${url.hostname}`.endsWith(`.${event.url.hostname}`) && credentials !== "omit") {
-            const cookie2 = get_cookie_header(url, request.headers.get("cookie"));
-            if (cookie2) request.headers.set("cookie", cookie2);
+            const cookie = get_cookie_header(url, request.headers.get("cookie"));
+            if (cookie) request.headers.set("cookie", cookie);
           }
           return fetch(request);
         }
@@ -3799,9 +3784,9 @@ function create_fetch({ event, options: options2, manifest, state, get_cookie_he
           return await fetch(request);
         }
         if (credentials !== "omit") {
-          const cookie2 = get_cookie_header(url, request.headers.get("cookie"));
-          if (cookie2) {
-            request.headers.set("cookie", cookie2);
+          const cookie = get_cookie_header(url, request.headers.get("cookie"));
+          if (cookie) {
+            request.headers.set("cookie", cookie);
           }
           const authorization = event.request.headers.get("authorization");
           if (authorization && !request.headers.has("authorization")) {
@@ -3821,8 +3806,8 @@ function create_fetch({ event, options: options2, manifest, state, get_cookie_he
         const response = await internal_fetch(request, options2, manifest, state);
         const set_cookie = response.headers.get("set-cookie");
         if (set_cookie) {
-          for (const str of setCookieExports.splitCookiesString(set_cookie)) {
-            const { name, value, ...options3 } = setCookieExports.parseString(str, {
+          for (const str of splitCookiesString_1(set_cookie)) {
+            const { name, value, ...options3 } = parseString_1(str, {
               decodeValues: false
             });
             const path = options3.path ?? (url.pathname.split("/").slice(0, -1).join("/") || "/");
@@ -3939,8 +3924,8 @@ async function internal_respond(request, options2, manifest, state) {
     invalidated_data_nodes = url.searchParams.get(INVALIDATED_PARAM)?.split("").map((node) => node === "1");
     url.searchParams.delete(INVALIDATED_PARAM);
   } else if (remote_id) {
-    url.pathname = base;
-    url.search = "";
+    url.pathname = request.headers.get("x-sveltekit-pathname") ?? base;
+    url.search = request.headers.get("x-sveltekit-search") ?? "";
   }
   const headers2 = {};
   const { cookies, new_cookies, get_cookie_header, set_internal, set_trailing_slash } = get_cookies(
@@ -4059,7 +4044,7 @@ async function internal_respond(request, options2, manifest, state) {
     headers22.set("cache-control", "public, max-age=0, must-revalidate");
     return text("Not found", { status: 404, headers: headers22 });
   }
-  if (!state.prerendering?.fallback && !remote_id) {
+  if (!state.prerendering?.fallback) {
     const matchers = await manifest._.matchers();
     for (const candidate of manifest._.routes) {
       const match = candidate.pattern.exec(resolved_path);
@@ -4081,7 +4066,7 @@ async function internal_respond(request, options2, manifest, state) {
   let trailing_slash = "never";
   try {
     const page_nodes = route?.page ? new PageNodes(await load_page_nodes(route.page, manifest)) : void 0;
-    if (route) {
+    if (route && !remote_id) {
       if (url.pathname === base || url.pathname === base + "/") {
         trailing_slash = "always";
       } else if (page_nodes) {

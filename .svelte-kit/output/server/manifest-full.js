@@ -7,10 +7,10 @@ function __memo(fn) {
 return {
 	appDir: "_app",
 	appPath: "_app",
-	assets: new Set(["CNAME","activity.jpg","ai_for_everyone.png","bg.png","brushstroke.png","cards.png","chatter.png","data_science_R.jpeg","favicon.png","giggle.gif","global.css","gourmet-food.png","great-success.png","hello.gif","homelane.jpg","lazyloader.gif","logo-192.png","logo-512.png","manifest.json","medium_logo.png","olxapp.png","profile_photo.jpg","pubg.jpg","skillsLogo/JupyterLogo.png","skillsLogo/Rlogo.png","skillsLogo/SagemakerLogo.png","skillsLogo/bootstrap.jpg","skillsLogo/css3Logo.jpg","skillsLogo/gitHubLogo.png","skillsLogo/herokuLogo.png","skillsLogo/html5.png","skillsLogo/jqueryLogo.gif","skillsLogo/nodeJsLogo.png","skillsLogo/pythonLogo.jpeg","skillsLogo/reactLogo.png","skillsLogo/sass.png","skillsLogo/svelteLogo.png","skillsLogo/svelteSapper.png","skillsLogo/vuejsLogo.png","skillsLogo/webpackLogo.png","sveltesapper.jpeg","taskr.png","udacity_ml.png"]),
-	mimeTypes: {".jpg":"image/jpeg",".png":"image/png",".jpeg":"image/jpeg",".gif":"image/gif",".css":"text/css",".json":"application/json"},
+	assets: new Set(["CNAME","ai_for_everyone.png","bg.png","brushstroke.png","create_favicon.py","data_science_R.jpeg","favicon.png","favicon.svg","favicon_temp.jpg","generate_favicon.html","giggle.gif","global.css","great-success.png","hello.gif","homelane.jpg","images/profile/profile_photo.jpg","images/projects/activity.jpg","images/projects/cards.png","images/projects/chatter.png","images/projects/gourmet-food.png","images/projects/lazyloader.gif","images/projects/pubg.jpg","images/projects/taskr.png","images/skills/JupyterLogo.png","images/skills/Rlogo.png","images/skills/SagemakerLogo.png","images/skills/bootstrap.jpg","images/skills/css3Logo.jpg","images/skills/gitHubLogo.png","images/skills/herokuLogo.png","images/skills/html5.png","images/skills/jqueryLogo.gif","images/skills/nodeJsLogo.png","images/skills/pythonLogo.jpeg","images/skills/reactLogo.png","images/skills/sass.png","images/skills/svelteLogo.png","images/skills/svelteSapper.png","images/skills/vuejsLogo.png","images/skills/webpackLogo.png","logo-192.png","logo-512.png","manifest.json","medium_logo.png","olxapp.png","resume.pdf","simple_favicon.html","sveltesapper.jpeg","udacity_ml.png"]),
+	mimeTypes: {".png":"image/png",".jpeg":"image/jpeg",".svg":"image/svg+xml",".jpg":"image/jpeg",".html":"text/html",".gif":"image/gif",".css":"text/css",".json":"application/json",".pdf":"application/pdf"},
 	_: {
-		client: {start:"_app/immutable/entry/start.COyQugQ7.js",app:"_app/immutable/entry/app.CnSRRZdx.js",imports:["_app/immutable/entry/start.COyQugQ7.js","_app/immutable/chunks/Bzcy1Vw3.js","_app/immutable/chunks/D7e5fDsm.js","_app/immutable/chunks/DTv-0pq7.js","_app/immutable/entry/app.CnSRRZdx.js","_app/immutable/chunks/D7e5fDsm.js","_app/immutable/chunks/DTv-0pq7.js","_app/immutable/chunks/9UegHNTc.js","_app/immutable/chunks/DjZqoXsM.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
+		client: {start:"_app/immutable/entry/start.Djq6MZ2j.js",app:"_app/immutable/entry/app.C4fuvM9x.js",imports:["_app/immutable/entry/start.Djq6MZ2j.js","_app/immutable/chunks/GtmGPhGz.js","_app/immutable/chunks/CV-qT96p.js","_app/immutable/entry/app.C4fuvM9x.js","_app/immutable/chunks/CV-qT96p.js","_app/immutable/chunks/IHki7fMi.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),
@@ -21,7 +21,8 @@ return {
 			__memo(() => import('./nodes/6.js')),
 			__memo(() => import('./nodes/7.js')),
 			__memo(() => import('./nodes/8.js')),
-			__memo(() => import('./nodes/9.js'))
+			__memo(() => import('./nodes/9.js')),
+			__memo(() => import('./nodes/10.js'))
 		],
 		remotes: {
 			
@@ -56,31 +57,38 @@ return {
 				endpoint: null
 			},
 			{
+				id: "/education",
+				pattern: /^\/education\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 6 },
+				endpoint: null
+			},
+			{
 				id: "/experience",
 				pattern: /^\/experience\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 6 },
+				page: { layouts: [0,], errors: [1,], leaf: 7 },
 				endpoint: null
 			},
 			{
 				id: "/projects",
 				pattern: /^\/projects\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 7 },
+				page: { layouts: [0,], errors: [1,], leaf: 8 },
 				endpoint: null
 			},
 			{
 				id: "/skills",
 				pattern: /^\/skills\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 8 },
+				page: { layouts: [0,], errors: [1,], leaf: 9 },
 				endpoint: null
 			},
 			{
 				id: "/videos",
 				pattern: /^\/videos\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 9 },
+				page: { layouts: [0,], errors: [1,], leaf: 10 },
 				endpoint: null
 			}
 		],

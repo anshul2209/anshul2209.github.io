@@ -1,4 +1,4 @@
-import { a as text_encoder, b as base64_encode, t as text_decoder, h as base64_decode } from "./event.js";
+import { a as text_encoder, b as base64_encode, t as text_decoder, d as base64_decode } from "./event.js";
 const BROWSER = false;
 class HttpError {
   /**
