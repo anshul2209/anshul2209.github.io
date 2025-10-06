@@ -44,6 +44,6 @@ declare module "$app/types" {
 		};
 		Pathname(): "/" | "/awards" | "/awards/" | "/blog" | "/blog/" | "/contact" | "/contact/" | "/education" | "/education/" | "/experience" | "/experience/" | "/projects" | "/projects/" | "/skills" | "/skills/" | "/videos" | "/videos/";
 		ResolvedPathname(): `${"" | `/${string}`}${ReturnType<AppTypes['Pathname']>}`;
-		Asset(): "/favicon.png" | string & {};
+		Asset(): "/favicon.png" | "/resume.pdf" | "/static/images/profile/profile_photo.jpg" | "/static/resume.pdf" | string & {};
 	}
 }
