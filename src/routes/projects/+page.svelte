@@ -12,7 +12,19 @@
 
 	async function fetchData() {
 		const firstResponse = await axios.get('https://api.github.com/users/anshul2209/repos', { headers: API_HEADERS });
-		data = firstResponse.data.filter(repo => PINNED_REPOS.includes(repo.id));
+		const githubRepos = firstResponse.data.filter(repo => PINNED_REPOS.includes(repo.id));
+		
+		// Add UrbanMart project manually
+		const urbanMartProject = {
+			id: 'urbanmart',
+			name: 'urbanmart',
+			description: 'Modern e-commerce platform built with Next.js 15, TypeScript, and Tailwind CSS',
+			html_url: 'https://github.com/anshul2209/urbanmart',
+			homepage: 'https://urbanmart-dun4.onrender.com',
+			topics: ['nextjs', 'typescript', 'tailwind', 'ecommerce', 'zustand']
+		};
+		
+		data = [...githubRepos, urbanMartProject];
 	}
 	onMount(fetchData);
 

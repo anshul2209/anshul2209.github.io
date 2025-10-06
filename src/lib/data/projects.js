@@ -43,6 +43,15 @@ export const projectImageMap = {
     cover: 'images/projects/lazyloader.gif',
     description: 'Performance optimization library for lazy loading images',
     technologies: ['JavaScript', 'Performance Optimization', 'Intersection Observer']
+  },
+  // UrbanMart - E-commerce Platform
+  'urbanmart': {
+    name: 'UrbanMart',
+    cover: 'images/projects/urbanmart.png',
+    description: 'Modern e-commerce platform with product catalog, shopping cart, and responsive design. Features beauty, fragrance, and lifestyle products.',
+    technologies: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Zustand', 'E-commerce'],
+    url: 'https://urbanmart-dun4.onrender.com',
+    github: 'https://github.com/anshul2209/urbanmart'
   }
 };
 
