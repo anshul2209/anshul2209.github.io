@@ -2,15 +2,15 @@
 
 ## Automatic Deployment (Recommended)
 
-The website automatically deploys to GitHub Pages when you push to the `develop` branch.
+The website automatically deploys to GitHub Pages when you push to the `master` branch.
 
 ### How it works:
-1. Push your changes to the `develop` branch
+1. Push your changes to the `master` branch
 2. GitHub Actions automatically builds and deploys the site
 3. The site is available at your GitHub Pages URL
 
 ### GitHub Actions Workflow:
-- **Trigger**: Push to `develop` branch
+- **Trigger**: Push to `master` branch
 - **Build**: Uses Node.js 18 and pnpm
 - **Deploy**: Automatically deploys to GitHub Pages
 - **Status**: Check the Actions tab in your GitHub repository
