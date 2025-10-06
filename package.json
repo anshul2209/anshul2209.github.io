@@ -1,0 +1,30 @@
+{
+  "name": "anshulbansal",
+  "description": "Anshul Bansal Portfolio",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "test": "pnpm run dev & pnpm run cy:run",
+    "clean": "rm -rf ./build",
+    "deploy": "pnpm run clean && pnpm run build && node ./scripts/deploy.js",
+    "deploy:manual": "pnpm run clean && pnpm run build && node ./scripts/deploy.js"
+  },
+  "dependencies": {
+    "axios": "^1.12.2",
+    "gh-pages": "^6.3.0"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/kit": "^2.44.0",
+    "@sveltejs/vite-plugin-svelte": "^3.1.2",
+    "sass": "^1.93.2",
+    "svelte": "^4.2.20",
+    "svelte-preprocess": "^5.1.4",
+    "vite": "^5.4.20"
+  }
+}

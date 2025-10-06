@@ -1,0 +1,241 @@
+{
+  ".svelte-kit/generated/server/internal.js": {
+    "file": "internal.js",
+    "name": "internal",
+    "src": ".svelte-kit/generated/server/internal.js",
+    "isEntry": true,
+    "imports": [
+      "_internal.js",
+      "_environment.js"
+    ]
+  },
+  "_SectionHeader.js": {
+    "file": "chunks/SectionHeader.js",
+    "name": "SectionHeader",
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/SectionHeader.C6brH4KN.css"
+    ]
+  },
+  "_environment.js": {
+    "file": "chunks/environment.js",
+    "name": "environment"
+  },
+  "_event.js": {
+    "file": "chunks/event.js",
+    "name": "event"
+  },
+  "_exports.js": {
+    "file": "chunks/exports.js",
+    "name": "exports"
+  },
+  "_index.js": {
+    "file": "chunks/index.js",
+    "name": "index"
+  },
+  "_internal.js": {
+    "file": "chunks/internal.js",
+    "name": "internal",
+    "imports": [
+      "_ssr.js",
+      "_ssr2.js",
+      "_environment.js"
+    ]
+  },
+  "_shared.js": {
+    "file": "chunks/shared.js",
+    "name": "shared",
+    "imports": [
+      "_event.js"
+    ]
+  },
+  "_ssr.js": {
+    "file": "chunks/ssr.js",
+    "name": "ssr"
+  },
+  "_ssr2.js": {
+    "file": "chunks/ssr2.js",
+    "name": "ssr"
+  },
+  "_stores.js": {
+    "file": "chunks/stores.js",
+    "name": "stores",
+    "imports": [
+      "_ssr.js",
+      "_exports.js",
+      "_event.js",
+      "_ssr2.js"
+    ]
+  },
+  "node_modules/.pnpm/@sveltejs+kit@2.44.0_@sveltejs+vite-plugin-svelte@3.1.2_svelte@4.2.20_vite@5.4.20_sass@_93bbc66072a3d3863d04e7081c5023bb/node_modules/@sveltejs/kit/src/runtime/app/server/remote/index.js": {
+    "file": "remote-entry.js",
+    "name": "remote-entry",
+    "src": "node_modules/.pnpm/@sveltejs+kit@2.44.0_@sveltejs+vite-plugin-svelte@3.1.2_svelte@4.2.20_vite@5.4.20_sass@_93bbc66072a3d3863d04e7081c5023bb/node_modules/@sveltejs/kit/src/runtime/app/server/remote/index.js",
+    "isEntry": true,
+    "imports": [
+      "_event.js",
+      "_shared.js",
+      "_environment.js"
+    ]
+  },
+  "node_modules/.pnpm/@sveltejs+kit@2.44.0_@sveltejs+vite-plugin-svelte@3.1.2_svelte@4.2.20_vite@5.4.20_sass@_93bbc66072a3d3863d04e7081c5023bb/node_modules/@sveltejs/kit/src/runtime/server/index.js": {
+    "file": "index.js",
+    "name": "index",
+    "src": "node_modules/.pnpm/@sveltejs+kit@2.44.0_@sveltejs+vite-plugin-svelte@3.1.2_svelte@4.2.20_vite@5.4.20_sass@_93bbc66072a3d3863d04e7081c5023bb/node_modules/@sveltejs/kit/src/runtime/server/index.js",
+    "isEntry": true,
+    "imports": [
+      "_event.js",
+      "_shared.js",
+      "_environment.js",
+      "_exports.js",
+      "_ssr.js",
+      "_internal.js"
+    ]
+  },
+  "src/routes/+error.svelte": {
+    "file": "entries/pages/_error.svelte.js",
+    "name": "entries/pages/_error.svelte",
+    "src": "src/routes/+error.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_stores.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_error.CgUTVSGB.css"
+    ]
+  },
+  "src/routes/+layout.svelte": {
+    "file": "entries/pages/_layout.svelte.js",
+    "name": "entries/pages/_layout.svelte",
+    "src": "src/routes/+layout.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_stores.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_layout.CaGHitVD.css"
+    ]
+  },
+  "src/routes/+page.svelte": {
+    "file": "entries/pages/_page.svelte.js",
+    "name": "entries/pages/_page.svelte",
+    "src": "src/routes/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.Lwr3GKVI.css"
+    ]
+  },
+  "src/routes/awards/+page.svelte": {
+    "file": "entries/pages/awards/_page.svelte.js",
+    "name": "entries/pages/awards/_page.svelte",
+    "src": "src/routes/awards/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_SectionHeader.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.Cvi9CBnz.css"
+    ]
+  },
+  "src/routes/blog/+page.svelte": {
+    "file": "entries/pages/blog/_page.svelte.js",
+    "name": "entries/pages/blog/_page.svelte",
+    "src": "src/routes/blog/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_SectionHeader.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.CZd3_w__.css"
+    ]
+  },
+  "src/routes/contact/+page.svelte": {
+    "file": "entries/pages/contact/_page.svelte.js",
+    "name": "entries/pages/contact/_page.svelte",
+    "src": "src/routes/contact/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_SectionHeader.js",
+      "_index.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.a8isvlOj.css"
+    ]
+  },
+  "src/routes/education/+page.svelte": {
+    "file": "entries/pages/education/_page.svelte.js",
+    "name": "entries/pages/education/_page.svelte",
+    "src": "src/routes/education/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_SectionHeader.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.C9SAWNfS.css"
+    ]
+  },
+  "src/routes/experience/+page.svelte": {
+    "file": "entries/pages/experience/_page.svelte.js",
+    "name": "entries/pages/experience/_page.svelte",
+    "src": "src/routes/experience/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_SectionHeader.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.CQYiaMeU.css"
+    ]
+  },
+  "src/routes/projects/+page.svelte": {
+    "file": "entries/pages/projects/_page.svelte.js",
+    "name": "entries/pages/projects/_page.svelte",
+    "src": "src/routes/projects/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_SectionHeader.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.BFXXH2Xr.css"
+    ]
+  },
+  "src/routes/skills/+page.svelte": {
+    "file": "entries/pages/skills/_page.svelte.js",
+    "name": "entries/pages/skills/_page.svelte",
+    "src": "src/routes/skills/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_SectionHeader.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.D9k_DGlO.css"
+    ]
+  },
+  "src/routes/videos/+page.svelte": {
+    "file": "entries/pages/videos/_page.svelte.js",
+    "name": "entries/pages/videos/_page.svelte",
+    "src": "src/routes/videos/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_SectionHeader.js",
+      "_index.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.BvYrbh5v.css"
+    ]
+  }
+}
