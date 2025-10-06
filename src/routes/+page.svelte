@@ -42,15 +42,12 @@
 		}
 	}
 	
-	.profile-image-placeholder {
+	.profile-image {
 		width: 150px;
 		height: 150px;
 		border-radius: 50%;
 		border: 1px solid var(--color-gray-200);
-		background: var(--gradient-primary);
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		object-fit: cover;
 		opacity: 0;
 		transform: scale(0.95);
 		animation: fadeInScale 0.5s ease-out 0.2s forwards;
@@ -60,13 +57,6 @@
 			transform: scale(1.01);
 			border-color: var(--color-gray-300);
 		}
-	}
-	
-	.profile-image-placeholder .initials {
-		font-size: 48px;
-		font-weight: var(--font-weight-bold);
-		color: var(--color-white);
-		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 	}
 	
 	.greeting {
@@ -560,9 +550,7 @@
 
 <section class="hero">
 	<div class="hero-content">
-		<div class="profile-image-placeholder">
-			<span class="initials">AB</span>
-		</div>
+		<img src="/images/profile/profile_photo.jpg" alt="Anshul Bansal" class="profile-image" />
 		<div class="greeting">Hello, I'm</div>
 		<h1 class="name">Anshul Bansal</h1>
 		<div class="title">Technical Architect</div>
