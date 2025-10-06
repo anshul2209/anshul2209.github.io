@@ -12,7 +12,9 @@
     "test": "pnpm run dev & pnpm run cy:run",
     "clean": "rm -rf ./build",
     "deploy": "pnpm run clean && pnpm run build && node ./scripts/deploy.js",
-    "deploy:manual": "pnpm run clean && pnpm run build && node ./scripts/deploy.js"
+    "deploy:manual": "pnpm run clean && pnpm run build && node ./scripts/deploy.js",
+    "deploy:gitlab": "node ./scripts/deploy-gitlab.js",
+    "deploy:gitlab:manual": "pnpm run clean && pnpm run build && node ./scripts/deploy-gitlab.js"
   },
   "dependencies": {
     "axios": "^1.12.2",

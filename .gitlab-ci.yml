@@ -1,0 +1,61 @@
+# GitLab CI/CD configuration for SvelteKit deployment to GitLab Pages
+
+# Use Node.js 18 for building
+image: node:18
+
+# Define stages
+stages:
+  - build
+  - deploy
+
+# Cache node_modules for faster builds
+cache:
+  paths:
+    - node_modules/
+    - .pnpm-store/
+
+# Build stage
+build:
+  stage: build
+  before_script:
+    # Install pnpm
+    - npm install -g pnpm
+    # Install dependencies
+    - pnpm install
+  script:
+    # Build the SvelteKit application
+    - pnpm run build
+  artifacts:
+    paths:
+      - build/
+    expire_in: 1 hour
+  only:
+    - main
+    - master
+
+# Deploy to GitLab Pages
+pages:
+  stage: deploy
+  dependencies:
+    - build
+  script:
+    # Copy build artifacts to public directory for GitLab Pages
+    - cp -r build/* public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
+    - master
+
+# Optional: Add a job to test the build locally
+test_build:
+  stage: build
+  before_script:
+    - npm install -g pnpm
+    - pnpm install
+  script:
+    - pnpm run build
+    - echo "Build completed successfully"
+  only:
+    - merge_requests

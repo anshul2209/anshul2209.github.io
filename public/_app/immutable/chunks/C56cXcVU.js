@@ -1,0 +1,1 @@
+const n={YOUTUBE_CHANNEL:"https://www.youtube.com/channel/UCDv2X3kXDJ05qCg9EaKCpQw",LINKEDIN_URL:"https://www.linkedin.com/in/anshul2209",GITHUB_URL:"https://github.com/anshul2209",EMAIL:"anshulbansal2209@gmail.com"},t={Accept:"application/vnd.github.mercy-preview+json"},a=[258580131,158177168,92606922,73320743,82116410,234808378,112024297];export{n as A,a as P,t as a};

@@ -29,6 +29,10 @@ const config = {
 		}),
 		paths: {
 			base: process.env.NODE_ENV === 'production' ? '' : ''
+		},
+		// Configure for GitLab Pages
+		prerender: {
+			handleHttpError: 'warn'
 		}
 	}
 };
