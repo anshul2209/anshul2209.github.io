@@ -1,5 +1,761 @@
-<!doctype html> <html lang=en> <head> <meta charset=utf-8> <meta content="width=device-width,initial-scale=1" name=viewport> <meta content=#333333 name=theme-color> <meta content="Personal Website" name=description> <meta content=HTML,CSS,Svelte,Sapper,JavaScript name=keywords> <meta content="Anshul Bansal" name=author> <meta content="https://avatars3.githubusercontent.com/u/16732211?s=460&v=4" property=og:image> <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159295811-1"></script> <script> window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anshul Bansal — Principal Engineer, Web Platform</title>
+  <meta name="description" content="Principal Engineer, Web Platform at OLX India. PWA architecture, SSR, edge strategy, Core Web Vitals, and observability for ~35M monthly users.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FBFBFC;
+      --bg-subtle: #F2F3F5;
+      --text: #1A1D23;
+      --text-muted: #5A6170;
+      --border: #D8DCE3;
+      --accent: #0D6E6E;
+      --accent-hover: #0A5555;
+      --focus: #0D6E6E;
+      --on-accent: #FBFBFC;
+      --font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+      --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Code", monospace;
+      --measure: 62ch;
+      --radius: 3px;
+      --nav-h: 2.75rem;
+      --space: 1.25rem;
+    }
 
-	gtag('config', 'UA-159295811-1'); </script> <base href=/ > <link href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css rel=stylesheet> <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400&display=swap" rel=stylesheet> <link href=global.css rel=stylesheet> <link href=manifest.json rel=manifest> <link href=favicon.png rel=icon type=image/png> <link href=favicon.png rel=apple-touch-icon> <link href=client/main.2506423433.css rel=stylesheet><link href=client/index.b725df9b.css rel=stylesheet><link href=client/client.bee79100.css rel=stylesheet> <noscript id=sapper-head-start></noscript><title>Anshul Bansal | Full Stack Developer</title><noscript id=sapper-head-end></noscript> </head> <body> <div id=sapper> <div class="svelte-1v74roo is-desktop"> <nav class=svelte-1jd15m8> <div class="svelte-1jd15m8 logo"> <h2 class="svelte-1jd15m8 name">Anshul <br>Bansal</h2> <h4 class="svelte-1jd15m8 title">Full Stack Developer</h4> </div> <ul class=svelte-1jd15m8> <li class=svelte-1jd15m8> <i class="svelte-1jd15m8 fa fa-user" aria-hidden=true></i> <a class="svelte-1jd15m8 selected" href=. id=About>About</a> <li class=svelte-1jd15m8> <i class="svelte-1jd15m8 fa fa-laptop" aria-hidden=true></i> <a class=svelte-1jd15m8 href=projects id=Projects>Projects</a> <li class=svelte-1jd15m8> <i class="svelte-1jd15m8 fa fa-video-camera" aria-hidden=true></i> <a class=svelte-1jd15m8 href=videos id=Videos>Videos</a> <li class=svelte-1jd15m8> <i class="svelte-1jd15m8 fa fa-star-o" aria-hidden=true></i> <a class=svelte-1jd15m8 href=awards id=Awards>Awards</a> <li class=svelte-1jd15m8> <i class="svelte-1jd15m8 fa fa-bar-chart" aria-hidden=true></i> <a class=svelte-1jd15m8 href=skills id=Skills>Skills</a> <li class=svelte-1jd15m8> <i class="svelte-1jd15m8 fa fa-phone" aria-hidden=true></i> <a class=svelte-1jd15m8 href=contact id=Contact>Contact</a> <li class=svelte-1jd15m8> <i class="svelte-1jd15m8 fa fa-rss-square" aria-hidden=true></i> <a class=svelte-1jd15m8 href=blog id="Blog Posts">Blog Posts</a> </li> </ul> </nav> </div> <div class="svelte-1v74roo is-mobile"> <nav class="svelte-1g6b5f3 hidden"> <div class="svelte-1g6b5f3 logo"> <h2 class="svelte-1g6b5f3 name">Anshul Bansal</h2> <h4 class="svelte-1g6b5f3 title">Full Stack Developer</h4> </div> <ul class=svelte-1g6b5f3> <li class=svelte-1g6b5f3> <i class="svelte-1g6b5f3 fa fa-user" aria-hidden=true></i> <a class="svelte-1g6b5f3 selected" href=. id=About>About</a> <li class=svelte-1g6b5f3> <i class="svelte-1g6b5f3 fa fa-laptop" aria-hidden=true></i> <a class=svelte-1g6b5f3 href=projects id=Projects>Projects</a> <li class=svelte-1g6b5f3> <i class="svelte-1g6b5f3 fa fa-video-camera" aria-hidden=true></i> <a class=svelte-1g6b5f3 href=videos id=Videos>Videos</a> <li class=svelte-1g6b5f3> <i class="svelte-1g6b5f3 fa fa-star-o" aria-hidden=true></i> <a class=svelte-1g6b5f3 href=awards id=Awards>Awards</a> <li class=svelte-1g6b5f3> <i class="svelte-1g6b5f3 fa fa-bar-chart" aria-hidden=true></i> <a class=svelte-1g6b5f3 href=skills id=Skills>Skills</a> <li class=svelte-1g6b5f3> <i class="svelte-1g6b5f3 fa fa-phone" aria-hidden=true></i> <a class=svelte-1g6b5f3 href=contact id=Contact>Contact</a> <li class=svelte-1g6b5f3> <i class="svelte-1g6b5f3 fa fa-rss-square" aria-hidden=true></i> <a class=svelte-1g6b5f3 href=blog id="Blog Posts">Blog Posts</a> </li> </ul> </nav> <div class="svelte-1g6b5f3 nav_bar" style=z-index:2> <i class="fa fa-bars"></i> <div class="svelte-1g6b5f3 label">About</div> </div> </div> <div class=svelte-1v74roo></div> <main class=svelte-1v74roo> <section class=svelte-9btwf5> <div class=svelte-9btwf5 id=intro> Hello I am <span class=svelte-9btwf5 id=name>Anshul Bansal</span>, <div>I am a <span class=svelte-9btwf5 id=name>Full Stack Web Developer</span>,</div> <div>a <span class=svelte-9btwf5 id=name>Machine Learning Enthusiast</span> and</div> <div>an aspiring <span class=svelte-9btwf5 id=name>Public Speaker</span></div> </div> </section> </main></div> <script>__SAPPER__={baseUrl:"",preloaded:[void 0,{}]};if('serviceWorker' in navigator)navigator.serviceWorker.register('/service-worker.js');(function(){try{eval("async function x(){}");var main="/client/client.bee79100.js"}catch(e){main="/client/legacy/client.20817be2.js"};var s=document.createElement("script");try{new Function("if(0)import('')")();s.src=main;s.type="module";s.crossOrigin="use-credentials";}catch(e){s.src="/client/shimport@1.0.1.js";s.setAttribute("data-main",main);}document.head.appendChild(s);}());</script> <footer>Made with <i class="fa fa-heart" style=color:red></i> in India - Powered by Svelte and Sapper</footer> 
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121418;
+        --bg-subtle: #1A1D23;
+        --text: #E8EAED;
+        --text-muted: #9AA0AB;
+        --border: #2E3340;
+        --accent: #3DABAB;
+        --accent-hover: #5BC0C0;
+        --focus: #5BC0C0;
+        --on-accent: #121418;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-h) + 0.75rem);
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.15em;
+    }
+    a:hover { color: var(--accent-hover); }
+    a:focus-visible,
+    .nav a:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .skip {
+      position: absolute;
+      left: 0.75rem;
+      top: -3rem;
+      z-index: 100;
+      padding: 0.4rem 0.75rem;
+      background: var(--accent);
+      color: var(--on-accent);
+      border-radius: var(--radius);
+      text-decoration: none;
+    }
+    .skip:focus { top: 0.75rem; }
+
+    .wrap {
+      max-width: var(--measure);
+      margin: 0 auto;
+      padding: 0 1.25rem 4rem;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: var(--nav-h);
+      background: color-mix(in srgb, var(--bg) 92%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--measure);
+      margin: 0 auto;
+      padding: 0 1.25rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav a {
+      flex: 0 0 auto;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text-muted);
+      padding: 0.35rem 0.45rem;
+      border-radius: var(--radius);
+    }
+    .nav a:hover { color: var(--text); }
+
+    section {
+      padding-top: 2.75rem;
+      margin-top: 0.25rem;
+    }
+
+    .label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 0 0 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    h1 {
+      margin: 0 0 0.35rem;
+      font-size: clamp(1.75rem, 5vw, 2.25rem);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      margin: 0 0 0.35rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .subhead {
+      margin: 1.75rem 0 0.5rem;
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .subhead:first-of-type { margin-top: 0; }
+
+    p { margin: 0 0 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    .lede {
+      margin: 0 0 1.25rem;
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .role {
+      margin: 0 0 1.25rem;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+    }
+    .role strong { color: var(--text); font-weight: 500; }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 1rem;
+      margin: 1.25rem 0 0;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      list-style: none;
+      padding: 0;
+    }
+    .links a { text-decoration: none; }
+    .links a:hover { text-decoration: underline; }
+
+    /* Experience — compact timeline */
+    .jobs { list-style: none; padding: 0; margin: 0; }
+    .job {
+      display: grid;
+      grid-template-columns: 7.5rem 1fr;
+      gap: 0.35rem 1.25rem;
+      padding: 1rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .job:first-child { border-top: 0; padding-top: 0; }
+    .job-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      padding-top: 0.2rem;
+    }
+    .job h2 { margin-bottom: 0.1rem; }
+    .job .title {
+      margin: 0 0 0.5rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    .job ul {
+      margin: 0;
+      padding: 0 0 0 1.1rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .job li { margin-bottom: 0.3rem; }
+    .job li:last-child { margin-bottom: 0; }
+
+    @media (max-width: 520px) {
+      .job {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+      }
+      .job-meta { order: -1; margin-bottom: 0.15rem; }
+    }
+
+    /* Work — prose blocks */
+    .work-item { margin-bottom: 1.5rem; }
+    .work-item:last-child { margin-bottom: 0; }
+    .work-item h2 { margin-bottom: 0.4rem; }
+    .work-item p { color: var(--text-muted); font-size: 0.98rem; }
+
+    /* Projects */
+    .built { margin-bottom: 1.5rem; }
+    .built h2 { margin-bottom: 0.35rem; }
+    .built h2 a { color: inherit; text-decoration: none; }
+    .built h2 a:hover { color: var(--accent); text-decoration: underline; }
+    .built p { color: var(--text-muted); font-size: 0.98rem; margin-bottom: 0.35rem; }
+    .footnote {
+      margin-top: 1.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .footnote > p {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .oss {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+    .oss li {
+      margin-bottom: 0.55rem;
+      color: var(--text-muted);
+    }
+    .oss strong { color: var(--text); font-weight: 500; }
+
+    /* Writing / speaking lists */
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .list li {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.25rem 0.75rem;
+      padding: 0.55rem 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.98rem;
+    }
+    .list li:first-child { border-top: 0; padding-top: 0; }
+    .list .year {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+    .list a { text-decoration: none; }
+    .list a:hover { text-decoration: underline; }
+
+    .talk {
+      padding: 0.85rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .talk:first-of-type { border-top: 0; padding-top: 0; }
+    .talk h3 { margin-bottom: 0.35rem; }
+    .venues {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+    .venues li { margin-bottom: 0.2rem; }
+    .venues time {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+
+    .upcoming {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0;
+    }
+    .upcoming li {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.25rem 1rem;
+      padding: 0.45rem 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    .upcoming time {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .recorded {
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* Skills */
+    .skill {
+      margin-bottom: 1rem;
+    }
+    .skill h2 {
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    .skill p {
+      margin: 0;
+      color: var(--text);
+      font-size: 0.98rem;
+    }
+
+    .edu h2 { margin-bottom: 0.35rem; }
+
+    /* Background */
+    .edu {
+      margin-bottom: 1.5rem;
+    }
+    .edu p { color: var(--text-muted); margin-bottom: 0.25rem; }
+    .certs {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.75rem;
+    }
+    .certs li {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.25rem 1rem;
+      padding: 0.45rem 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    .certs .year {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .contact-block {
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .contact-block p {
+      margin-bottom: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#intro">Skip to content</a>
+
+  <nav class="nav" aria-label="Sections">
+    <div class="nav-inner">
+      <a href="#intro">Intro</a>
+      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#writing">Writing</a>
+      <a href="#speaking">Speaking</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#skills">Skills</a>
+      <a href="#background">Background</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="intro" aria-labelledby="intro-heading">
+      <p class="label">Intro</p>
+      <h1 id="intro-heading">Anshul Bansal</h1>
+      <p class="role"><strong>Principal Engineer, Web Platform</strong> · OLX India · since Apr 2026 · Gurugram, India</p>
+      <p>I architect the web platform for OLX India’s marketplace — PWA architecture, SSR for panamera-web / www.olx.in, Akamai and CDN delivery, BFF patterns, Core Web Vitals, observability, SEO, and client-side AI — across about 35M users. I lead three PWA squads on that surface.</p>
+      <p>Eleven years in, eight of them at OLX: I joined as Web Developer (SE1) in 2018 and moved through SE2, SE3, Technical Architect / Chapter Lead, into Principal. Before that I built product UI and APIs at FabHotels and Homelane, starting in 2015.</p>
+      <ul class="links">
+        <li><a href="resume.pdf">Resume</a></li>
+        <li><a href="https://github.com/anshul2209">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/anshul2209">LinkedIn</a></li>
+        <li><a href="https://tech.olx.in/author/anshul-bansal/">tech.olx.in</a></li>
+        <li><a href="https://twitter.com/anshulbansal09">X</a></li>
+        <li><a href="mailto:anshulbansal2209@gmail.com">Email</a></li>
+      </ul>
+    </section>
+
+    <section id="experience" aria-labelledby="experience-heading">
+      <p class="label" id="experience-heading">Experience</p>
+      <ol class="jobs">
+        <li class="job">
+          <div class="job-meta"><time datetime="2026-04">Apr 2026</time> – Present</div>
+          <div>
+            <h2>OLX India</h2>
+            <p class="title">Principal Engineer</p>
+            <ul>
+              <li>Driving lightweight SSR for bot traffic to improve crawl efficiency and reduce bandwidth cost</li>
+              <li>Optimising Listing-page LCP (mobile) toward the &lt;2.5s threshold; advancing INP on interaction-heavy pages</li>
+              <li>Scaling Akamai cache hit ratio beyond 60%; setting technical direction for BFF adoption across web and Android</li>
+            </ul>
+          </div>
+        </li>
+        <li class="job">
+          <div class="job-meta"><time datetime="2024-04">Apr 2024</time> – <time datetime="2026-04">Apr 2026</time></div>
+          <div>
+            <h2>OLX India</h2>
+            <p class="title">Technical Architect · Chapter Lead (Web)</p>
+            <ul>
+              <li>~50% monthly infra cost reduction at the same traffic scale; CDN cache hit ~30% → ~55–60%; 80% pod-count reduction via CPU scaling and Akamai offload</li>
+              <li>45–50% LCP improvement on Desktop Home; 30–50% INP on interaction-heavy pages; CLS stabilised near zero; led technical SEO to +160% daily organic clicks and +50% impressions over 14 months</li>
+              <li>80–99% fewer 5xxs on high-traffic APIs; ~50K abusive bot / parasite-SEO requests blocked daily; performance budgets and Web Vitals gates in CI</li>
+            </ul>
+          </div>
+        </li>
+        <li class="job">
+          <div class="job-meta"><time datetime="2021-04">Apr 2021</time> – <time datetime="2024-04">Apr 2024</time></div>
+          <div>
+            <h2>OLX</h2>
+            <p class="title">Lead Engineer (SE3)</p>
+            <ul>
+              <li>Designed and owned end-to-end architecture for the car-dealer Super App using React and Server-Driven UI</li>
+              <li>Built and scaled the advertisement platform (React, Node.js, DynamoDB); mentored a cross-functional engineering team</li>
+            </ul>
+          </div>
+        </li>
+        <li class="job">
+          <div class="job-meta"><time datetime="2019-10">Oct 2019</time> – <time datetime="2021-04">Apr 2021</time></div>
+          <div>
+            <h2>OLX</h2>
+            <p class="title">Senior Software Engineer (SE2)</p>
+            <ul>
+              <li>Developed the car-dealer Super App with React and Server-Driven UI for high-volume dealer workflows</li>
+              <li>Built and maintained the advertisement platform supporting OLX India’s core monetisation surface</li>
+            </ul>
+          </div>
+        </li>
+        <li class="job">
+          <div class="job-meta"><time datetime="2018-05">May 2018</time> – <time datetime="2019-10">Oct 2019</time></div>
+          <div>
+            <h2>OLX</h2>
+            <p class="title">Web Developer (SE1)</p>
+            <ul>
+              <li>Enabled microfrontends via Web Components in the PWA; shipped PWA features with React–Redux</li>
+              <li>Built B2C tools and the monetisation admin platform with Vue.js and React–Redux</li>
+            </ul>
+          </div>
+        </li>
+        <li class="job">
+          <div class="job-meta"><time datetime="2017-12">Dec 2017</time> – <time datetime="2018-05">May 2018</time></div>
+          <div>
+            <h2>FabHotels</h2>
+            <p class="title">Frontend Developer</p>
+            <ul>
+              <li>Developed new features for the FabHotels mobile website and set up the CI/CD pipeline for mobile-web deployments</li>
+            </ul>
+          </div>
+        </li>
+        <li class="job">
+          <div class="job-meta"><time datetime="2015-06">Jun 2015</time> – <time datetime="2017-12">Dec 2017</time></div>
+          <div>
+            <h2>HomeLane</h2>
+            <p class="title">Software Engineer</p>
+            <ul>
+              <li>Built the company site and a responsive microsite in React–Redux; developed the internal CRM on the MEAN stack</li>
+              <li>Wrote Node.js REST APIs for escalations, AWS document upload, and cross-platform data sync</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="work" aria-labelledby="work-heading">
+      <p class="label" id="work-heading">Work</p>
+      <p class="lede">Platform work at OLX — selected threads from recent years.</p>
+
+      <article class="work-item">
+        <h2>Edge caching and bot classification</h2>
+        <p>Traffic classification and differential caching across page types so humans, search crawlers, and other bots hit the edge strategy that fits them. CDN cache hit moved from ~30% to ~55–60%; about 50K abusive bot and parasite-SEO requests are blocked daily, protecting crawl quality and origin load.</p>
+      </article>
+
+      <article class="work-item">
+        <h2>SEO at scale</h2>
+        <p>Technical and on-page SEO work over 14 months drove about +160% daily organic clicks and +50% impressions, with a 99.5% reduction in 404s via expired-listing redirects and zero-inventory suppression — written up in two parts on <a href="https://tech.olx.in/author/anshul-bansal/">tech.olx.in</a>.</p>
+      </article>
+
+      <article class="work-item">
+        <h2>AI discoverability</h2>
+        <p>Making the site legible to LLM crawlers: robots.txt Content-Signal directives, an llms.txt, and markdown content negotiation so agents can pull structured answers without scraping the full PWA shell.</p>
+      </article>
+
+      <article class="work-item">
+        <h2>Googlebot event-loop incident, Apr 2026</h2>
+        <p>After a core update, deep filter and tracking-param URLs saturated the Node event loop. HPA was scaling on the wrong signal; vertical CPU scaling restored headroom while the URL surface was tightened.</p>
+      </article>
+
+      <article class="work-item">
+        <h2>Trunk-based development with session flags</h2>
+        <p>Session-scoped flags in the SSR pipeline let the team merge small changes continuously without exposing unfinished work. Merge time halved and PR throughput rose about 4× — written up on <a href="https://tech.olx.in/shipping-faster-without-breaking-production/">tech.olx.in</a>.</p>
+      </article>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-heading">
+      <p class="label" id="projects-heading">Projects</p>
+
+      <article class="built">
+        <h2><a href="https://github.com/anshul2209/health-report-ai">Health Report AI</a></h2>
+        <p>Local-first lab-report digitizer and dashboard: scanned PDFs and images go through a vision model on Ollama (Qwen2.5-VL), land as structured JSON, and surface in a React + Flask UI for trends, search, and AI analysis. No report data leaves the machine.</p>
+      </article>
+
+      <article class="built">
+        <h2>ReviewOwl</h2>
+        <p>GitLab CI + Slack bot for automated MR reviewer assignment with load-aware round-robin. In daily use by my team.</p>
+      </article>
+
+      <article class="built">
+        <h2>OLX Assist</h2>
+        <p>Workflow-based chat widget for help.olx.in. JS SDK embed, cookie/Bearer auth, and XMPP-based proactive triggers.</p>
+      </article>
+
+      <div class="footnote">
+        <p>Earlier open source</p>
+        <ul class="oss">
+          <li><strong><a href="https://github.com/anshul2209/Gourmet-Food">Gourmet-Food</a></strong> — Food ordering app using Zomato API</li>
+          <li><strong><a href="https://github.com/anshul2209/Chatter">Chatter</a></strong> — Real-time chat app with Socket.io</li>
+          <li><strong><a href="https://github.com/anshul2209/TaskR">TaskR</a></strong> — Trello-like task manager application</li>
+          <li><strong><a href="https://github.com/anshul2209/PUBG-Rank-Predictor">PUBG-Rank-Predictor</a></strong> — Machine Learning model to predict PUBG player rankings</li>
+          <li><strong><a href="https://github.com/anshul2209/Human-Activity-Tracker">Human-Activity-Tracker</a></strong> — ML model to classify human activities from sensor data</li>
+          <li><strong><a href="https://github.com/anshul2209/React-Card-Layout">React-Card-Layout</a></strong> — Responsive card layout component library</li>
+          <li><strong><a href="https://github.com/anshul2209/Lazy-Loader">Lazy-Loader</a></strong> — Performance optimization library for lazy loading images</li>
+          <li><strong><a href="https://github.com/anshul2209/urbanmart">UrbanMart</a></strong> — Modern e-commerce platform with product catalog, shopping cart, and responsive design</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="writing" aria-labelledby="writing-heading">
+      <p class="label" id="writing-heading">Writing</p>
+      <ul class="list">
+        <li>
+          <a href="https://tech.olx.in/shipping-faster-without-breaking-production/">Shipping Faster Without Breaking Production</a>
+          <span class="year">2026 · tech.olx.in</span>
+        </li>
+        <li>
+          <a href="https://tech.olx.in/olx-india-seo-improvements-part-2/">SEO at Scale: How OLX India Engineered a 160% Surge in Organic Clicks – Part 2</a>
+          <span class="year">2025 · tech.olx.in</span>
+        </li>
+        <li>
+          <a href="https://tech.olx.in/olx-india-seo-improvements-part-1/">SEO at Scale: How OLX India Engineered a 160% Surge in Organic Clicks – Part 1</a>
+          <span class="year">2025 · tech.olx.in</span>
+        </li>
+        <li>
+          <a href="https://medium.com/@hiiamanshul/implementing-the-micro-frontend-using-web-components-at-olx-14b16127b14d">Implementing the Micro-frontend using Web Components at OLX</a>
+          <span class="year">2020</span>
+        </li>
+        <li>
+          <a href="https://medium.com/@hiiamanshul/deploying-sapper-pwa-using-github-pages-step-by-step-tutorial-part-1-1e9828dfe4de">Deploying Sapper PWA using Github Pages: Step by Step Tutorial ( Part 1)</a>
+          <span class="year">2020</span>
+        </li>
+        <li>
+          <a href="https://medium.com/@hiiamanshul/deploying-sapper-pwa-using-github-pages-step-by-step-tutorial-part-2-d2efd92b2244">Deploying Sapper PWA using Github Pages: Step by Step Tutorial ( Part 2)</a>
+          <span class="year">2020</span>
+        </li>
+        <li>
+          <a href="https://medium.com/analytics-vidhya/human-activity-tracker-system-2435b532b05e">Human Activity Tracker System</a>
+          <span class="year">2020</span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="speaking" aria-labelledby="speaking-heading">
+      <p class="label" id="speaking-heading">Speaking</p>
+
+      <h2 class="subhead">Delivered</h2>
+      <article class="talk">
+        <h3>Your Server-Rendered App Doesn't Know Who It's Talking To</h3>
+        <ul class="venues">
+          <li>Dev Days Mumbai · <time datetime="2026-09-05">5 Sep 2026</time></li>
+          <li>Tech Talks @ OLX India · <time datetime="2026-09-17">17 Sep 2026</time></li>
+        </ul>
+      </article>
+      <article class="talk">
+        <h3>Modularising OLX's frontend monolith with Web Components</h3>
+        <ul class="venues">
+          <li>Naspers Global Tech Conference, Amsterdam · <time datetime="2019">2019</time></li>
+        </ul>
+      </article>
+
+      <h2 class="subhead">Upcoming</h2>
+      <ul class="upcoming">
+        <li>
+          <span>DevFest Gandhinagar</span>
+          <time datetime="2026-11-01">1 Nov 2026</time>
+        </li>
+        <li>
+          <span>WeAreDevelopers Conference India, Bengaluru</span>
+          <time datetime="2026-11-25">25–26 Nov 2026</time>
+        </li>
+      </ul>
+
+      <h2 class="subhead">Recorded talks</h2>
+      <p class="recorded">
+        <a href="https://www.youtube.com/watch?v=Md9eu-9_Ric">Microfrontends and Web Components</a> ·
+        <a href="https://www.youtube.com/watch?v=pGj1xsTU0Ow">Predicting the winner in a game of PUBG</a> ·
+        <a href="https://www.youtube.com/watch?v=Xu8Cj78I4FY">Globalisation Of OLX Code Base</a>
+      </p>
+    </section>
+
+    <section id="teaching" aria-labelledby="teaching-heading">
+      <p class="label" id="teaching-heading">Teaching</p>
+      <p>I mentor engineers via Topmate and internal workshops, ran a clean-code workshop for the intern bootcamp, and organised OLX India Hackathon 2026 (~80 participants).</p>
+      <p>I also speak on leadership and communication:
+        <a href="https://www.youtube.com/watch?v=_w3GaXCh7Zw">Identifying Your Leadership Style</a>,
+        <a href="https://www.youtube.com/watch?v=8Rv1elN_vuA">Ice Breaker Speech</a>,
+        <a href="https://www.youtube.com/watch?v=wwQSU3TztiU">Let's Team Up</a>.
+      </p>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-heading">
+      <p class="label" id="skills-heading">Skills</p>
+      <div class="skill">
+        <h2>Platform</h2>
+        <p>PWA architecture, SSR at scale, BFF patterns, micro-frontends, Web Components, Server-Driven UI</p>
+      </div>
+      <div class="skill">
+        <h2>Edge &amp; performance</h2>
+        <p>Akamai, CDN strategy, caching, Core Web Vitals, SEO</p>
+      </div>
+      <div class="skill">
+        <h2>Observability</h2>
+        <p>New Relic, NRQL, incident response, capacity planning</p>
+      </div>
+      <div class="skill">
+        <h2>Everything else</h2>
+        <p>JavaScript, TypeScript, Node.js, React, Svelte, Python, GenAI / local vision models (Ollama)</p>
+      </div>
+    </section>
+
+    <section id="background" aria-labelledby="background-heading">
+      <p class="label" id="background-heading">Background</p>
+
+      <div class="edu">
+        <h2>B.Tech in Computer Science</h2>
+        <p>USICT, GGSIPU · Delhi · 2011 – 2015 · 77%</p>
+        <p>Comprehensive computer science education covering programming fundamentals, data structures, algorithms, software engineering, and system design.</p>
+      </div>
+
+      <h2 class="subhead">Certifications &amp; awards</h2>
+      <ul class="certs">
+        <li>
+          <span>Generative AI for Beginners</span>
+          <span class="year">TODO</span>
+        </li>
+        <li>
+          <span>Machine Learning Engineer</span>
+          <span class="year">TODO</span>
+        </li>
+        <li>
+          <span>Kubernetes for the Absolute Beginners — Hands-on</span>
+          <span class="year">TODO</span>
+        </li>
+        <li>
+          <span>AI For Everyone</span>
+          <span class="year">TODO</span>
+        </li>
+        <li>
+          <span>Machine Learning Nanodegree (Udacity)</span>
+          <span class="year">2020</span>
+        </li>
+        <li>
+          <span>Data Science in R</span>
+          <span class="year">TODO</span>
+        </li>
+        <li>
+          <span>Homelane Young Gun — top performer amongst new joinees</span>
+          <span class="year">TODO</span>
+        </li>
+      </ul>
+
+      <div class="contact-block">
+        <p>Contact: <a href="mailto:anshulbansal2209@gmail.com">anshulbansal2209@gmail.com</a></p>
+        <ul class="links">
+          <li><a href="https://github.com/anshul2209">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/anshul2209">LinkedIn</a></li>
+          <li><a href="https://tech.olx.in/author/anshul-bansal/">tech.olx.in</a></li>
+          <li><a href="https://twitter.com/anshulbansal09">X</a></li>
+          <li><a href="https://medium.com/@hiiamanshul">Medium</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
