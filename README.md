@@ -1,4 +1,5 @@
-#### Step 1:Clone the Repo.
-#### Step 2:Go inside the cloned repository
-#### Step 3:Run `npm install`
-#### Step 4:Run `npm run dev`
+# anshulbansal.me
+
+Static personal site — a single `index.html`, no build step.
+
+Open `index.html` locally, or push to `master` for GitHub Pages.
