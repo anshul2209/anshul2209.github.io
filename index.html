@@ -300,19 +300,22 @@
     }
     .role-line strong { color: var(--text); font-weight: 600; }
     .about-copy p { color: var(--text-muted); }
-    .links {
+    .links,
+    .contact-links {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       margin: 1.35rem 0 0;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
       list-style: none;
       padding: 0;
     }
-    .links a {
-      display: inline-block;
-      padding: 0.4rem 0.7rem;
+    .links a,
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.35rem;
+      height: 2.35rem;
       color: var(--text);
       text-decoration: none;
       border: 1px solid var(--border);
@@ -320,10 +323,24 @@
       background: color-mix(in srgb, var(--bg) 70%, transparent);
       transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
     }
-    .links a:hover {
+    .links a:hover,
+    .contact-links a:hover {
       color: var(--accent);
       border-color: var(--accent);
       background: var(--accent-soft);
+    }
+    .links img,
+    .contact-links img {
+      width: 1.15rem;
+      height: 1.15rem;
+      display: block;
+      flex-shrink: 0;
+    }
+    @media (prefers-color-scheme: dark) {
+      .links img.invert-dark,
+      .contact-links img.invert-dark {
+        filter: invert(1);
+      }
     }
     .portrait {
       margin: 0.35rem 0 0;
@@ -714,30 +731,11 @@
     /* Contact */
     #contact { padding-bottom: 0.5rem; }
     .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
       margin: 0;
       padding: 1.05rem;
-      list-style: none;
       border: 1px solid var(--border);
       border-radius: var(--radius);
       background: var(--accent-soft);
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-    }
-    .contact-links a {
-      display: inline-block;
-      padding: 0.35rem 0.65rem;
-      color: var(--text);
-      text-decoration: none;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: color-mix(in srgb, var(--bg) 75%, transparent);
-    }
-    .contact-links a:hover {
-      color: var(--accent);
-      border-color: var(--accent);
     }
 
     .footer {
@@ -824,14 +822,42 @@
           <p class="role-line"><strong>Principal Engineer, Web Platform</strong> · OLX India · since Apr 2026 · Gurugram, India</p>
           <p>I architect the PWA, SSR, edge, and performance systems that serve 12M monthly web users. I lead three PWA squads spanning www.olx.in, Akamai and CDN delivery, BFF patterns, Core Web Vitals, observability, SEO, and client-side AI.</p>
           <p>Eleven years in, eight of them at OLX India — SE1 to Principal. Before that, HomeLane and FabHotels.</p>
-          <ul class="links">
-            <li><a href="resume.pdf">Resume</a></li>
-            <li><a href="https://github.com/anshul2209">GitHub</a></li>
-            <li><a href="https://www.linkedin.com/in/anshul2209">LinkedIn</a></li>
-            <li><a href="https://tech.olx.in/author/anshul-bansal/">tech.olx.in</a></li>
-            <li><a href="https://topmate.io/anshul_bansal2209/">Topmate</a></li>
-            <li><a href="https://twitter.com/anshulbansal09">X</a></li>
-            <li><a href="mailto:anshulbansal2209@gmail.com">Email</a></li>
+          <ul class="links" aria-label="Profiles and contact">
+            <li>
+              <a href="resume.pdf" aria-label="Resume" title="Resume">
+                <img src="images/icons/resume.svg" alt="" width="24" height="24" decoding="async">
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/anshul2209" aria-label="GitHub" title="GitHub">
+                <img class="invert-dark" src="images/icons/github.svg" alt="" width="24" height="24" decoding="async">
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/anshul2209" aria-label="LinkedIn" title="LinkedIn">
+                <img src="images/icons/linkedin.svg" alt="" width="24" height="24" decoding="async">
+              </a>
+            </li>
+            <li>
+              <a href="https://tech.olx.in/author/anshul-bansal/" aria-label="tech.olx.in" title="tech.olx.in">
+                <img src="images/icons/blog.svg" alt="" width="24" height="24" decoding="async">
+              </a>
+            </li>
+            <li>
+              <a href="https://topmate.io/anshul_bansal2209/" aria-label="Topmate" title="Topmate">
+                <img src="images/icons/topmate.svg" alt="" width="24" height="24" decoding="async">
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/anshulbansal09" aria-label="X" title="X">
+                <img class="invert-dark" src="images/icons/x.svg" alt="" width="24" height="24" decoding="async">
+              </a>
+            </li>
+            <li>
+              <a href="mailto:anshulbansal2209@gmail.com" aria-label="Email" title="Email">
+                <img src="images/icons/email.svg" alt="" width="24" height="24" decoding="async">
+              </a>
+            </li>
           </ul>
         </div>
         <figure class="portrait">
@@ -1206,14 +1232,42 @@
 
     <section id="contact" aria-labelledby="contact-heading">
       <h2 class="label" id="contact-heading">Contact</h2>
-      <ul class="contact-links">
-        <li><a href="mailto:anshulbansal2209@gmail.com">Email</a></li>
-        <li><a href="https://github.com/anshul2209">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/anshul2209">LinkedIn</a></li>
-        <li><a href="https://twitter.com/anshulbansal09">X</a></li>
-        <li><a href="https://medium.com/@hiiamanshul">Medium</a></li>
-        <li><a href="https://tech.olx.in/author/anshul-bansal/">tech.olx.in</a></li>
-        <li><a href="https://topmate.io/anshul_bansal2209/">Topmate</a></li>
+      <ul class="contact-links" aria-label="Contact links">
+        <li>
+          <a href="mailto:anshulbansal2209@gmail.com" aria-label="Email" title="Email">
+            <img src="images/icons/email.svg" alt="" width="24" height="24" decoding="async">
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/anshul2209" aria-label="GitHub" title="GitHub">
+            <img class="invert-dark" src="images/icons/github.svg" alt="" width="24" height="24" decoding="async">
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/anshul2209" aria-label="LinkedIn" title="LinkedIn">
+            <img src="images/icons/linkedin.svg" alt="" width="24" height="24" decoding="async">
+          </a>
+        </li>
+        <li>
+          <a href="https://twitter.com/anshulbansal09" aria-label="X" title="X">
+            <img class="invert-dark" src="images/icons/x.svg" alt="" width="24" height="24" decoding="async">
+          </a>
+        </li>
+        <li>
+          <a href="https://medium.com/@hiiamanshul" aria-label="Medium" title="Medium">
+            <img class="invert-dark" src="images/icons/medium.svg" alt="" width="24" height="24" decoding="async">
+          </a>
+        </li>
+        <li>
+          <a href="https://tech.olx.in/author/anshul-bansal/" aria-label="tech.olx.in" title="tech.olx.in">
+            <img src="images/icons/blog.svg" alt="" width="24" height="24" decoding="async">
+          </a>
+        </li>
+        <li>
+          <a href="https://topmate.io/anshul_bansal2209/" aria-label="Topmate" title="Topmate">
+            <img src="images/icons/topmate.svg" alt="" width="24" height="24" decoding="async">
+          </a>
+        </li>
       </ul>
     </section>
   </main>
