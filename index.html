@@ -63,7 +63,7 @@
       --on-accent: #FBFBFC;
       --font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
       --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Code", monospace;
-      --measure: 44rem;
+      --measure: 56rem;
       --radius: 3px;
       --nav-h: 2.85rem;
     }
@@ -134,7 +134,7 @@
     .wrap {
       max-width: var(--measure);
       margin: 0 auto;
-      padding: 0 1.25rem 5rem;
+      padding: 0 1.75rem 5.5rem;
     }
 
     .nav {
@@ -285,7 +285,7 @@
     .about {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 1.75rem 2rem;
+      gap: 2rem 3rem;
       align-items: start;
     }
     .about-copy > .label { margin-bottom: 1.1rem; }
@@ -344,7 +344,7 @@
     }
     .portrait {
       margin: 0.35rem 0 0;
-      width: 7.5rem;
+      width: 10rem;
     }
     .portrait img {
       display: block;
@@ -543,7 +543,7 @@
     /* Writing cards */
     .cards {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
     }
     .card {
@@ -593,7 +593,7 @@
     .talk:first-of-type { border-top: 0; padding-top: 0; }
     .talk h4 { margin: 0 0 0.4rem; font-size: 1.05rem; }
     .talk-video {
-      max-width: min(100%, 28rem);
+      max-width: min(100%, 34rem);
       margin: 0.9rem 0 0;
       padding: 0;
       list-style: none;
@@ -694,7 +694,7 @@
     #teaching > p {
       color: var(--text-muted);
       margin-bottom: 1.1rem;
-      max-width: 40rem;
+      max-width: 46rem;
     }
     #teaching > p:first-of-type { color: var(--text); }
 
@@ -748,14 +748,19 @@
       color: var(--text-muted);
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 900px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 720px) {
+      .wrap { padding: 0 1.25rem 4.5rem; }
       .about {
         grid-template-columns: 1fr;
         gap: 1.25rem;
       }
       .portrait {
         justify-self: start;
-        width: 6.5rem;
+        width: 7rem;
         order: -1;
       }
       .cards { grid-template-columns: 1fr; }
