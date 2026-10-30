@@ -50,33 +50,37 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #FFFFFF;
-      --bg-subtle: #F7F8F9;
+      --bg: #FBFBFC;
+      --bg-subtle: #F0F3F4;
+      --bg-wash: #E4EEEE;
       --text: #1A1D23;
       --text-muted: #5A6170;
-      --border: #E2E5EA;
+      --border: #D8DCE3;
       --accent: #0D6E6E;
+      --accent-soft: color-mix(in srgb, var(--accent) 14%, transparent);
       --accent-hover: #0A5555;
       --focus: #0D6E6E;
-      --on-accent: #FFFFFF;
+      --on-accent: #FBFBFC;
       --font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
-      --font-mono: "IBM Plex Mono", ui-monospace, monospace;
-      --measure: 48rem;
+      --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Code", monospace;
+      --measure: 44rem;
       --radius: 3px;
-      --nav-h: 3.25rem;
+      --nav-h: 2.85rem;
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #121418;
-        --bg-subtle: #1A1D23;
+        --bg: #101317;
+        --bg-subtle: #181C22;
+        --bg-wash: #163033;
         --text: #E8EAED;
         --text-muted: #9AA0AB;
         --border: #2E3340;
         --accent: #3DABAB;
+        --accent-soft: color-mix(in srgb, var(--accent) 18%, transparent);
         --accent-hover: #5BC0C0;
         --focus: #5BC0C0;
-        --on-accent: #121418;
+        --on-accent: #101317;
       }
     }
 
@@ -84,16 +88,21 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: calc(var(--nav-h) + 1rem);
+      scroll-padding-top: calc(var(--nav-h) + 0.75rem);
     }
 
     body {
       margin: 0;
       font-family: var(--font-sans);
-      font-size: 1.05rem;
+      font-size: 1.0625rem;
       line-height: 1.65;
       color: var(--text);
-      background: var(--bg);
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 0% -10%, var(--bg-wash), transparent 55%),
+        radial-gradient(ellipse 70% 40% at 100% 8%, var(--accent-soft), transparent 50%),
+        linear-gradient(180deg, var(--bg-subtle) 0%, var(--bg) 28rem);
+      background-attachment: fixed;
       -webkit-font-smoothing: antialiased;
       font-variant-numeric: tabular-nums;
     }
@@ -122,13 +131,19 @@
     }
     .skip:focus { top: 0.75rem; }
 
+    .wrap {
+      max-width: var(--measure);
+      margin: 0 auto;
+      padding: 0 1.25rem 5rem;
+    }
+
     .nav {
       position: sticky;
       top: 0;
       z-index: 50;
       height: var(--nav-h);
-      background: color-mix(in srgb, var(--bg) 92%, transparent);
-      backdrop-filter: blur(10px);
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      backdrop-filter: blur(12px) saturate(1.2);
       border-bottom: 1px solid var(--border);
     }
     .nav-inner {
@@ -138,125 +153,181 @@
       height: 100%;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-    .brand {
-      flex: 0 0 auto;
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: var(--text);
-      text-decoration: none;
-      letter-spacing: -0.01em;
-    }
-    .brand:hover { color: var(--accent); }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 0.15rem;
+      gap: 0.1rem;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+      list-style: none;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.1rem;
       margin: 0;
       padding: 0;
       list-style: none;
+      width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
     .nav-links::-webkit-scrollbar { display: none; }
     .nav-links a {
       flex: 0 0 auto;
-      font-size: 0.85rem;
-      color: var(--text-muted);
+      position: relative;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       text-decoration: none;
-      padding: 0.35rem 0.45rem;
-      text-transform: lowercase;
+      color: var(--text-muted);
+      padding: 0.4rem 0.5rem;
+      border-radius: var(--radius);
+      transition: color 0.15s ease;
     }
     .nav-links a:hover { color: var(--text); }
-
-    .wrap {
-      max-width: var(--measure);
-      margin: 0 auto;
-      padding: 0 1.35rem 5.5rem;
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0.5rem;
+      right: 0.5rem;
+      bottom: 0.15rem;
+      height: 1.5px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.18s ease;
     }
+    .nav-links a:hover::after { transform: scaleX(1); }
 
-    section {
-      padding-top: 3.5rem;
-    }
-
-    .section-rule {
-      border: 0;
-      border-top: 1px solid var(--border);
-      margin: 3.5rem 0 0;
-    }
+    section { padding-top: 3rem; }
 
     h1 {
-      margin: 0 0 1.15rem;
-      font-size: clamp(1.85rem, 5vw, 2.35rem);
+      margin: 0 0 0.55rem;
+      font-size: clamp(2.15rem, 7vw, 2.85rem);
       font-weight: 600;
-      line-height: 1.2;
-      letter-spacing: -0.025em;
+      line-height: 1.12;
+      letter-spacing: -0.035em;
     }
 
-    h2 {
-      margin: 0 0 1.75rem;
-      font-size: 1.45rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
+    h2.label,
+    .label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 0 0 1.35rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      line-height: 1;
+    }
+    h2.label::before,
+    .label::before {
+      content: "";
+      width: 0.45rem;
+      height: 0.45rem;
+      background: var(--accent);
+      border-radius: 1px;
+      flex: 0 0 auto;
+    }
+    h2.label::after,
+    .label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
     }
 
     h3 {
       margin: 0 0 0.35rem;
       font-size: 1.05rem;
       font-weight: 600;
-      line-height: 1.35;
+      line-height: 1.3;
     }
 
     h4 {
-      margin: 0 0 0.65rem;
-      font-size: 0.95rem;
+      margin: 0 0 0.5rem;
+      font-size: 1.05rem;
       font-weight: 600;
+      line-height: 1.3;
     }
 
     p { margin: 0 0 1rem; }
     p:last-child { margin-bottom: 0; }
 
     .lede {
-      margin: 0 0 1.5rem;
+      margin: 0 0 1.25rem;
       color: var(--text-muted);
+      font-size: 1rem;
     }
 
-    /* About */
+    .subhead {
+      margin: 1.75rem 0 0.65rem;
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .subhead:first-of-type { margin-top: 0; }
+
+    /* About / intro */
+    #about {
+      padding-top: 2.25rem;
+      padding-bottom: 0.25rem;
+    }
     .about {
       display: grid;
-      grid-template-columns: 1.45fr 0.9fr;
-      gap: 2.25rem 2.75rem;
+      grid-template-columns: 1fr auto;
+      gap: 1.75rem 2rem;
       align-items: start;
-      padding-top: 3.75rem;
     }
-    .about-copy .lead {
-      font-size: 1.12rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-    .about-copy p {
+    .about-copy > .label { margin-bottom: 1.1rem; }
+    .role-line {
+      margin: 0 0 1.25rem;
+      padding: 0.65rem 0.85rem;
+      font-size: 1.02rem;
       color: var(--text-muted);
+      background: color-mix(in srgb, var(--bg) 55%, transparent);
+      border-left: 2px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
     }
-    .about-copy .lead { color: var(--text); }
-    .about-links {
+    .role-line strong { color: var(--text); font-weight: 600; }
+    .about-copy p { color: var(--text-muted); }
+    .links {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.35rem 1.25rem;
-      margin-top: 1.35rem;
-      padding: 0;
+      gap: 0.5rem;
+      margin: 1.35rem 0 0;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
       list-style: none;
-      font-size: 0.95rem;
+      padding: 0;
     }
-    .about-links a { text-decoration: none; }
-    .about-links a:hover { text-decoration: underline; }
-
+    .links a {
+      display: inline-block;
+      padding: 0.4rem 0.7rem;
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--bg) 70%, transparent);
+      transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+    }
+    .links a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
     .portrait {
-      margin: 0;
-      justify-self: end;
-      width: min(100%, 15rem);
+      margin: 0.35rem 0 0;
+      width: 7.5rem;
     }
     .portrait img {
       display: block;
@@ -270,6 +341,23 @@
       background: var(--bg-subtle);
     }
 
+    @media (prefers-reduced-motion: no-preference) {
+      #about .about-copy > * {
+        animation: rise 0.55s ease both;
+      }
+      #about .about-copy > *:nth-child(1) { animation-delay: 0.02s; }
+      #about .about-copy > *:nth-child(2) { animation-delay: 0.08s; }
+      #about .about-copy > *:nth-child(3) { animation-delay: 0.14s; }
+      #about .about-copy > *:nth-child(4) { animation-delay: 0.2s; }
+      #about .about-copy > *:nth-child(5) { animation-delay: 0.26s; }
+      #about .about-copy > *:nth-child(6) { animation-delay: 0.32s; }
+      #about .portrait { animation: rise 0.55s ease 0.18s both; }
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(0.55rem); }
+      to { opacity: 1; transform: none; }
+    }
+
     /* Experience */
     .jobs {
       list-style: none;
@@ -277,57 +365,88 @@
       padding: 0;
     }
     .employer {
-      padding: 1.45rem 0;
+      padding: 1.35rem 0 0.25rem;
       border-top: 1px solid var(--border);
     }
     .employer:first-child { border-top: 0; padding-top: 0; }
     .employer-head {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.7rem;
       margin: 0 0 0.85rem;
     }
     .employer-head img {
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 0.35rem;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: var(--radius);
       border: 1px solid var(--border);
       background: var(--bg);
       object-fit: contain;
       flex-shrink: 0;
     }
-    .employer-head h3 {
-      margin: 0;
-    }
+    .employer-head h3 { margin: 0; font-size: 1.08rem; }
+
     .roles {
       list-style: none;
       margin: 0;
       padding: 0;
+      position: relative;
+    }
+    .roles::before {
+      content: "";
+      position: absolute;
+      left: 7.05rem;
+      top: 0.35rem;
+      bottom: 0.35rem;
+      width: 1px;
+      background: linear-gradient(180deg, var(--accent), var(--border) 55%, transparent);
     }
     .role {
       display: grid;
-      grid-template-columns: 7.5rem 1fr;
+      grid-template-columns: 6.5rem 1fr;
       gap: 0.35rem 1.75rem;
-      padding: 0.85rem 0 0;
+      padding: 1rem 0;
+      position: relative;
     }
     .role:first-child { padding-top: 0; }
-    .role + .role {
-      margin-top: 0.85rem;
-      border-top: 1px solid var(--border);
-      padding-top: 0.85rem;
+    .role::before {
+      content: "";
+      position: absolute;
+      left: 6.85rem;
+      top: 1.3rem;
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1.5px solid var(--accent);
+      z-index: 1;
+    }
+    .employer:first-child .role:first-child::before {
+      top: 0.3rem;
+      background: var(--accent);
     }
     .job-meta {
       font-family: var(--font-mono);
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
-      line-height: 1.45;
+      line-height: 1.4;
       padding-top: 0.15rem;
+      text-align: right;
+    }
+    .employer:first-child .role:first-child .job-meta {
+      color: var(--accent);
+      font-weight: 500;
     }
     .role .title {
-      margin: 0 0 0.4rem;
-      color: var(--text);
-      font-size: 0.98rem;
+      margin: 0 0 0.45rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
       font-weight: 500;
+    }
+    .role > div > p:not(.title) {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 0.65rem;
     }
     .role ul {
       margin: 0;
@@ -339,28 +458,32 @@
     .role li:last-child { margin-bottom: 0; }
 
     /* Work */
-    .work-item { margin-bottom: 2rem; }
+    .work-item {
+      margin-bottom: 1.35rem;
+      padding: 0.85rem 0 0.85rem 1rem;
+      border-left: 2px solid var(--border);
+      transition: border-color 0.15s ease;
+    }
+    .work-item:hover { border-left-color: var(--accent); }
     .work-item:last-child { margin-bottom: 0; }
-    .work-item h3 { margin-bottom: 0.55rem; }
+    .work-item h3 { margin-bottom: 0.4rem; }
     .work-item p { color: var(--text-muted); font-size: 0.98rem; }
 
-    /* Projects table rows */
+    /* Projects */
     .project-table {
       width: 100%;
       border-collapse: collapse;
     }
-    .project-table tr {
-      border-top: 1px solid var(--border);
-    }
+    .project-table tr { border-top: 1px solid var(--border); }
     .project-table tr:first-child { border-top: 0; }
     .project-table td {
-      padding: 1.1rem 0;
+      padding: 0.95rem 0;
       vertical-align: top;
       font-size: 0.98rem;
     }
     .project-table .year {
-      width: 4.5rem;
-      padding-right: 1.25rem;
+      width: 4.25rem;
+      padding-right: 1rem;
       font-family: var(--font-mono);
       font-size: 0.8rem;
       color: var(--text-muted);
@@ -376,13 +499,15 @@
     }
     .project-table .code:hover { text-decoration: underline; }
     .oss-note {
-      margin-top: 1.5rem;
-      padding-top: 1rem;
-      border-top: 1px dashed var(--border);
+      margin-top: 1.25rem;
+      padding: 1.1rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--bg-subtle) 70%, transparent);
     }
     .oss-note > p {
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--text-muted);
@@ -392,7 +517,7 @@
       list-style: none;
       margin: 0;
       padding: 0;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
     }
     .oss-list li { margin-bottom: 0.45rem; }
@@ -401,25 +526,27 @@
     /* Writing cards */
     .cards {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
     }
     .card {
       display: flex;
       flex-direction: column;
-      padding: 1.25rem 1.25rem 1.35rem;
+      padding: 1rem 1.05rem 1.1rem;
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      background: var(--bg-subtle);
+      background: color-mix(in srgb, var(--bg) 65%, transparent);
+      transition: border-color 0.15s ease;
     }
+    .card:hover { border-color: var(--accent); }
     .card-date {
       font-family: var(--font-mono);
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
     }
     .card h3 {
-      margin: 0.55rem 0 0.65rem;
-      font-size: 1rem;
+      margin: 0.45rem 0 0.5rem;
+      font-size: 0.98rem;
       line-height: 1.35;
     }
     .card h3 a {
@@ -429,71 +556,56 @@
     .card h3 a:hover { color: var(--accent); text-decoration: underline; }
     .card p {
       flex: 1;
-      margin: 0 0 0.9rem;
-      font-size: 0.92rem;
+      margin: 0 0 0.75rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
       line-height: 1.55;
     }
     .card .more {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       text-decoration: none;
+      font-family: var(--font-mono);
     }
     .card .more:hover { text-decoration: underline; }
 
     /* Speaking */
     .talk {
-      margin-bottom: 2.75rem;
-      padding-bottom: 2.25rem;
-      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+      border-top: 1px solid var(--border);
     }
-    .talk:last-of-type {
-      margin-bottom: 0.5rem;
-      padding-bottom: 0;
-      border-bottom: 0;
-    }
-    .talk h4 {
-      margin: 0 0 0.65rem;
-      font-size: 1.12rem;
-      font-weight: 600;
-      line-height: 1.35;
-    }
+    .talk:first-of-type { border-top: 0; padding-top: 0; }
+    .talk h4 { margin: 0 0 0.4rem; font-size: 1.05rem; }
     .talk-video {
-      max-width: min(100%, 36rem);
-      margin: 1.35rem 0 0;
+      max-width: min(100%, 28rem);
+      margin: 0.9rem 0 0;
       padding: 0;
       list-style: none;
-    }
-    .talk-video .video-grid {
-      margin-top: 0;
-      grid-template-columns: 1fr;
-      gap: 0;
     }
     .venues {
       list-style: none;
-      margin: 0.15rem 0 0;
+      margin: 0;
       padding: 0;
       color: var(--text-muted);
-      font-size: 0.98rem;
-      line-height: 1.7;
+      font-size: 0.92rem;
     }
-    .venues li { margin-bottom: 0.35rem; }
+    .venues li { margin-bottom: 0.2rem; }
     .venues time {
       font-family: var(--font-mono);
       font-size: 0.8rem;
     }
     .upcoming {
       list-style: none;
-      margin: 0.75rem 0 0;
+      margin: 0.5rem 0 0;
       padding: 0;
     }
     .upcoming li {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      gap: 0.35rem 1rem;
-      padding: 0.85rem 0;
+      gap: 0.25rem 1rem;
+      padding: 0.55rem 0;
       border-top: 1px solid var(--border);
-      font-size: 0.98rem;
+      font-size: 0.95rem;
     }
     .upcoming a {
       color: var(--text);
@@ -503,22 +615,12 @@
     .upcoming time {
       font-family: var(--font-mono);
       font-size: 0.8rem;
-      color: var(--text-muted);
+      color: var(--accent);
     }
-    .subhead {
-      margin: 2.75rem 0 1.15rem;
-      font-size: 0.8rem;
-      font-family: var(--font-mono);
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .subhead:first-child { margin-top: 0; }
     .video-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
+      gap: 1rem;
       margin-top: 0.35rem;
       padding: 0;
       list-style: none;
@@ -530,7 +632,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
-      background: var(--bg-subtle);
+      background: color-mix(in srgb, var(--bg) 70%, transparent);
       transition: border-color 0.15s ease;
     }
     .video-grid a:hover {
@@ -555,20 +657,18 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 2.75rem;
-      height: 2rem;
+      width: 2.5rem;
+      height: 1.85rem;
       transform: translate(-50%, -50%);
-      border-radius: 0.35rem;
+      border-radius: 0.3rem;
       background: color-mix(in srgb, var(--text) 72%, transparent);
       clip-path: polygon(38% 28%, 38% 72%, 72% 50%);
       opacity: 0.9;
-      transition: opacity 0.15s ease;
     }
-    .video-grid a:hover .video-thumb::after { opacity: 1; }
     .video-title {
       display: block;
-      padding: 0.8rem 0.85rem 0.95rem;
-      font-size: 0.9rem;
+      padding: 0.65rem 0.75rem 0.8rem;
+      font-size: 0.88rem;
       font-weight: 500;
       line-height: 1.4;
       color: var(--text);
@@ -576,90 +676,123 @@
 
     #teaching > p {
       color: var(--text-muted);
-      margin-bottom: 1.25rem;
-      max-width: 42rem;
+      margin-bottom: 1.1rem;
+      max-width: 40rem;
     }
     #teaching > p:first-of-type { color: var(--text); }
-
-    @media (max-width: 560px) {
-      .video-grid { grid-template-columns: 1fr; }
-    }
 
     /* Skills */
     .skills {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2rem 2.5rem;
+      gap: 0.85rem;
+    }
+    .skills > div {
+      padding: 0.75rem 0.9rem;
+      background: color-mix(in srgb, var(--bg) 65%, transparent);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .skills h4 {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.45rem;
     }
     .skills ul {
       margin: 0;
       padding: 0;
       list-style: none;
-      color: var(--text-muted);
+      color: var(--text);
       font-size: 0.95rem;
     }
-    .skills li { margin-bottom: 0.4rem; }
+    .skills li { margin-bottom: 0.3rem; color: var(--text-muted); }
 
     /* Contact */
-    #contact {
-      text-align: center;
-      padding-bottom: 1rem;
-    }
-    #contact p { color: var(--text-muted); }
+    #contact { padding-bottom: 0.5rem; }
     .contact-links {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.35rem 1.25rem;
-      margin: 1.25rem 0 0;
-      padding: 0;
+      gap: 0.5rem;
+      margin: 0;
+      padding: 1.05rem;
       list-style: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--accent-soft);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
     }
-    .contact-links a { text-decoration: none; }
-    .contact-links a:hover { text-decoration: underline; }
+    .contact-links a {
+      display: inline-block;
+      padding: 0.35rem 0.65rem;
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--bg) 75%, transparent);
+    }
+    .contact-links a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
 
     .footer {
       max-width: var(--measure);
-      margin: 0 auto;
-      padding: 1.5rem 1.25rem 2.5rem;
+      margin: 2.5rem auto 0;
+      padding: 1.25rem 1.25rem 2.25rem;
       border-top: 1px solid var(--border);
       text-align: center;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 640px) {
       .about {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1.25rem;
       }
       .portrait {
-        justify-self: center;
-        width: 11rem;
+        justify-self: start;
+        width: 6.5rem;
         order: -1;
       }
       .cards { grid-template-columns: 1fr; }
-      .skills { grid-template-columns: 1fr; gap: 1.25rem; }
+      .skills { grid-template-columns: 1fr; }
+      .video-grid { grid-template-columns: 1fr; }
+      .roles::before { left: 0.2rem; }
       .role {
         grid-template-columns: 1fr;
-        gap: 0.2rem;
+        gap: 0.25rem;
+        padding-left: 1.35rem;
+      }
+      .role::before { left: 0; top: 1.2rem; }
+      .employer:first-child .role:first-child::before { top: 0.2rem; }
+      .job-meta {
+        text-align: left;
+        margin-bottom: 0.1rem;
       }
       .project-table .year {
         display: block;
         width: auto;
-        padding: 0 0 0.25rem;
+        padding: 0 0 0.2rem;
       }
       .project-table td { display: block; }
-      .nav-inner { gap: 0.75rem; }
-      .brand { font-size: 0.95rem; }
-    }
-
-    @media (max-width: 520px) {
-      .nav-links a { padding: 0.3rem 0.35rem; font-size: 0.8rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
+      #about .about-copy > *,
+      #about .portrait { animation: none; }
+      .nav-links a::after,
+      .nav-links a,
+      .links a,
+      .work-item,
+      .card,
+      .video-grid a { transition: none; }
     }
   </style>
 </head>
@@ -668,7 +801,6 @@
 
   <nav class="nav" aria-label="Primary">
     <div class="nav-inner">
-      <a class="brand" href="#about">Anshul Bansal</a>
       <ul class="nav-links">
         <li><a href="#about">about</a></li>
         <li><a href="#experience">experience</a></li>
@@ -684,40 +816,42 @@
   </nav>
 
   <main class="wrap">
-    <section id="about" class="about" aria-labelledby="about-heading">
-      <div class="about-copy">
-        <h1 id="about-heading">Anshul Bansal</h1>
-        <p class="lead">Principal Engineer, Web Platform at OLX India. I architect the PWA, SSR, edge, and performance systems that serve 12M monthly web users.</p>
-        <p>I lead three PWA squads spanning www.olx.in, Akamai and CDN delivery, BFF patterns, Core Web Vitals, observability, SEO, and client-side AI.</p>
-        <p>Eleven years in, eight of them at OLX India — SE1 to Principal. Before that, HomeLane and FabHotels. Based in Gurugram, India.</p>
-        <ul class="about-links">
-          <li><a href="resume.pdf">CV / Résumé</a></li>
-          <li><a href="https://github.com/anshul2209">GitHub</a></li>
-          <li><a href="https://www.linkedin.com/in/anshul2209">LinkedIn</a></li>
-          <li><a href="https://tech.olx.in/author/anshul-bansal/">tech.olx.in</a></li>
-          <li><a href="https://topmate.io/anshul_bansal2209/">Topmate</a></li>
-          <li><a href="mailto:anshulbansal2209@gmail.com">Email</a></li>
-        </ul>
+    <section id="about" aria-labelledby="about-heading">
+      <div class="about">
+        <div class="about-copy">
+          <p class="label">About</p>
+          <h1 id="about-heading">Anshul Bansal</h1>
+          <p class="role-line"><strong>Principal Engineer, Web Platform</strong> · OLX India · since Apr 2026 · Gurugram, India</p>
+          <p>I architect the PWA, SSR, edge, and performance systems that serve 12M monthly web users. I lead three PWA squads spanning www.olx.in, Akamai and CDN delivery, BFF patterns, Core Web Vitals, observability, SEO, and client-side AI.</p>
+          <p>Eleven years in, eight of them at OLX India — SE1 to Principal. Before that, HomeLane and FabHotels.</p>
+          <ul class="links">
+            <li><a href="resume.pdf">Resume</a></li>
+            <li><a href="https://github.com/anshul2209">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/anshul2209">LinkedIn</a></li>
+            <li><a href="https://tech.olx.in/author/anshul-bansal/">tech.olx.in</a></li>
+            <li><a href="https://topmate.io/anshul_bansal2209/">Topmate</a></li>
+            <li><a href="https://twitter.com/anshulbansal09">X</a></li>
+            <li><a href="mailto:anshulbansal2209@gmail.com">Email</a></li>
+          </ul>
+        </div>
+        <figure class="portrait">
+          <picture>
+            <source srcset="images/profile/anshul.webp" type="image/webp">
+            <img
+              src="images/profile/anshul.jpg"
+              alt="Anshul Bansal"
+              width="480"
+              height="480"
+              decoding="async"
+              fetchpriority="high"
+            >
+          </picture>
+        </figure>
       </div>
-      <figure class="portrait">
-        <picture>
-          <source srcset="images/profile/anshul.webp" type="image/webp">
-          <img
-            src="images/profile/anshul.jpg"
-            alt="Anshul Bansal"
-            width="480"
-            height="480"
-            decoding="async"
-            fetchpriority="high"
-          >
-        </picture>
-      </figure>
     </section>
 
-    <hr class="section-rule">
-
     <section id="experience" aria-labelledby="experience-heading">
-      <h2 id="experience-heading">Experience</h2>
+      <h2 class="label" id="experience-heading">Experience</h2>
       <ol class="jobs">
         <li class="employer">
           <div class="employer-head">
@@ -824,10 +958,9 @@
       </ol>
     </section>
 
-    <hr class="section-rule">
 
     <section id="work" aria-labelledby="work-heading">
-      <h2 id="work-heading">Platform work</h2>
+      <h2 class="label" id="work-heading">Platform work</h2>
       <p class="lede">Selected threads from recent years at OLX India — how the work was approached, not just the outcomes.</p>
       <article class="work-item">
         <h3>Edge caching and bot classification</h3>
@@ -855,10 +988,9 @@
       </article>
     </section>
 
-    <hr class="section-rule">
 
     <section id="writing" aria-labelledby="writing-heading">
-      <h2 id="writing-heading">Writing</h2>
+      <h2 class="label" id="writing-heading">Writing</h2>
       <div class="cards">
         <article class="card">
           <span class="card-date">June 2026</span>
@@ -905,10 +1037,9 @@
       </div>
     </section>
 
-    <hr class="section-rule">
 
     <section id="speaking" aria-labelledby="speaking-heading">
-      <h2 id="speaking-heading">Speaking</h2>
+      <h2 class="label" id="speaking-heading">Speaking</h2>
       <h3 class="subhead">Delivered</h3>
       <article class="talk">
         <h4>Your Server-Rendered App Doesn't Know Who It's Talking To</h4>
@@ -975,10 +1106,9 @@
       </ul>
     </section>
 
-    <hr class="section-rule">
 
     <section id="teaching" aria-labelledby="teaching-heading">
-      <h2 id="teaching-heading">Teaching</h2>
+      <h2 class="label" id="teaching-heading">Teaching</h2>
       <p>I mentor engineers via <a href="https://topmate.io/anshul_bansal2209/">Topmate</a> and run internal workshops. I also ran a clean-code workshop for the intern bootcamp and organised OLX India Hackathon 2026 (~80 participants).</p>
       <h3 class="subhead">Leadership &amp; communication</h3>
       <ul class="video-grid">
@@ -1009,10 +1139,9 @@
       </ul>
     </section>
 
-    <hr class="section-rule">
 
     <section id="projects" aria-labelledby="projects-heading">
-      <h2 id="projects-heading">Side projects</h2>
+      <h2 class="label" id="projects-heading">Side projects</h2>
       <table class="project-table">
         <tbody>
           <tr>
@@ -1036,10 +1165,9 @@
       </div>
     </section>
 
-    <hr class="section-rule">
 
     <section id="skills" aria-labelledby="skills-heading">
-      <h2 id="skills-heading">Skills</h2>
+      <h2 class="label" id="skills-heading">Skills</h2>
       <div class="skills">
         <div>
           <h4>Platform</h4>
@@ -1075,10 +1203,9 @@
       </div>
     </section>
 
-    <hr class="section-rule">
 
     <section id="contact" aria-labelledby="contact-heading">
-      <h2 id="contact-heading">Contact</h2>
+      <h2 class="label" id="contact-heading">Contact</h2>
       <ul class="contact-links">
         <li><a href="mailto:anshulbansal2209@gmail.com">Email</a></li>
         <li><a href="https://github.com/anshul2209">GitHub</a></li>
